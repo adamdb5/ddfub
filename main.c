@@ -60,7 +60,7 @@ int main(void)
 	
 	/* Send a message to ourself */
 	char* buffer = "hello";
-    send_to_socket(sock_out, (void*)buffer, strlen(buffer), 0, addr_in);
+	send_to_socket(sock_out, (void*)buffer, strlen(buffer), 0, addr_in);
 		   
 	/* Receive the message */
 	char buffer_in[1000];
