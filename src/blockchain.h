@@ -16,12 +16,12 @@
 /**
  * A block containing information for a firewall transaction.
  */
-struct _FirewallBlock
+struct FirewallBlock
 {
   char name[100];      /**< The name of the block author   */
   char last_hash[256]; /**< The hash of the previous block */
 };
-typedef struct _FirewallBlock FirewallBlock;
+typedef struct FirewallBlock FirewallBlock;
 
 /**
  * @brief Calculates the SHA256 hash of a block.

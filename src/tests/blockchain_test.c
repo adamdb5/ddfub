@@ -1,3 +1,10 @@
+/**
+ * @file blockchain_test.c
+ * @brief Tests for the functions in blockchain.c.
+ * @author Adam Bruce
+ * @date 03 Feb 2021
+ */
+
 #include "../blockchain.h"
 
 #include <openssl/sha.h>
@@ -91,6 +98,10 @@ void get_hash_string_null_hash(void **state)
   assert_int_equal(result, 1); 
 }
 
+/**
+ * Tests if get_hash_string returns a non-zero integer if the
+ * buffer is smaller than the hash string.
+ */ 
 void get_hash_string_buffer_too_small(void **state)
 {
   unsigned char hash[SHA256_DIGEST_LENGTH];
