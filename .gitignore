@@ -1,5 +1,9 @@
 *~
+main
+tests/blockchain_test
+
 docs/
+
 paper/paper.log
 paper/paper.aux
 paper/paper.out
