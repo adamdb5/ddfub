@@ -26,14 +26,40 @@
 	upquote=true,
 	tabsize=2,
 }
+
+\lstdefinestyle{make}{
+	commentstyle=\color{comment},
+	stringstyle=\color{string},
+	keywordstyle=\color{keyword},
+	basicstyle=\footnotesize\ttfamily,
+	numbers=left,
+	numberstyle=\tiny,
+	numbersep=5pt,
+	frame=lines,
+	breaklines=true,
+	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	showstringspaces=false,
+	upquote=true,
+	tabsize=2,
+}
+
+
 \title{Using Blockchain to Create a Decentralised Distributed Firewall}
-\date{2021}
+\date{February 2021}
 \author{Adam Bruce \\ \texttt{\href{mailto:a.bruce3@ncl.ac.uk}{a.bruce3@ncl.ac.uk}}}
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Woah
+This is an abstract wow, isn't it beautiful. It will tell you all about what I did and some other interesting things.
+This is an abstract wow, isn't it beautiful. It will tell you all about what I did and some other interesting things.
+This is an abstract wow, isn't it beautiful. It will tell you all about what I did and some other interesting things.
+This is an abstract wow, isn't it beautiful. It will tell you all about what I did and some other interesting things.
+This is an abstract wow, isn't it beautiful. It will tell you all about what I did and some other interesting things.
+This is an abstract wow, isn't it beautiful. It will tell you all about what I did and some other interesting things.
+This is an abstract wow, isn't it beautiful. It will tell you all about what I did and some other interesting things.
+This is an abstract wow, isn't it beautiful. It will tell you all about what I did and some other interesting things.
+This is an abstract wow, isn't it beautiful. It will tell you all about what I did and some other interesting things.
 \end{abstract}
 
 \newpage
@@ -46,46 +72,11 @@ This is an introduction to some stuff aiohfoisahnfasdnfksandflk;nasl;fnaf. iosdf
 Second paragra[hkahnfknsadkf;nsakdnf;klsandfknaskdn;fklasndkfn kaslndf ksandf klnasdf aklsnf kasndf aksdnf ka;s ndf;ksandf;knaskdnf asd fkasnf knsadf nas
 
 \subsection{LOL}
+socket.h
+\lstinputlisting[language={[ANSI]c},style=c]{../src/main.c}
 
-\begin{lstlisting}[language=c,style=c]
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-struct _Person
-{
-	char name[32];
-	unsigned int age;
-};
-typedef struct _Person Person;
-
-Person* create_person(char* name, unsigned int age)
-{
-	if(strlen(name) > 31)
-		return NULL;
-	
-	Person* person = (Person*)malloc(sizeof(Person));
-	if(!person)
-		return NULL;
-		
-	strncpy(person->name, name, strlen(name));
-	person->age = age;
-	
-	return person;
-}
-
-int main(void)
-{
-   Person* me = create_person("Adam", 20);
-   
-   printf("Name: %s, Age: %d\n", me.name, me.age);
-   
-	free(me);   
-   
-   return 0;
-}
-\end{lstlisting}
+Makefile
+\lstinputlisting[language=make,style=make]{../src/Makefile}
 
 \section{Beef}
 hello world!

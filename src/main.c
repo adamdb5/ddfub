@@ -19,6 +19,8 @@ int main(void)
 {
 	socket_t sock_in, sock_out;
 	struct sockaddr_in addr_in;
+	char buffer[6];
+	char buffer_in[1000];
 	
 	addr_in.sin_family = AF_INET;
 	addr_in.sin_addr.s_addr = INADDR_ANY;
@@ -59,11 +61,10 @@ int main(void)
 	printf("Socket creation and bind successful!\n");
 	
 	/* Send a message to ourself */
-	char* buffer = "hello";
+	strcpy(buffer, "hello");
 	send_to_socket(sock_out, (void*)buffer, strlen(buffer), 0, addr_in);
 		   
 	/* Receive the message */
-	char buffer_in[1000];
 	recv_from_socket(sock_in, buffer_in, 1000, 0);
 	
 	/* Print our received message */

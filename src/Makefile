@@ -1,5 +1,5 @@
-SRCS=main.c socket.c
-CFLAGS=-Wall --std=c89
+SRCS=main.c socket.c blockchain.c
+CFLAGS=-Wall -pedantic --std=c89 -Os
 EXE=main
 
 unix:

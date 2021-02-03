@@ -5,8 +5,8 @@
  * @date 15 Dec 2020
  */
 
-#ifndef SOCKET_H_
-#define SOCKET_H_
+#ifndef SOCKET_H
+#define SOCKET_H
 
 #ifdef _WIN32
 	#ifndef _WIN32_WINNT
@@ -34,7 +34,7 @@
 	/** 
 	 * @brief
 	 * UNIX equivalent to WinSocks's INVALID_SOCKET constant
-	 * */
+	 */
 	#define INVALID_SOCKET -1 
 #endif
 
