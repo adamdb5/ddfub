@@ -1,6 +1,7 @@
 SRCS=main.c socket.c blockchain.c
-CFLAGS=-Wall -pedantic --std=c89 -Os `pkg-config libcrypto --cflags`
-LIBS=`pkg-config libcrypto --libs`
+CFLAGS=-Wall -pedantic --std=c89 -Os `pkg-config libcrypto --cflags` \
+       `pkg-config cmocka --cflags`
+LIBS=`pkg-config libcrypto --libs` `pkg-config cmocka --libs`
 EXE=main
 
 unix:
