@@ -61,8 +61,9 @@ int main(void)
 	printf("Socket creation and bind successful!\n");
 	
 	/* Send a message to ourself */
+	/* FreeBSD requires the data is null-terminated, so +1 for the null terminator */ 
 	strcpy(buffer, "hello");
-	send_to_socket(sock_out, (void*)buffer, strlen(buffer), 0, addr_in);
+	send_to_socket(sock_out, (void*)buffer, strlen(buffer) + 1, 0, addr_in);
 		   
 	/* Receive the message */
 	recv_from_socket(sock_in, buffer_in, 1000, 0);

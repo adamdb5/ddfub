@@ -1,11 +1,12 @@
 SRCS=main.c socket.c blockchain.c
-CFLAGS=-Wall -pedantic --std=c89 -Os `pkg-config libcrypto --cflags` \
-       `pkg-config cmocka --cflags`
-LIBS=`pkg-config libcrypto --libs` `pkg-config cmocka --libs`
+CFLAGS=-Wall -pedantic --std=c89
+INCLUDE=-I/usr/local/include
+LIBS=-L/usr/local/lib -lcrypto -lcmocka
+
 EXE=main
 
 unix:
-	clang $(SRCS) $(CFLAGS) $(LIBS) -o $(EXE)
+	clang $(SRCS) $(CFLAGS) $(INCLUDE) $(LIBS) -o $(EXE)
 
 win:
 	x86_64-w64-mingw32-gcc $(SRCS) $(CFLAGS) -lws2_32 -o $(EXE)
