@@ -1,0 +1,7 @@
+CC=clang
+CFLAGS=-Wall -pedantic
+INCLUDE=
+LIBS=-lcrypto -lcmocka
+
+all:
+	$(CC) $(CFLAGS) $(INCLUDE) $(LIBS) blockchain_test.c ../blockchain.c -o blockchain_test

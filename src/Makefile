@@ -1,7 +1,7 @@
 SRCS=main.c socket.c blockchain.c
 CFLAGS=-Wall -pedantic --std=c89
-INCLUDE=-I/usr/local/include
-LIBS=-L/usr/local/lib -lcrypto -lcmocka
+INCLUDE=-I/usr/local/include -I/pkg/include
+LIBS=-L/usr/local/lib -L/pkg/lib -lcrypto
 
 EXE=main
 
