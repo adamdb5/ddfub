@@ -50,5 +50,4 @@ int get_block_hash(unsigned char* buffer, FirewallBlock* block, int buffer_size)
  * 0.
  */
 int get_hash_string(char* buffer, unsigned char* hash, int buffer_size);
-
 #endif

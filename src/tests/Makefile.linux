@@ -1,7 +1,17 @@
 CC=clang
 CFLAGS=-Wall -pedantic
 INCLUDE=
-LIBS=-lcrypto -lcmocka
+LIBS=-lcmocka
 
-all:
-	$(CC) $(CFLAGS) $(INCLUDE) $(LIBS) blockchain_test.c ../blockchain.c -o blockchain_test
+all:	blockchain_test \
+	socket_test
+
+blockchain_test:
+	$(CC) $(CFLAGS) $(INCLUDE) $(LIBS) -lcrypto blockchain_test.c ../blockchain.c -o blockchain_test
+
+socket_test:
+	$(CC) $(CFLAGS) $(INCLUDE) $(LIBS) socket_test.c ../socket.c -o socket_test
+
+clean:
+	rm blockchain_test
+	rm socket_test

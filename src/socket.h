@@ -9,35 +9,35 @@
 #define SOCKET_H
 
 #ifdef _WIN32
-	#ifndef _WIN32_WINNT
-		#define _WIN32_WINNT 0x0501  /* Patch for older NT kernels */
-	#endif
-	
-	#include <winsock2.h>
-#else
-	#include <sys/socket.h>
-	#include <netinet/in.h>
+
+#ifndef _WIN32_WINNT
+#define _WIN32_WINNT 0x0501  /* Patch for older NT kernels */
+#endif
+
+#include <winsock2.h>
+#else         
+#include <sys/socket.h>
+#include <netinet/in.h>
 #endif
 
 
 #ifdef _WIN32
-	/**
-	 * @brief Cross platform socket type.
-	 */
-	typedef SOCKET socket_t;
+/**
+ * @brief Cross platform socket type.
+ */
+typedef SOCKET socket_t;
 #else
-	/**
-	 * @brief Cross platform socket type.
-	 */
-	typedef int socket_t;
-	
-	/** 
-	 * @brief
-	 * UNIX equivalent to WinSocks's INVALID_SOCKET constant
-	 */
-	#define INVALID_SOCKET -1 
-#endif
+/**
+ * @brief Cross platform socket type.
+ */
+typedef int socket_t;
 
+/** 
+ * @brief
+ * UNIX equivalent to WinSocks's INVALID_SOCKET constant
+ */
+#define INVALID_SOCKET -1 
+#endif
 
 /**
  * @brief Initialises the socket API.
@@ -97,7 +97,8 @@ int bind_socket(socket_t sock, int port);
  * @param length the length of the data.
  * @param flags the flags used to configure the sendto operation.
  * @param dest_addr the destination address
- * @return how many bytes were successfully sent.
+ * @return how many bytes were successfully sent. If an error has occurred,
+ * a negative value will be returned.
  */
 int send_to_socket(socket_t sock, void* message, size_t length, int flags,
                    struct sockaddr_in dest_addr);
@@ -110,7 +111,8 @@ int send_to_socket(socket_t sock, void* message, size_t length, int flags,
  * @param buffer the buffer to read the message into.
  * @param length the number of bytes to read.
  * @param flags the flags used to configure the recv operation.
- * @return how many bytes were successfully read.
+ * @return how many bytes were successfully read. If an error has occurred,
+ * a negative value will be returned.
  */  
 int recv_from_socket(socket_t sock, void* buffer, size_t length, int flags);
 
