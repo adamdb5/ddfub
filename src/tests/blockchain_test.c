@@ -70,7 +70,7 @@ void get_block_hash_valid(void **state)
   unsigned char expected_memory[SHA256_DIGEST_LENGTH];
 
   memset(&block, 0, sizeof(FirewallBlock));
-  strcpy(block.name, "test name");
+  strcpy(block.author, "name");
   strcpy(block.last_hash, "last hash");
   memcpy((void*)expected_memory, 
 	 "\xc1\xa4\x81\xde\xb4\x45\x1b\x35\x76\x62"  \

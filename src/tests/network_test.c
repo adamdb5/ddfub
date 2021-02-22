@@ -8,6 +8,7 @@
 #include "../net.h"
 
 #include <string.h>
+#include <stdio.h>
 #include <stdarg.h>
 #include <stddef.h>
 #include <setjmp.h>
@@ -51,6 +52,47 @@ void send_recv_valid(void **state)
   assert_string_equal(recv_buffer, send_buffer);
 }
 
+void remove_me(void** state)
+{
+  init_net();
+  AdvertisementMessage message;
+  message.hops = 0;
+  message.type = ADVERTISEMENT;
+  message.advertisement_type = BROADCAST;
+  strcpy(message.source_addr, "56.56.56.56");
+  strcpy(message.target_addr, "127.0.0.1");
+  send_advertisement_message(&message);
+
+  char buffer[100];
+  size_t length = 100;
+  poll_message(buffer, length);
+}
+
+void get_ip_address(void **state)
+{
+  /* Get IP address from command-line */
+  FILE *fp;
+  char addr_cl[INET_ADDRSTRLEN];
+  char* newline_ptr;
+  
+  fp = popen("ifconfig wlan0 | grep \"inet\\s\" | cut -d' ' -f10", "r");
+  while (fgets(addr_cl, sizeof(addr_cl), fp) != NULL);
+  pclose(fp);
+  if((newline_ptr = strchr(addr_cl, '\n')) != 0)
+    {
+      *newline_ptr = '\0';
+    }
+  if((newline_ptr = strchr(addr_cl, '\r')) != 0)
+    {
+      *newline_ptr = '\0';
+    }
+
+  /* Get IP address from function */
+  char addr_func[INET_ADDRSTRLEN];
+  get_local_address(addr_func);
+  assert_string_equal(addr_cl, addr_func); 
+}
+
 int main(void)
 {
   const struct CMUnitTest tests[] =
@@ -58,6 +100,8 @@ int main(void)
       cmocka_unit_test(init_net_valid),
       cmocka_unit_test(cleanup_net_valid),
       cmocka_unit_test(send_recv_valid),
+      cmocka_unit_test(remove_me),
+      cmocka_unit_test(get_ip_address),
     };
 
   cmocka_run_group_tests(tests, NULL, NULL);

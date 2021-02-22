@@ -28,6 +28,29 @@
 #define PORT_SEND 8071
 
 /**
+ * @brief The maximum number of network advertisement hops. 
+ */
+#define MAX_ADVERTISEMENT_HOPS 5
+
+/**
+ * ADVERTISE: Advertise a new device.
+ * CONSENSUS: Consensus related actions.
+ * FIREWALL:  Send / receive firewall queries.
+ */
+typedef enum { ADVERTISEMENT, CONSENSUS, FIREWALL } MessageType;
+typedef enum { BROADCAST, ACK, REJECT } AdvertisementType;
+
+typedef struct{
+  MessageType type;
+  AdvertisementType advertisement_type;
+  int hops;
+  char source_addr[INET_ADDRSTRLEN];
+  char target_addr[INET_ADDRSTRLEN];
+} AdvertisementMessage;
+
+int get_local_address(char* buffer);
+
+/**
  * @brief Initialises the network API.
  *
  * Initialises the network API by initialising the underlying socket API and
@@ -59,6 +82,9 @@ int cleanup_net(void);
  * occurred, a negative value will be returned.
  */
 int send_to_host(char* ip_address, void* message, size_t length);
+
+int send_advertisement_message(AdvertisementMessage *message);
+int recv_advertisement_message(void *buffer);
 
 /**
  * @brief Waits for a message to be received.

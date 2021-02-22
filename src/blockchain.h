@@ -14,14 +14,25 @@
 #define SHA256_STRING_LENGTH 64
 
 /**
+ * Valid firewall actions.
+ */
+typedef enum {ALLOW, BYPASS, DENY, FORCE_ALLOW, LOG} FirewallAction;
+
+/**
  * A block containing information for a firewall transaction.
  */
-struct FirewallBlock
+typedef struct
 {
-  char name[100];      /**< The name of the block author   */
-  char last_hash[256]; /**< The hash of the previous block */
-};
-typedef struct FirewallBlock FirewallBlock;
+  char last_hash[256];   /**< The hash of the previous block               */
+  int  nonce;            /**< Random nonce                                 */
+  char author[100];      /**< The IP of the block author                   */
+  
+  char source_addr[15];  /**< The source address of the firewall rule      */
+  int  source_port;      /**< The source port of the firewall rule         */
+  char dest_addr[15];    /**< The destination address of the firewall rule */
+  int dest_port;         /**< The destination port of the firewall rule    */
+  FirewallAction action; /**< The action associated with the firewall rule */
+} FirewallBlock;
 
 /**
  * @brief Calculates the SHA256 hash of a block.
