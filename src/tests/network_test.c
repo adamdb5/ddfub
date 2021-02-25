@@ -66,6 +66,7 @@ void remove_me(void** state)
   char buffer[100];
   size_t length = 100;
   poll_message(buffer, length);
+  cleanup_net();
 }
 
 void get_ip_address(void **state)
@@ -93,6 +94,82 @@ void get_ip_address(void **state)
   assert_string_equal(addr_cl, addr_func); 
 }
 
+void send_advertisement_broadcast(void)
+{
+  init_net();
+  AdvertisementMessage message;
+  message.hops = 0;
+  message.type = ADVERTISEMENT;
+  message.advertisement_type = BROADCAST;
+  strcpy(message.source_addr, "56.56.56.56");
+  strcpy(message.target_addr, "127.0.0.1");
+  send_advertisement_message(&message);
+  cleanup_net();
+}
+
+void send_advertisement_ack(void)
+{
+  init_net();
+  AdvertisementMessage message;
+  message.hops = 0;
+  message.type = ADVERTISEMENT;
+  message.advertisement_type = ACK;
+  strcpy(message.source_addr, "56.56.56.56");
+  strcpy(message.target_addr, "127.0.0.1");
+  send_advertisement_message(&message);
+  cleanup_net(); 
+}
+
+void send_advertisement_reject(void)
+{
+  init_net();
+  AdvertisementMessage message;
+  message.hops = 0;
+  message.type = ADVERTISEMENT;
+  message.advertisement_type = REJECT;
+  strcpy(message.source_addr, "56.56.56.56");
+  strcpy(message.target_addr, "127.0.0.1");
+  send_advertisement_message(&message);
+  cleanup_net(); 
+}
+
+void test_load_hosts_from_file(void)
+{
+  init_net();
+  load_hosts_from_file("hosts.txt");
+  cleanup_net();
+}
+
+void test_print_hosts(void)
+{
+  init_net();
+  load_hosts_from_file("hosts.txt");
+  print_hosts();
+  cleanup_net();
+}
+
+void test_add_host(void)
+{
+  init_net();
+  add_host("127.0.0.1");
+  print_hosts();
+  cleanup_net();
+}
+
+void test_recv_advertisement_broadcast(void)
+{
+  init_net();
+  add_host("127.0.0.1");
+  AdvertisementMessage message;
+  message.hops = 0;
+  message.type = ADVERTISEMENT;
+  message.advertisement_type = BROADCAST;
+  strcpy(message.source_addr, "56.56.56.56");
+  strcpy(message.target_addr, "192.168.1.99");
+  recv_advertisement_broadcast(&message);
+  cleanup_net();
+}
+
 int main(void)
 {
   const struct CMUnitTest tests[] =
@@ -105,5 +182,28 @@ int main(void)
     };
 
   cmocka_run_group_tests(tests, NULL, NULL);
+
+  printf("=============[ Non cmocka Tests ]==============\n");
+  printf("[ RUN      ] send_advertisement_broadcast\n");
+  send_advertisement_broadcast();
+
+  printf("[ RUN      ] send_advertisement_ack\n");
+  send_advertisement_ack();
+
+  printf("[ RUN      ] send_advertisement_reject\n");
+  send_advertisement_reject();
+
+  printf("[ RUN      ] test_load_hosts_from_file\n");
+  test_load_hosts_from_file();
+
+  printf("[ RUN      ] test_print_hosts\n");
+  test_print_hosts();
+
+  printf("[ RUN      ] test_add_host\n");
+  test_add_host();
+
+  printf("[ RUN      ] test_recv_advertisement_broadcast\n");
+  test_recv_advertisement_broadcast();
+  
   return 0;
 }
