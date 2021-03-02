@@ -68,10 +68,10 @@ void remove_me(void** state)
   poll_message(buffer, length);
   cleanup_net();
 }
-
+/*
 void get_ip_address(void **state)
 {
-  /* Get IP address from command-line */
+  
   FILE *fp;
   char addr_cl[INET_ADDRSTRLEN];
   char* newline_ptr;
@@ -88,11 +88,11 @@ void get_ip_address(void **state)
       *newline_ptr = '\0';
     }
 
-  /* Get IP address from function */
+  
   char addr_func[INET_ADDRSTRLEN];
   get_local_address(addr_func);
   assert_string_equal(addr_cl, addr_func); 
-}
+  }*/
 
 void send_advertisement_broadcast(void)
 {
@@ -178,7 +178,7 @@ int main(void)
       cmocka_unit_test(cleanup_net_valid),
       cmocka_unit_test(send_recv_valid),
       cmocka_unit_test(remove_me),
-      cmocka_unit_test(get_ip_address),
+      // cmocka_unit_test(get_ip_address),
     };
 
   cmocka_run_group_tests(tests, NULL, NULL);

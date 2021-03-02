@@ -11,7 +11,9 @@
 #include "socket.h"
 
 #ifdef _WIN32
+#include <inttypes.h>
 #include <winsock2.h>
+#include <ws2tcpip.h>
 #else
 #include <sys/socket.h>
 #include <netdb.h>
@@ -40,15 +42,25 @@
 typedef enum { ADVERTISEMENT, CONSENSUS, FIREWALL } MessageType;
 typedef enum { BROADCAST, ACK, REJECT } AdvertisementType;
 
-typedef struct{
+struct HostList {
+  struct HostList *next;
+  char addr[INET_ADDRSTRLEN];
+};
+typedef struct HostList HostList; 
+
+typedef struct {
   MessageType type;
+  uint8_t hops;
   AdvertisementType advertisement_type;
-  int hops;
   char source_addr[INET_ADDRSTRLEN];
   char target_addr[INET_ADDRSTRLEN];
 } AdvertisementMessage;
 
 int get_local_address(char* buffer);
+int load_hosts_from_file(const char* fname);
+int add_host(char* addr);
+int print_hosts(void);
+int check_host_exists(char *addr);
 
 /**
  * @brief Initialises the network API.
@@ -85,6 +97,10 @@ int send_to_host(char* ip_address, void* message, size_t length);
 
 int send_advertisement_message(AdvertisementMessage *message);
 int recv_advertisement_message(void *buffer);
+
+int recv_advertisement_broadcast(AdvertisementMessage* message);
+int recv_advertisement_ack(AdvertisementMessage* message);
+int recv_advertisement_reject(AdvertisementMessage* message);
 
 /**
  * @brief Waits for a message to be received.

@@ -7,18 +7,16 @@
 
 #include "socket.h"
 
-#include <unistd.h>
-
 #ifdef _WIN32
-	#ifndef _WIN32_WINNT
-		#define _WIN32_WINNT 0x0501 /* Patch for older NT kernels */
-	#endif
-	
-	#include <winsock2.h>
+#ifndef _WIN32_WINNT
+#define _WIN32_WINNT 0x0501 /* Patch for older NT kernels */
+#endif
+#include <io.h>
+#include <winsock2.h>
 #else
-	#include <sys/socket.h>
-	#include <netinet/in.h>
-	
+#include <unistd.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #endif
 
 

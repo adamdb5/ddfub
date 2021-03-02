@@ -13,6 +13,10 @@
 #include <setjmp.h>
 #include <cmocka.h>
 
+#ifndef _WIN32
+#include <arpa/inet.h>
+#endif
+
 /**
  * Tests if init_sockets is able to succesfully initialise, and return a value
  * of 0 to indicate success.
