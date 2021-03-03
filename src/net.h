@@ -40,7 +40,7 @@
  * FIREWALL:  Send / receive firewall queries.
  */
 typedef enum { ADVERTISEMENT, CONSENSUS, FIREWALL } MessageType;
-typedef enum { BROADCAST, ACK, REJECT } AdvertisementType;
+typedef enum { BROADCAST, ACK } AdvertisementType;
 
 struct HostList {
   struct HostList *next;
@@ -54,6 +54,7 @@ typedef struct {
   AdvertisementType advertisement_type;
   char source_addr[INET_ADDRSTRLEN];
   char target_addr[INET_ADDRSTRLEN];
+  char next_addr[INET_ADDRSTRLEN];
 } AdvertisementMessage;
 
 int get_local_address(char* buffer);
@@ -100,7 +101,6 @@ int recv_advertisement_message(void *buffer);
 
 int recv_advertisement_broadcast(AdvertisementMessage* message);
 int recv_advertisement_ack(AdvertisementMessage* message);
-int recv_advertisement_reject(AdvertisementMessage* message);
 
 /**
  * @brief Waits for a message to be received.

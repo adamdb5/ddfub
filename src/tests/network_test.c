@@ -61,6 +61,7 @@ void remove_me(void** state)
   message.advertisement_type = BROADCAST;
   strcpy(message.source_addr, "56.56.56.56");
   strcpy(message.target_addr, "127.0.0.1");
+  strcpy(message.next_addr, "127.0.0.1");
   send_advertisement_message(&message);
 
   char buffer[100];
@@ -103,6 +104,7 @@ void send_advertisement_broadcast(void)
   message.advertisement_type = BROADCAST;
   strcpy(message.source_addr, "56.56.56.56");
   strcpy(message.target_addr, "127.0.0.1");
+  strcpy(message.next_addr, "127.0.0.1");
   send_advertisement_message(&message);
   cleanup_net();
 }
@@ -116,19 +118,7 @@ void send_advertisement_ack(void)
   message.advertisement_type = ACK;
   strcpy(message.source_addr, "56.56.56.56");
   strcpy(message.target_addr, "127.0.0.1");
-  send_advertisement_message(&message);
-  cleanup_net(); 
-}
-
-void send_advertisement_reject(void)
-{
-  init_net();
-  AdvertisementMessage message;
-  message.hops = 0;
-  message.type = ADVERTISEMENT;
-  message.advertisement_type = REJECT;
-  strcpy(message.source_addr, "56.56.56.56");
-  strcpy(message.target_addr, "127.0.0.1");
+  strcpy(message.next_addr, "127.0.0.1");
   send_advertisement_message(&message);
   cleanup_net(); 
 }
@@ -170,6 +160,16 @@ void test_recv_advertisement_broadcast(void)
   cleanup_net();
 }
 
+void basic_ack_test(void)
+{
+  init_net();
+  add_host("192.168.2.128");
+  AdvertisementMessage message;
+  message.type = ADVERTISEMENT;
+  message.hops = 0;
+  message.advertisement_type = BROADCAST;
+}
+
 int main(void)
 {
   const struct CMUnitTest tests[] =
@@ -190,9 +190,6 @@ int main(void)
   printf("[ RUN      ] send_advertisement_ack\n");
   send_advertisement_ack();
 
-  printf("[ RUN      ] send_advertisement_reject\n");
-  send_advertisement_reject();
-
   printf("[ RUN      ] test_load_hosts_from_file\n");
   test_load_hosts_from_file();
 
@@ -204,6 +201,9 @@ int main(void)
 
   printf("[ RUN      ] test_recv_advertisement_broadcast\n");
   test_recv_advertisement_broadcast();
+
+  printf("[ RUN      ] BASIC ACK TEST\n");
+  
   
   return 0;
 }
