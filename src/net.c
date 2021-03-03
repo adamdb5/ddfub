@@ -39,11 +39,6 @@ static socket_t socket_recv;
  */
 static HostList* host_list;
 
-/**
- * @brief the local IP address.
- */
-static char local_address[INET_ADDRSTRLEN];
-
 /** 
  * @brief known ethernet adapter prefixes.
  *
@@ -58,7 +53,6 @@ static char eth_prefixes[6][ETH_PREFIX_LEN + 1] = {
 #define ADAPTER_NAME_LEN 8
 int get_local_address(char* buffer)
 {
-  printf("[ INFO ] Retrieving adapter information\n");
   DWORD rv, size;
   PIP_ADAPTER_ADDRESSES adapter_addresses, aa;
   PIP_ADAPTER_UNICAST_ADDRESS ua;
@@ -105,7 +99,6 @@ int get_local_address(char* buffer)
 #else
 int get_local_address(char* buffer)
 {
-  printf("[ INFO ] Retrieving adapter information\n");
   struct ifaddrs *interfaces = NULL, *addr = NULL;
   void *addr_ptr = NULL;
   char addr_str[INET_ADDRSTRLEN];
@@ -147,13 +140,12 @@ int get_local_address(char* buffer)
 	} 
     }
   freeifaddrs(interfaces);
-  return !match;
+  return 0;
 }
 #endif
 
 int load_hosts_from_file(const char *fname)
 {
-  printf("[ INFO ] Loading known hosts from file.\n");
   FILE *file;
   size_t len, read;
   char buffer[INET_ADDRSTRLEN], *newline_ptr;
@@ -218,7 +210,6 @@ int load_hosts_from_file(const char *fname)
 
 int add_host(char *addr)
 {
-  printf("[ INFO ] Adding new host (%s).\n", addr);
   HostList *host;
 
   if(!host_list)
@@ -269,7 +260,6 @@ int print_hosts(void)
 
 int check_host_exists(char *addr)
 {
-  printf("[ INFO ] Checking if %s is already known.\n", addr);
   HostList *host;
 
   host = host_list;
@@ -297,7 +287,6 @@ int check_host_exists(char *addr)
 
 int init_net(void)
 {
-  printf("[ INFO ] Initiating network API.\n");
   if(init_sockets() != 0)
     {
       return 1;
@@ -319,11 +308,6 @@ int init_net(void)
       return 1;
     }
 
-  if(get_local_address(local_address) != 0)
-    {
-      return 1;
-    }
-
   host_list = (HostList*)malloc(sizeof(HostList));
   if(!host_list)
     {
@@ -336,7 +320,6 @@ int init_net(void)
 
 int cleanup_net(void)
 {
-  printf("[ INFO ] Cleaning up network API.\n");
   /* TODO: Writeback host_list */
   HostList *host, *temp;
   host = host_list;
@@ -345,6 +328,7 @@ int cleanup_net(void)
     {
       temp = host;
       host = host->next;
+      printf("Freeing %p\n", (void*)temp);
       free(temp);
     }
   
@@ -355,7 +339,6 @@ int cleanup_net(void)
 
 int send_to_host(char* ip_address, void* message, size_t length)
 {
-  printf("[ INFO ] Sending message of length %zu to %s.\n", length, ip_address);
   struct sockaddr_in remote_addr;
   
   remote_addr.sin_family = AF_INET;
@@ -367,7 +350,6 @@ int send_to_host(char* ip_address, void* message, size_t length)
 
 int send_advertisement_message(AdvertisementMessage *message)
 {
-  printf("[ INFO ] Sending advertisement message.\n");
   char buffer[11];
   struct in_addr addr;
   int status;
@@ -390,12 +372,11 @@ int send_advertisement_message(AdvertisementMessage *message)
     }
   memcpy(buffer + 7, &addr.s_addr, sizeof(addr.s_addr));
   
-  return send_to_host(message->next_addr, (void*)buffer, sizeof(buffer));
+  return send_to_host(message->target_addr, (void*)buffer, sizeof(buffer));
 }
 
 int recv_advertisement_message(void* buffer)
 {
-  printf("[ INFO ] Received advertisement message.\n");
   AdvertisementMessage message;
   char* char_buffer;
 
@@ -419,6 +400,9 @@ int recv_advertisement_message(void* buffer)
     case ACK:
       recv_advertisement_ack(&message);
       break;
+    case REJECT:
+      recv_advertisement_reject(&message);
+      break;
     }
   
   printf("Source: %s\n", message.source_addr);
@@ -430,6 +414,7 @@ int recv_advertisement_message(void* buffer)
 int recv_advertisement_broadcast(AdvertisementMessage *message)
 {
   printf("Received ADVERTISEMENT::BROADCAST\n");
+  char local_addr[INET_ADDRSTRLEN];
   AdvertisementMessage new_message;
   HostList *host;
   
@@ -438,44 +423,36 @@ int recv_advertisement_broadcast(AdvertisementMessage *message)
       return 1;
     }
   
-  printf("local_addr: %s\n", local_address);
+  memset(local_addr, '\0', INET_ADDRSTRLEN);
+  get_local_address(local_addr);
+
+  printf("local_addr: %s\n", local_addr);
   printf("message->target_addr: %s\n", message->target_addr);
 
-  /* If new host, add */
-  if(!check_host_exists(message->source_addr))
+  if(strncmp(local_addr, message->target_addr, INET_ADDRSTRLEN) == 0)
     {
-      add_host(message->source_addr);
-      new_message.type = ADVERTISEMENT;
-      new_message.hops = 0;
-      new_message.advertisement_type = ACK;
-      strncpy(new_message.source_addr, local_address, INET_ADDRSTRLEN);
-      strncpy(new_message.target_addr, message->source_addr, INET_ADDRSTRLEN);
-
-      /* Send ACK */
-      host = host_list;
-      while(host)
+      printf("MESSAGE IS INTENDED FOR ME\n");
+      /* If the hops haven't exceeded the max hop count, forward to hosts */
+      if(message->hops < MAX_ADVERTISEMENT_HOPS)
 	{
-	  strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
-	  send_advertisement_message(&new_message);
-	  host = host->next;
-	}
-    }
-
-  /* If under max hop count, forward to all hosts */
-  if(message->hops < MAX_ADVERTISEMENT_HOPS)
-    {
-      host = host_list;
-      if(host)
-	{
-	  memcpy(&new_message, message, sizeof(AdvertisementMessage));
-	  new_message.hops++;
-	  
-	  while(host)
+	  host = host_list;
+	  if(host)
 	    {
-	      strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
-	      send_advertisement_message(&new_message);
-	      host = host->next;
-	    }     
+	      memcpy(&new_message, message, sizeof(AdvertisementMessage));
+	      new_message.hops++;
+	      
+	      while(host)
+		{
+		  strncpy(new_message.target_addr, host->addr, INET_ADDRSTRLEN);
+		  send_advertisement_message(&new_message);
+		  host = host->next;
+		}     
+	    }
+	}
+
+      if(!check_host_exists(message->source_addr))
+	{
+	  add_host(message->source_addr);
 	}
     }
   
@@ -485,45 +462,21 @@ int recv_advertisement_broadcast(AdvertisementMessage *message)
 int recv_advertisement_ack(AdvertisementMessage* message)
 {
   printf("Received ADVERTISEMENT::ACK\n");
-  HostList *host;
-  
-  if(!message)
-    {
-      return 1;
-    }
+  return 0;
+}
 
-  /* Check if we are the intended recipient */
-  if(strncmp(local_address, message->target_addr, INET_ADDRSTRLEN) == 0
-     && !check_host_exists(message->source_addr))
-    {
-      add_host(message->source_addr);
-    }
-  else
-    {
-      if(message->hops < MAX_ADVERTISEMENT_HOPS)
-	{
-	  host = host_list;
-	  message->hops++;
-
-	  while(host)
-	    {
-	      strncpy(message->next_addr, host->addr, INET_ADDRSTRLEN);
-	      send_advertisement_message(message);
-	      host = host->next;
-	    }
-	}
-    }
-  
+int recv_advertisement_reject(AdvertisementMessage* message)
+{
+  printf("Received ADVERTISEMENT::ACK\n");
   return 0;
 }
 
 int poll_message(void *buffer, size_t length)
 {
-  printf("[ INFO ] Polling for message.\n");
   int bytes_read;
   
   bytes_read = recv_from_socket(socket_recv, buffer, length, 0);
-  switch(((char*)buffer)[0])
+  switch(((char*)buffer)[0] & 0xF0)
     {
     case ADVERTISEMENT:
       return recv_advertisement_message(buffer);
