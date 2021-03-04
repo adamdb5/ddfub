@@ -1,0 +1,14 @@
+CC=clang
+CFLAGS=-Wall -pedantic
+INCLUDE=-I"c:\Program Files\OpenSSL-Win64\include" -I"c:\cmocka-1.1.0\include"
+LIBS=-L"c:\Program Files\OpenSSL-Win64\lib" -L"c:\cmocka-1.1.0\lib" -llibcrypto -lcmocka -lws2_32 -liphlpapi
+SRCS=main.c net.c socket.c blockchain.c
+
+all:	main
+
+main:	$(SRCS)
+	$(CC) $(CFLAGS) $(INCLUDE) -o main $(LIBS) $(SRCS)
+
+clean:
+	del main
+

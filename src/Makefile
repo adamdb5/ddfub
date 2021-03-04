@@ -1,16 +1,17 @@
-SRCS=main.c socket.c blockchain.c
-CFLAGS=-Wall -pedantic --std=c89
-INCLUDE=-I/usr/local/include -I/pkg/include
-LIBS=-L/usr/local/lib -L/pkg/lib -lcrypto
+CC=clang
+SOURCES=main.c socket.c net.c ipc.c blockchain.c
+OBJECTS=main.o socket.o net.o ipc.o blockchain.o
+CFLAGS=-Wall -pedantic --std=c89 -O3 -c
+INCLUDE=
+LIBS=-lrt -lcrypto
 
-EXE=main
+dfw:	$(OBJECTS)
+	$(CC) $(INCLUDE) -o dfw $(OBJECTS) $(LIBS)
+	strip dfw
 
-unix:
-	clang $(SRCS) $(CFLAGS) $(INCLUDE) $(LIBS) -o $(EXE)
-
-win:
-	x86_64-w64-mingw32-gcc $(SRCS) $(CFLAGS) -lws2_32 -o $(EXE)
-
+%.o:	%.c
+	$(CC) $(CFLAGS) $(INCLUDE) $< $(LIBS) -o $@
+	
 clean:
-	rm main
-	rm main.exe
+	rm *.o
+	rm dfw
