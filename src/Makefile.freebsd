@@ -1,13 +1,15 @@
 CC=clang
-CFLAGS=-Wall -pedantic
+OBJECTS=main.o socket.o net.o ipc.o blockchain.o
+CFLAGS=-Wall -pedantic --std=c89 -O3 -c
 INCLUDE=-I/usr/local/include
-LIBS=-L/usr/local/lib -lcmocka
-SRCS=main.c net.c socket.c blockchain.c 
+LIBS=-L/usr/local/lib -lrt -lcrypto
 
-all:	main
+dfw:	$(OBJECTS)
+	$(CC) -o dfw $(OBJECTS) $(LIBS)
 
-main:	$(SRCS)
-	$(CC) $(CFLAGS) $(INCLUDE) -o main $(LIBS) $(SRCS)
+%.o:	%.c
+	$(CC) $(CFLAGS) $(INCLUDE) $< -o $@
 
 clean:
-	rm main
+	rm *.o
+	rm dfw

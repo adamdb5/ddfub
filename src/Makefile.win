@@ -1,14 +1,16 @@
 CC=clang
-CFLAGS=-Wall -pedantic
+OBJECTS=main.o socket.o net.o ipc.o blockchain.o
+CFLAGS=-Wall -pedantic --std=c99 -O3 -c
 INCLUDE=-I"c:\Program Files\OpenSSL-Win64\include" -I"c:\cmocka-1.1.0\include"
-LIBS=-L"c:\Program Files\OpenSSL-Win64\lib" -L"c:\cmocka-1.1.0\lib" -llibcrypto -lcmocka -lws2_32 -liphlpapi
-SRCS=main.c net.c socket.c blockchain.c
+LIBS=-L"c:\Program Files\OpenSSL-Win64\lib" -L"c:\cmocka-1.1.0\lib" -llibcrypto -lWs2_32 -liphlpapi
 
-all:	main
+dfw:	$(OBJECTS)
+	$(CC) $(INCLUDE) -o dfw.exe $(OBJECTS) $(LIBS)
 
-main:	$(SRCS)
-	$(CC) $(CFLAGS) $(INCLUDE) -o main $(LIBS) $(SRCS)
+%.o:	%.c
+	$(CC) $(CFLAGS) $(INCLUDE) $< -o $@
 
 clean:
-	del main
+	del *.o
+	del dfw.exe
 

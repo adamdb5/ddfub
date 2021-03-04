@@ -13,8 +13,8 @@
 
 #ifdef _WIN32
 #include <winsock2.h>
-#include <iphlpapi.h>
 #include <ws2tcpip.h>
+#include <iphlpapi.h>
 #else
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -44,6 +44,7 @@ static HostList* host_list;
  */
 static char local_address[INET_ADDRSTRLEN];
 
+#ifndef _WIN32
 /** 
  * @brief known ethernet adapter prefixes.
  *
@@ -52,6 +53,7 @@ static char local_address[INET_ADDRSTRLEN];
 static char eth_prefixes[6][ETH_PREFIX_LEN + 1] = {
   "eth", "em", "ed", "genet", "usmsc", "\0"
 };
+#endif
 
 
 #ifdef _WIN32

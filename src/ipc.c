@@ -53,7 +53,7 @@ int send_ipc_message(Message *message)
   DWORD bytes_sent = 0;
   BOOL result = FALSE;
 
-  result = WriteFile(queue, message, sizeof(struct Message), &bytes_sent, NULL);
+  result = WriteFile(queue, message, sizeof(Message), &bytes_sent, NULL);
   if(!result)
     {
       return 1;
@@ -88,7 +88,7 @@ int init_ipc(void)
   attr.mq_curmsgs = 0;
   mqueue = mq_open("/dfw", O_CREAT | O_RDWR, 0644, &attr);
 
-  if(mqueue == -1)
+  if(mqueue == (mqd_t)-1)
     {
       return 1;
     }
