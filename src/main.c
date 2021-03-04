@@ -13,8 +13,9 @@
 
 int main(int argc, char** argv)
 {
-  init_net();
   char buffer[100];
+
+  init_net();
   while(1)
     {
       memset(buffer, '\0', 100);

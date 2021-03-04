@@ -18,31 +18,64 @@
 #include <arpa/inet.h>
 #endif
 
-#ifndef _WIN32
+#ifdef _WIN32
+static HANDLE queue;
+#else
 static mqd_t queue;
 #endif
 
 #ifdef _WIN32
 int init_ipc(void)
 {
-  HANDLE pipe;
+  HANDLE mqueue;
 
-  pipe = CreateNamedPipe(TEXT("\\\\.\\pipe\\dfw"), PIPE_ACCESS_DUPLEX,
+  mqueue = CreateNamedPipe(TEXT("\\\\.\\pipe\\dfw"), PIPE_ACCESS_DUPLEX,
 				PIPE_TYPE_MESSAGE, 1, 0, 0, 0, NULL);
 
-  if(!pipe || pipe == INVALID_HANDLE_VALUE)
+  if(!mqueue || mqueue == INVALID_HANDLE_VALUE)
     {
       return 1;
     }
 
-  if(!ConnectNamedPipe(pipe, NULL))
+  if(!ConnectNamedPipe(mqueue, NULL))
     {
-      CloseHandle(pipe);
+      CloseHandle(mqueue);
       return 1;
     }
+
+  queue = mqueue;
 
   return 0;
 }
+
+int send_ipc_message(Message *message)
+{
+  DWORD bytes_sent = 0;
+  BOOL result = FALSE;
+
+  result = WriteFile(queue, message, sizeof(struct Message), &bytes_sent, NULL);
+  if(!result)
+    {
+      return 1;
+    }
+  
+  return 0;
+}
+
+int recv_ipc_message(Message *message)
+{
+  DWORD bytes_read = 0;
+  BOOL result = FALSE;
+
+  result = ReadFile(queue, message, sizeof(Message), &bytes_read, NULL);
+
+  if(!result)
+    {
+      return 1;
+    }
+  return 0;
+}
+
 #else
 int init_ipc(void)
 {
@@ -62,4 +95,23 @@ int init_ipc(void)
 
   return 0;
 }
+
+int send_ipc_message(Message *message)
+{
+  if(mq_send(queue, (void*)message, sizeof(Message), 0) == -1)
+    {
+      return 1;
+    }
+  return 0;
+}
+
+int recv_ipc_message(Message *message)
+{
+  if(mq_receive(queue, (void*)message, sizeof(Message), 0) == -1)
+    {
+      return 1;
+    }
+  return 0;
+}
 #endif
+

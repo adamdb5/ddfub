@@ -6,7 +6,6 @@
  */
 
 #include "socket.h"
-
 #include <stdio.h>
 
 #ifdef _WIN32
@@ -24,12 +23,14 @@
 
 int init_sockets(void)
 {
+#ifdef _WIN32
+  WSADATA wsa_data;
+#endif
   printf("[ INFO ] Setting up sockets.\n");
 #ifdef _WIN32
-	WSADATA wsa_data;
-	return WSAStartup(MAKEWORD(1,1), &wsa_data);
+  return WSAStartup(MAKEWORD(1,1), &wsa_data);
 #else
-	return 0;
+  return 0;
 #endif
 }
 
@@ -37,38 +38,38 @@ int cleanup_sockets(void)
 {
   printf("[ INFO ] Cleaning up sockets.\n");
 #ifdef _WIN32
-	return WSACleanup();
+  return WSACleanup();
 #else
-	return 0;
+  return 0;
 #endif
 }
 
 socket_t create_socket(void)
 {
   printf("[ INFO ] Creating new socket.\n");
-	socket_t sock;
 #ifdef _WIN32
-	sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+  return socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 #else
-	sock = socket(AF_INET, SOCK_DGRAM, 0);
+  return socket(AF_INET, SOCK_DGRAM, 0);
 #endif
-	return sock;
 }
 
 void close_socket(socket_t sock)
 {
   printf("[ INFO ] Closing socket.\n");
 #ifdef _WIN32
-	closesocket(sock);
+  closesocket(sock);
 #else
-	close(sock);
+  close(sock);
 #endif
 }
 
 int bind_socket(socket_t sock, int port)
 {
-  printf("[ INFO ] Binding socket. \n");
   struct sockaddr_in addr;
+  
+  printf("[ INFO ] Binding socket. \n");
+  
   addr.sin_family = AF_INET;
   addr.sin_addr.s_addr = INADDR_ANY;
   addr.sin_port = htons(port);
@@ -87,5 +88,5 @@ int send_to_socket(socket_t sock, void* message, size_t length, int flags,
 int recv_from_socket(socket_t sock, void* buffer, size_t length, int flags)
 {
   printf("[ INFO ] Attempting to read %zu bytes from socket.\n", length);
-	return recv(sock, buffer, length, flags);
+  return recv(sock, buffer, length, flags);
 }

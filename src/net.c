@@ -58,11 +58,12 @@ static char eth_prefixes[6][ETH_PREFIX_LEN + 1] = {
 #define ADAPTER_NAME_LEN 8
 int get_local_address(char* buffer)
 {
-  printf("[ INFO ] Retrieving adapter information\n");
   DWORD rv, size;
   PIP_ADAPTER_ADDRESSES adapter_addresses, aa;
   PIP_ADAPTER_UNICAST_ADDRESS ua;
   char address[INET_ADDRSTRLEN], name[ADAPTER_NAME_LEN];
+
+  printf("[ INFO ] Retrieving adapter information\n");
   
   rv = GetAdaptersAddresses(AF_INET, GAA_FLAG_INCLUDE_PREFIX, NULL, NULL, &size);
   if (rv != ERROR_BUFFER_OVERFLOW)
@@ -105,11 +106,12 @@ int get_local_address(char* buffer)
 #else
 int get_local_address(char* buffer)
 {
-  printf("[ INFO ] Retrieving adapter information\n");
   struct ifaddrs *interfaces = NULL, *addr = NULL;
   void *addr_ptr = NULL;
   char addr_str[INET_ADDRSTRLEN];
   int prefix_index, match;
+
+  printf("[ INFO ] Retrieving adapter information\n");
   
   if(getifaddrs(&interfaces) != 0)
     {
@@ -153,12 +155,13 @@ int get_local_address(char* buffer)
 
 int load_hosts_from_file(const char *fname)
 {
-  printf("[ INFO ] Loading known hosts from file.\n");
   FILE *file;
   size_t len, read;
   char buffer[INET_ADDRSTRLEN], *newline_ptr;
   HostList *host;
 
+  printf("[ INFO ] Loading known hosts from file.\n");
+  
   if(!host_list)
     {
       printf("Network stack not yet initialised!\n");
@@ -218,9 +221,10 @@ int load_hosts_from_file(const char *fname)
 
 int add_host(char *addr)
 {
-  printf("[ INFO ] Adding new host (%s).\n", addr);
   HostList *host;
 
+  printf("[ INFO ] Adding new host (%s).\n", addr);
+  
   if(!host_list)
     {
       return 1;
@@ -269,9 +273,10 @@ int print_hosts(void)
 
 int check_host_exists(char *addr)
 {
-  printf("[ INFO ] Checking if %s is already known.\n", addr);
   HostList *host;
 
+  printf("[ INFO ] Checking if %s is already known.\n", addr);
+  
   host = host_list;
   if(!host)
     {
@@ -336,10 +341,11 @@ int init_net(void)
 
 int cleanup_net(void)
 {
-  printf("[ INFO ] Cleaning up network API.\n");
   /* TODO: Writeback host_list */
   HostList *host, *temp;
   host = host_list;
+
+  printf("[ INFO ] Cleaning up network API.\n");
   
   while(host)
     {
@@ -355,8 +361,9 @@ int cleanup_net(void)
 
 int send_to_host(char* ip_address, void* message, size_t length)
 {
-  printf("[ INFO ] Sending message of length %zu to %s.\n", length, ip_address);
   struct sockaddr_in remote_addr;
+
+  printf("[ INFO ] Sending message of length %zu to %s.\n", length, ip_address);
   
   remote_addr.sin_family = AF_INET;
   remote_addr.sin_addr.s_addr = inet_addr(ip_address);
@@ -367,7 +374,6 @@ int send_to_host(char* ip_address, void* message, size_t length)
 
 int send_advertisement_message(AdvertisementMessage *message)
 {
-  printf("[ INFO ] Sending advertisement message.\n");
   char buffer[11];
   struct in_addr addr;
   int status;
@@ -376,6 +382,8 @@ int send_advertisement_message(AdvertisementMessage *message)
   buffer[1] = message->hops;
   buffer[2] = message->advertisement_type;
 
+  printf("[ INFO ] Sending advertisement message.\n");
+  
   status = inet_pton(AF_INET, message->source_addr, &addr);
   if(status == 0)
     {
@@ -395,12 +403,12 @@ int send_advertisement_message(AdvertisementMessage *message)
 
 int recv_advertisement_message(void* buffer)
 {
-  printf("[ INFO ] Received advertisement message.\n");
   AdvertisementMessage message;
   char* char_buffer;
-
   struct sockaddr_in target, source;
 
+  printf("[ INFO ] Received advertisement message.\n");
+  
   char_buffer = (char*)buffer;
   message.type = char_buffer[0];
   message.hops = char_buffer[1];
@@ -429,9 +437,10 @@ int recv_advertisement_message(void* buffer)
 
 int recv_advertisement_broadcast(AdvertisementMessage *message)
 {
-  printf("Received ADVERTISEMENT::BROADCAST\n");
   AdvertisementMessage new_message;
   HostList *host;
+
+  printf("Received ADVERTISEMENT::BROADCAST\n");
   
   if(!message)
     {
@@ -484,8 +493,9 @@ int recv_advertisement_broadcast(AdvertisementMessage *message)
 
 int recv_advertisement_ack(AdvertisementMessage* message)
 {
-  printf("Received ADVERTISEMENT::ACK\n");
   HostList *host;
+
+  printf("Received ADVERTISEMENT::ACK\n");
   
   if(!message)
     {
@@ -519,8 +529,9 @@ int recv_advertisement_ack(AdvertisementMessage* message)
 
 int poll_message(void *buffer, size_t length)
 {
-  printf("[ INFO ] Polling for message.\n");
   int bytes_read;
+
+  printf("[ INFO ] Polling for message.\n");
   
   bytes_read = recv_from_socket(socket_recv, buffer, length, 0);
   switch(((char*)buffer)[0])
