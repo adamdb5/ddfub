@@ -17,18 +17,22 @@
 #endif
 
 typedef enum { ALLOW, DENY } Action;
+typedef enum { RULE, ENABLE, DISABLE, SHUTDOWN } IPCMessageType; 
 
 typedef struct
 {
+  IPCMessageType message_type;
   char source_addr[INET_ADDRSTRLEN];
   char dest_addr[INET_ADDRSTRLEN];
   int source_port;
   int dest_port;
   Action action;
-} Message;
+} IPCMessage;
 
-int init_ipc(void);
-int send_ipc_message(Message *message);
-int recv_ipc_message(Message *message);
+int init_ipc_server(void);
+int init_ipc_client(void);
+int cleanup_ipc(void);
+int send_ipc_message(IPCMessage *message);
+int recv_ipc_message(IPCMessage *message);
 
 #endif

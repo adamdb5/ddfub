@@ -12,10 +12,10 @@
 #include <windows.h>
 #include <ws2tcpip.h>
 #else
+#include <string.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <mqueue.h>
-#include <arpa/inet.h>
 #endif
 
 #ifdef _WIN32
@@ -25,7 +25,7 @@ static mqd_t queue;
 #endif
 
 #ifdef _WIN32
-int init_ipc(void)
+int init_ipc_server(void)
 {
   HANDLE mqueue;
 
@@ -48,12 +48,35 @@ int init_ipc(void)
   return 0;
 }
 
-int send_ipc_message(Message *message)
+int init_ipc_client(void)
+{
+  HANDLE mqueue;
+
+  mqueue = CreateFile(TEXT("\\\\.\\pipe\\dfw"), PIPE_ACCESS_DUPLEX,
+		      PIPE_TYPE_MESSAGE, NULL, OPEN_EXISTING,
+		      FILE_ATTRIBUTE_NORMAL, NULL);
+
+  if(mqueue == INVALID_HANDLE_VALUE)
+    {
+      return 1;
+    }
+
+  queue = mqueue;
+  
+  return 0;
+}
+
+int cleanup_ipc(void)
+{
+  return CloseHandle(queue);
+}
+
+int send_ipc_message(IPCMessage *message)
 {
   DWORD bytes_sent = 0;
   BOOL result = FALSE;
 
-  result = WriteFile(queue, message, sizeof(Message), &bytes_sent, NULL);
+  result = WriteFile(queue, message, sizeof(message), &bytes_sent, NULL);
   if(!result)
     {
       return 1;
@@ -62,12 +85,12 @@ int send_ipc_message(Message *message)
   return 0;
 }
 
-int recv_ipc_message(Message *message)
+int recv_ipc_message(IPCMessage *message)
 {
   DWORD bytes_read = 0;
   BOOL result = FALSE;
 
-  result = ReadFile(queue, message, sizeof(Message), &bytes_read, NULL);
+  result = ReadFile(queue, message, sizeof(message), &bytes_read, NULL);
 
   if(!result)
     {
@@ -77,14 +100,14 @@ int recv_ipc_message(Message *message)
 }
 
 #else
-int init_ipc(void)
+int init_ipc_server(void)
 {
   struct mq_attr attr;
   mqd_t mqueue;
   
   attr.mq_flags = 0;
   attr.mq_maxmsg = 2;
-  attr.mq_msgsize = sizeof(Message);
+  attr.mq_msgsize = sizeof(IPCMessage);
   attr.mq_curmsgs = 0;
   mqueue = mq_open("/dfw", O_CREAT | O_RDWR, 0644, &attr);
 
@@ -93,24 +116,46 @@ int init_ipc(void)
       return 1;
     }
 
+  queue = mqueue;
   return 0;
 }
 
-int send_ipc_message(Message *message)
+int init_ipc_client(void)
 {
-  if(mq_send(queue, (void*)message, sizeof(Message), 0) == -1)
+  mqd_t mqueue;
+
+  mqueue = mq_open("/dfw", O_RDWR);
+
+  if(mqueue == (mqd_t)-1)
+    {
+      return 1;
+    }
+
+  queue = mqueue;
+  return 0;
+}
+
+int cleanup_ipc(void)
+{
+  return mq_close(queue);
+}
+
+int send_ipc_message(IPCMessage *message)
+{
+  if(mq_send(queue, (void*)message, sizeof(message), 0) == -1)
     {
       return 1;
     }
   return 0;
 }
 
-int recv_ipc_message(Message *message)
+int recv_ipc_message(IPCMessage *message)
 {
-  if(mq_receive(queue, (void*)message, sizeof(Message), 0) == -1)
+  if(mq_receive(queue, (void*)message, sizeof(IPCMessage), 0) == -1)
     {
       return 1;
     }
+  
   return 0;
 }
 #endif

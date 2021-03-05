@@ -9,7 +9,7 @@ dfw:	$(OBJECTS)
 	strip dfw
 
 %.o:	%.c
-	$(CC) $(CFLAGS) $(INCLUDE) $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDE) $< -o $@ 
 	
 clean:
 	rm *.o
