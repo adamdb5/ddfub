@@ -6,10 +6,13 @@
  */
 
 #include "net.h"
+#include "blockchain.h"
 
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <openssl/sha.h>
 
 #ifdef _WIN32
 #include <winsock2.h>
@@ -403,6 +406,19 @@ int send_advertisement_message(AdvertisementMessage *message)
   return send_to_host(message->next_addr, (void*)buffer, sizeof(buffer));
 }
 
+int send_to_all_advertisement_message(AdvertisementMessage *message)
+{
+  HostList *host;
+  host = host_list;
+  while(host)
+    {
+      strncpy(message->next_addr, host->addr, INET_ADDRSTRLEN);
+      send_advertisement_message(message);
+      host = host->next;
+    }
+  return 0;
+}
+
 int recv_advertisement_message(void* buffer)
 {
   AdvertisementMessage message;
@@ -523,6 +539,311 @@ int recv_advertisement_ack(AdvertisementMessage* message)
 	      send_advertisement_message(message);
 	      host = host->next;
 	    }
+	}
+    }
+  
+  return 0;
+}
+
+int send_consensus_message(ConsensusMessage *message)
+{
+  char buffer[11 + SHA256_DIGEST_LENGTH];
+  struct in_addr addr;
+  int status;
+  
+  buffer[0] = message->type;
+  buffer[1] = message->hops;
+  buffer[2] = message->consensus_type;
+
+  printf("[ INFO ] Sending consensus message.\n");
+  
+  status = inet_pton(AF_INET, message->source_addr, &addr);
+  if(status == 0)
+    {
+      return 1;
+    }
+  memcpy(buffer + 3, &addr.s_addr, sizeof(addr.s_addr));
+
+  status = inet_pton(AF_INET, message->target_addr, &addr);
+  if(status == 0)
+    {
+      return 1;
+    }
+  memcpy(buffer + 7, &addr.s_addr, sizeof(addr.s_addr));
+
+  
+  memcpy(buffer + 11, message->last_block_hash, SHA256_DIGEST_LENGTH);
+  
+  return send_to_host(message->next_addr, (void*)buffer, sizeof(buffer));
+}
+
+int send_to_all_consensus_message(ConsensusMessage *message)
+{
+  HostList *host;
+  host = host_list;
+  while(host)
+    {
+      strncpy(message->next_addr, host->addr, INET_ADDRSTRLEN);
+      send_consensus_message(message);
+      host = host->next;
+    }
+  return 0;
+}
+  
+int recv_consensus_message(void *buffer)
+{
+  ConsensusMessage message;
+  char* char_buffer;
+  struct sockaddr_in target, source;
+
+  printf("[ INFO ] Received consensus message.\n");
+  
+  char_buffer = (char*)buffer;
+  message.type = char_buffer[0];
+  message.hops = char_buffer[1];
+  message.consensus_type = char_buffer[2];
+
+  source.sin_addr.s_addr = *(int*)(char_buffer + 3);
+  target.sin_addr.s_addr = *(int*)(char_buffer + 7);
+  inet_ntop(AF_INET, &source.sin_addr, message.source_addr, INET_ADDRSTRLEN);
+  inet_ntop(AF_INET, &target.sin_addr, message.target_addr, INET_ADDRSTRLEN);
+
+  strncpy(message.last_block_hash, char_buffer + 11, SHA256_DIGEST_LENGTH);
+
+  switch(message.consensus_type)
+    {
+    case C_BROADCAST:
+      recv_consensus_broadcast(&message);
+      break;
+    case C_ACK:
+      recv_consensus_ack(&message);
+      break;
+    }
+  
+  printf("Source: %s\n", message.source_addr);
+  printf("Target: %s\n", message.target_addr);
+  
+  return 0;
+}
+
+int recv_consensus_broadcast(ConsensusMessage *message)
+{
+  ConsensusMessage new_message;
+  HostList *host;
+  char last_hash[SHA256_DIGEST_LENGTH];
+
+  printf("Received CONSENSUS::BROADCAST\n");
+  
+  if(!message)
+    {
+      return 1;
+    }
+  
+  printf("local_addr: %s\n", local_address);
+  printf("message->target_addr: %s\n", message->target_addr);
+ 
+  /* If hashes match, add to pending_rules */
+  get_last_hash(last_hash);
+  if(strlen(last_hash) == 0 ||
+     strncmp(message->last_block_hash, last_hash, SHA256_DIGEST_LENGTH) == 0)
+    {
+      add_pending_rule(message->source_addr);
+      new_message.type = CONSENSUS;
+      new_message.hops = 0;
+      new_message.consensus_type = C_ACK;
+      strncpy(new_message.source_addr, local_address, INET_ADDRSTRLEN);
+      strncpy(new_message.target_addr, message->source_addr, INET_ADDRSTRLEN);
+      strncpy(new_message.last_block_hash, message->last_block_hash,
+	      SHA256_DIGEST_LENGTH);
+
+      /* Send ACK */
+      host = host_list;
+      while(host)
+	{
+	  strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
+	  send_consensus_message(&new_message);
+	  host = host->next;
+	}
+    }
+
+  /* If under max hop count, forward to all hosts */
+  if(message->hops < MAX_CONSENSUS_HOPS)
+    {
+      host = host_list;
+      if(host)
+	{
+	  memcpy(&new_message, message, sizeof(ConsensusMessage));
+	  new_message.hops++;
+	  
+	  while(host)
+	    {
+	      strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
+	      send_consensus_message(&new_message);
+	      host = host->next;
+	    }     
+	}
+    }
+  
+  return 0;
+}
+
+int recv_consensus_ack(ConsensusMessage *message)
+{
+  HostList *host;
+
+  printf("Received CONSENSUS::ACK\n");
+  
+  if(!message)
+    {
+      return 1;
+    }
+
+  /* Check if we are the intended recipient */
+  if(strncmp(local_address, message->target_addr, INET_ADDRSTRLEN) == 0)
+    {
+      ack_count++;
+    }
+  else
+    {
+      if(message->hops < MAX_CONSENSUS_HOPS)
+	{
+	  host = host_list;
+	  message->hops++;
+
+	  while(host)
+	    {
+	      strncpy(message->next_addr, host->addr, INET_ADDRSTRLEN);
+	      send_consensus_message(message);
+	      host = host->next;
+	    }
+	}
+    }
+  
+  return 0;
+}
+
+int send_rule_message(RuleMessage *message)
+{
+  char buffer[11 + sizeof(FirewallRule)];
+  struct in_addr addr;
+  int status;
+  
+  buffer[0] = message->type;
+  buffer[1] = message->hops;
+  buffer[2] = message->rule_type;
+
+  printf("[ INFO ] Sending rule message.\n");
+  
+  status = inet_pton(AF_INET, message->source_addr, &addr);
+  if(status == 0)
+    {
+      return 1;
+    }
+  memcpy(buffer + 3, &addr.s_addr, sizeof(addr.s_addr));
+
+  status = inet_pton(AF_INET, message->target_addr, &addr);
+  if(status == 0)
+    {
+      return 1;
+    }
+  memcpy(buffer + 7, &addr.s_addr, sizeof(addr.s_addr));
+
+  memcpy(buffer + 11, (void*)(&message->rule), sizeof(FirewallRule));
+  
+  return send_to_host(message->next_addr, (void*)buffer, sizeof(buffer));
+}
+
+int send_to_all_rule_message(RuleMessage *message)
+{
+  HostList *host;
+  host = host_list;
+  while(host)
+    {
+      strncpy(message->next_addr, host->addr, INET_ADDRSTRLEN);
+      send_rule_message(message);
+      host = host->next;
+    }
+  return 0;
+}
+
+int recv_rule_message(void *buffer)
+{
+  RuleMessage message;
+  char* char_buffer;
+  struct sockaddr_in target, source;
+
+  printf("[ INFO ] Received rule message.\n");
+  
+  char_buffer = (char*)buffer;
+  message.type = char_buffer[0];
+  message.hops = char_buffer[1];
+  message.rule_type = char_buffer[2];
+
+  source.sin_addr.s_addr = *(int*)(char_buffer + 3);
+  target.sin_addr.s_addr = *(int*)(char_buffer + 7);
+  inet_ntop(AF_INET, &source.sin_addr, message.source_addr, INET_ADDRSTRLEN);
+  inet_ntop(AF_INET, &target.sin_addr, message.target_addr, INET_ADDRSTRLEN);
+
+  memcpy((void*)(&message.rule), char_buffer + 11, sizeof(FirewallRule));
+
+  switch(message.rule_type)
+    {
+    case R_BROADCAST:
+      recv_rule_broadcast(&message);
+      break;
+    }
+  
+  printf("Source: %s\n", message.source_addr);
+  printf("Target: %s\n", message.target_addr);
+  
+  return 0;
+}
+
+int recv_rule_broadcast(RuleMessage *message)
+{
+  RuleMessage new_message;
+  FirewallBlock new_block;
+  HostList *host;
+  char last_hash[SHA256_DIGEST_LENGTH];
+
+  printf("Received RULE::BROADCAST\n");
+  
+  if(!message)
+    {
+      return 1;
+    }
+  
+  printf("local_addr: %s\n", local_address);
+  printf("message->target_addr: %s\n", message->target_addr);
+ 
+  if(is_pending(message->source_addr))
+    {
+      /* get new hash */
+      get_last_hash(last_hash);
+      
+      memcpy(new_block.last_hash, last_hash, SHA256_DIGEST_LENGTH);
+      strncpy(new_block.author, message->source_addr, INET_ADDRSTRLEN);
+      memcpy(&new_block.rule, &message->rule, sizeof(FirewallRule));
+      add_block_to_chain(&new_block);
+
+      remove_pending_rule(message->source_addr);
+    }
+
+  /* If under max hop count, forward to all hosts */
+  if(message->hops < MAX_CONSENSUS_HOPS)
+    {
+      host = host_list;
+      if(host)
+	{
+	  memcpy(&new_message, message, sizeof(RuleMessage));
+	  new_message.hops++;
+	  
+	  while(host)
+	    {
+	      strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
+	      send_rule_message(&new_message);
+	      host = host->next;
+	    }     
 	}
     }
   

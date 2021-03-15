@@ -5,6 +5,8 @@
  * @date 4 Mar 2021
  */
 
+#include "firewall.h"
+
 #ifndef IPC_H
 #define IPC_H
 
@@ -16,17 +18,12 @@
 #include <arpa/inet.h>
 #endif
 
-typedef enum { ALLOW, DENY } Action;
 typedef enum { RULE, ENABLE, DISABLE, SHUTDOWN } IPCMessageType; 
 
 typedef struct
 {
   IPCMessageType message_type;
-  char source_addr[INET_ADDRSTRLEN];
-  char dest_addr[INET_ADDRSTRLEN];
-  int source_port;
-  int dest_port;
-  Action action;
+  FirewallRule rule;
 } IPCMessage;
 
 int init_ipc_server(void);

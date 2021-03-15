@@ -8,31 +8,36 @@
 #ifndef BLOCKCHAIN_H
 #define BLOCKCHAIN_H
 
+#include "firewall.h"
+
+#include <openssl/sha.h>
+
+#ifdef _WIN32
+#include <ws2tcpip.h>
+#else
+#include <arpa/inet.h>
+#endif
+
 /**
  * @brief The length of SHA256 string representations.
  */ 
 #define SHA256_STRING_LENGTH 64
 
 /**
- * Valid firewall actions.
- */
-typedef enum {ALLOW, BYPASS, DENY, FORCE_ALLOW, LOG} FirewallAction;
-
-/**
  * A block containing information for a firewall transaction.
  */
-typedef struct
+struct FirewallBlock
 {
-  char last_hash[256];   /**< The hash of the previous block               */
-  int  nonce;            /**< Random nonce                                 */
-  char author[100];      /**< The IP of the block author                   */
-  
-  char source_addr[15];  /**< The source address of the firewall rule      */
-  int  source_port;      /**< The source port of the firewall rule         */
-  char dest_addr[15];    /**< The destination address of the firewall rule */
-  int dest_port;         /**< The destination port of the firewall rule    */
-  FirewallAction action; /**< The action associated with the firewall rule */
-} FirewallBlock;
+  unsigned char last_hash[SHA256_DIGEST_LENGTH]; /**< The hash of the previous block               */
+  char author[INET_ADDRSTRLEN];         /**< The address of the block author              */
+  FirewallRule rule;
+  struct FirewallBlock *next;
+};
+typedef struct FirewallBlock FirewallBlock;
+
+static FirewallBlock block;
+static unsigned int ack_count;
+static FirewallBlock *chain;
 
 /**
  * @brief Calculates the SHA256 hash of a block.
@@ -61,4 +66,12 @@ int get_block_hash(unsigned char* buffer, FirewallBlock* block, int buffer_size)
  * 0.
  */
 int get_hash_string(char* buffer, unsigned char* hash, int buffer_size);
+
+int add_block_to_chain(FirewallBlock *block);
+
+int rotate_pending_rules(void);
+int add_pending_rule(char *addr);
+int is_pending(char *addr);
+int remove_pending_rule(char *addr);
+int get_last_hash(char *buffer);
 #endif

@@ -1,5 +1,5 @@
 CC=clang
-OBJECTS=main.o socket.o net.o ipc.o blockchain.o
+OBJECTS=main.o socket.o net.o ipc.o blockchain.o firewall.o
 CFLAGS=-Wall -pedantic --std=c89 -O3 -c
 INCLUDE=
 LIBS=-lrt -lcrypto

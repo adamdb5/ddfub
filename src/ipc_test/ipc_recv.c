@@ -51,7 +51,7 @@ int main(void)
   attr.mq_maxmsg = 2;
   attr.mq_msgsize = sizeof(struct msg);
   attr.mq_curmsgs = 0;
-  mqd_t queue = mq_open("/dfw", O_CREAT | O_RDWR, 0644, &attr);
+  mqd_t queue = mq_open("/yeet", O_CREAT | O_RDWR, 0644, &attr);
   printf("mq_open: %d\n", queue);
   perror("");
   msg_queue = queue;

@@ -51,7 +51,9 @@ int main(void)
 	  m.message_type = SHUTDOWN;
 	}
       free(buffer);
-      send_ipc_message(&m);
+
+      if(running)
+	send_ipc_message(&m);
     }
 
   cleanup_ipc();

@@ -9,6 +9,9 @@
 #define NET_H
 
 #include "socket.h"
+#include "firewall.h"
+
+#include <openssl/sha.h>
 
 #ifdef _WIN32
 #include <inttypes.h>
@@ -34,6 +37,8 @@
  */
 #define MAX_ADVERTISEMENT_HOPS 5
 
+#define MAX_CONSENSUS_HOPS 5
+
 /**
  * ADVERTISE: Advertise a new device.
  * CONSENSUS: Consensus related actions.
@@ -41,14 +46,18 @@
  */
 typedef enum { ADVERTISEMENT, CONSENSUS, FIREWALL } MessageType;
 typedef enum { BROADCAST, ACK } AdvertisementType;
+typedef enum { C_BROADCAST, C_ACK } ConsensusType;
+typedef enum { R_BROADCAST } RuleType;
 
-struct HostList {
+struct HostList
+{
   struct HostList *next;
   char addr[INET_ADDRSTRLEN];
 };
 typedef struct HostList HostList; 
 
-typedef struct {
+typedef struct
+{
   MessageType type;
   uint8_t hops;
   AdvertisementType advertisement_type;
@@ -56,6 +65,28 @@ typedef struct {
   char target_addr[INET_ADDRSTRLEN];
   char next_addr[INET_ADDRSTRLEN];
 } AdvertisementMessage;
+
+typedef struct
+{
+  MessageType type;
+  uint8_t hops;
+  ConsensusType consensus_type;
+  char source_addr[INET_ADDRSTRLEN];
+  char target_addr[INET_ADDRSTRLEN];
+  char next_addr[INET_ADDRSTRLEN];
+  char last_block_hash[SHA256_DIGEST_LENGTH];
+} ConsensusMessage;
+
+typedef struct
+{
+  MessageType type;
+  uint8_t hops;
+  RuleType rule_type;
+  char source_addr[INET_ADDRSTRLEN];
+  char target_addr[INET_ADDRSTRLEN];
+  char next_addr[INET_ADDRSTRLEN];
+  FirewallRule rule;
+} RuleMessage;
 
 int get_local_address(char* buffer);
 int load_hosts_from_file(const char* fname);
@@ -97,10 +128,21 @@ int cleanup_net(void);
 int send_to_host(char* ip_address, void* message, size_t length);
 
 int send_advertisement_message(AdvertisementMessage *message);
+int send_to_all_advertisement_message(AdvertisementMessage *message);
 int recv_advertisement_message(void *buffer);
-
 int recv_advertisement_broadcast(AdvertisementMessage* message);
 int recv_advertisement_ack(AdvertisementMessage* message);
+
+int send_consensus_message(ConsensusMessage *message);
+int send_to_all_consensus_message(ConsensusMessage *message);
+int recv_consensus_message(void *buffer);
+int recv_consensus_broadcast(ConsensusMessage *message);
+int recv_consensus_ack(ConsensusMessage *message);
+
+int send_rule_message(RuleMessage *message);
+int send_to_all_rule_message(RuleMessage *message);
+int recv_rule_message(void *buffer);
+int recv_rule_broadcast(RuleMessage *message);
 
 /**
  * @brief Waits for a message to be received.

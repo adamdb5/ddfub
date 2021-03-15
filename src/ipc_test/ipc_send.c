@@ -35,7 +35,7 @@ int main(void)
   m.dest_port = 420;
   m.action = ALLOW;
 
-  mqd_t queue = mq_open("/dfw", O_RDWR);  
+  mqd_t queue = mq_open("/yeet", O_RDWR);  
 
   printf("mq_open: %d\n", queue);
   perror("error");

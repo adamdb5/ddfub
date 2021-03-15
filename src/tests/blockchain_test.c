@@ -161,6 +161,11 @@ void get_hash_string_valid(void **state)
       "c1a481deb4451b357662a2df4c12a22b97f150f5e3b2e35e169a0d1bcc515492");
 }
 
+void rotate_pending_rules(void **state)
+{
+  
+}
+
 int main(void)
 {
   const struct CMUnitTest tests[] =
