@@ -37,14 +37,18 @@ int init_ipc_server(void)
       return 1;
     }
 
-  if(!ConnectNamedPipe(mqueue, NULL))
-    {
-      CloseHandle(mqueue);
-      return 1;
-    }
-
   queue = mqueue;
 
+  return 0;
+}
+
+int connect_ipc(void)
+{
+  if(!ConnectNamedPipe(queue, NULL))
+    {
+      CloseHandle(queue);
+      return 1;
+    }
   return 0;
 }
 

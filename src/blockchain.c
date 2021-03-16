@@ -137,13 +137,13 @@ int remove_pending_rule(char *addr)
   return 0;
 }
 
-int get_last_hash(char *buffer)
+int get_last_hash(unsigned char *buffer)
 {
    FirewallBlock *fw_chain;
   
   if(!chain)
     {
-      strncpy(buffer, "\0", 1);
+      memset(buffer, '\0', SHA256_DIGEST_LENGTH);
       return 0;
     }
 

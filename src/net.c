@@ -11,6 +11,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 
 #include <openssl/sha.h>
 
@@ -305,6 +306,27 @@ int check_host_exists(char *addr)
   return 0;
 }
 
+int get_host_count(void)
+{
+  HostList *host;
+  int count;
+  
+  host = host_list;
+  if(!host)
+    {
+      return 0;
+    }
+
+  count = 0;
+  while(host)
+    {
+      count++;
+      host = host->next;
+    }
+
+  return count;
+}
+
 int init_net(void)
 {
   printf("[ INFO ] Initiating network API.\n");
@@ -324,6 +346,7 @@ int init_net(void)
     {
       return 1;
     }
+  
   if(bind_socket(socket_recv, PORT_RECV) != 0)
     {
       return 1;
@@ -608,7 +631,7 @@ int recv_consensus_message(void *buffer)
   inet_ntop(AF_INET, &source.sin_addr, message.source_addr, INET_ADDRSTRLEN);
   inet_ntop(AF_INET, &target.sin_addr, message.target_addr, INET_ADDRSTRLEN);
 
-  strncpy(message.last_block_hash, char_buffer + 11, SHA256_DIGEST_LENGTH);
+  memcpy(message.last_block_hash, char_buffer + 11, SHA256_DIGEST_LENGTH);
 
   switch(message.consensus_type)
     {
@@ -630,7 +653,7 @@ int recv_consensus_broadcast(ConsensusMessage *message)
 {
   ConsensusMessage new_message;
   HostList *host;
-  char last_hash[SHA256_DIGEST_LENGTH];
+  unsigned char last_hash[SHA256_DIGEST_LENGTH];
 
   printf("Received CONSENSUS::BROADCAST\n");
   
@@ -644,8 +667,8 @@ int recv_consensus_broadcast(ConsensusMessage *message)
  
   /* If hashes match, add to pending_rules */
   get_last_hash(last_hash);
-  if(strlen(last_hash) == 0 ||
-     strncmp(message->last_block_hash, last_hash, SHA256_DIGEST_LENGTH) == 0)
+  if(memcmp(last_hash, "\0", 1) == 0 ||
+     memcmp(message->last_block_hash, last_hash, SHA256_DIGEST_LENGTH) == 0)
     {
       add_pending_rule(message->source_addr);
       new_message.type = CONSENSUS;
@@ -653,7 +676,7 @@ int recv_consensus_broadcast(ConsensusMessage *message)
       new_message.consensus_type = C_ACK;
       strncpy(new_message.source_addr, local_address, INET_ADDRSTRLEN);
       strncpy(new_message.target_addr, message->source_addr, INET_ADDRSTRLEN);
-      strncpy(new_message.last_block_hash, message->last_block_hash,
+      memcpy(new_message.last_block_hash, message->last_block_hash,
 	      SHA256_DIGEST_LENGTH);
 
       /* Send ACK */
@@ -804,7 +827,7 @@ int recv_rule_broadcast(RuleMessage *message)
   RuleMessage new_message;
   FirewallBlock new_block;
   HostList *host;
-  char last_hash[SHA256_DIGEST_LENGTH];
+  unsigned char last_hash[SHA256_DIGEST_LENGTH];
 
   printf("Received RULE::BROADCAST\n");
   
@@ -857,10 +880,26 @@ int poll_message(void *buffer, size_t length)
   printf("[ INFO ] Polling for message.\n");
   
   bytes_read = recv_from_socket(socket_recv, buffer, length, 0);
+  if(errno == EAGAIN || bytes_read <= 0)
+    {
+      printf("empty message\n");
+      return 0;
+    }
+    
+  printf("bytes_read: %d\n", bytes_read);
+  printf("errno: %d\n", errno);
+  perror("");
+  
   switch(((char*)buffer)[0])
     {
     case ADVERTISEMENT:
       return recv_advertisement_message(buffer);
+      break;
+    case CONSENSUS:
+      return recv_consensus_message(buffer);
+      break;
+    case RULE:
+      return recv_rule_message(buffer);
       break;
     default:
       return bytes_read;

@@ -73,5 +73,5 @@ int rotate_pending_rules(void);
 int add_pending_rule(char *addr);
 int is_pending(char *addr);
 int remove_pending_rule(char *addr);
-int get_last_hash(char *buffer);
+int get_last_hash(unsigned char *buffer);
 #endif

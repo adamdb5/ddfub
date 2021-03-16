@@ -18,7 +18,7 @@
 #include <arpa/inet.h>
 #endif
 
-typedef enum { RULE, ENABLE, DISABLE, SHUTDOWN } IPCMessageType; 
+typedef enum { I_RULE, I_ENABLE, I_DISABLE, I_SHUTDOWN } IPCMessageType; 
 
 typedef struct
 {
@@ -27,6 +27,9 @@ typedef struct
 } IPCMessage;
 
 int init_ipc_server(void);
+#ifdef _WIN32
+int connect_ipc(void);
+#endif
 int init_ipc_client(void);
 int cleanup_ipc(void);
 int send_ipc_message(IPCMessage *message);

@@ -44,7 +44,7 @@
  * CONSENSUS: Consensus related actions.
  * FIREWALL:  Send / receive firewall queries.
  */
-typedef enum { ADVERTISEMENT, CONSENSUS, FIREWALL } MessageType;
+typedef enum { ADVERTISEMENT, CONSENSUS, RULE } MessageType;
 typedef enum { BROADCAST, ACK } AdvertisementType;
 typedef enum { C_BROADCAST, C_ACK } ConsensusType;
 typedef enum { R_BROADCAST } RuleType;
@@ -74,7 +74,7 @@ typedef struct
   char source_addr[INET_ADDRSTRLEN];
   char target_addr[INET_ADDRSTRLEN];
   char next_addr[INET_ADDRSTRLEN];
-  char last_block_hash[SHA256_DIGEST_LENGTH];
+  unsigned char last_block_hash[SHA256_DIGEST_LENGTH];
 } ConsensusMessage;
 
 typedef struct
@@ -93,6 +93,7 @@ int load_hosts_from_file(const char* fname);
 int add_host(char* addr);
 int print_hosts(void);
 int check_host_exists(char *addr);
+int get_host_count(void);
 
 /**
  * @brief Initialises the network API.

@@ -33,22 +33,22 @@ int main(void)
       if(strlen(buffer) >= 4 && strncmp(buffer, "rule", 4) == 0)
 	{
 	  printf("m.message_type = RULE\n");
-	  m.message_type = RULE;
+	  m.message_type = I_RULE;
 	}
       if(strlen(buffer) >= 6 && strncmp(buffer, "enable", 6) == 0)
 	{
 	  printf("m.message_type = ENABLE\n");
-	  m.message_type = ENABLE;
+	  m.message_type = I_ENABLE;
 	}
       if(strlen(buffer) >= 7 && strncmp(buffer, "disable", 7) == 0)
 	{
 	  printf("m.message_type = DISABLE\n");
-	  m.message_type = DISABLE;
+	  m.message_type = I_DISABLE;
 	}
       if(strlen(buffer) >= 8 && strncmp(buffer, "shutdown", 8) == 0)
 	{
 	  printf("m.message_type = SHUTDOWN\n");
-	  m.message_type = SHUTDOWN;
+	  m.message_type = I_SHUTDOWN;
 	}
       free(buffer);
 

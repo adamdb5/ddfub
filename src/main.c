@@ -5,57 +5,110 @@
  * @date 15 Dec 2020
  */
 
+#include "net.h"
 #include "ipc.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
+#ifdef _WIN32
+#define HAVE_STRUCT_TIMESPEC
+#else
+#include <unistd.h>
+#endif
+
+#include <pthread.h>
+
+static int enabled_flag = 1;
+static int shutdown_flag = 0;
+
+void *recv_thread_func(void *data)
+{
+  char buffer[sizeof(RuleMessage)];
+  while(!shutdown_flag)
+    {
+      if(enabled_flag)
+	{
+	  printf("recv_thread_func()\n");
+	  memset(buffer, 0, sizeof(RuleMessage));
+	  poll_message(buffer, sizeof(RuleMessage));
+	}
+#ifdef _WIN32
+      Sleep(10);
+#else
+      usleep(10 * 1000);
+#endif
+    }
+  printf("recv_thread_func() terminated\n");
+  return NULL;
+}
+
 int main(int argc, char** argv)
 {
-  IPCMessage msg;
-  int running = 1;
-  int enabled = 1;
+  IPCMessage ipc_msg;
+  pthread_t recv_thread;
 
   if(init_ipc_server())
     {
       perror("");
       return 1;
     }
-  else
+  printf("IPC Initialised.\n");
+
+  if(init_net())
     {
-      printf("Firewall IPC Initialised.\n");
+      cleanup_ipc();
+      perror("");
+      return 1;
     }
-  
-  while(running)
+  printf("Network Stack Initialised.\n");
+
+  if(pthread_create(&recv_thread, NULL, recv_thread_func, NULL))
     {
-      memset(&msg, 0, sizeof(IPCMessage));
-      recv_ipc_message(&msg);
+      perror("");
+      cleanup_net();
+      cleanup_ipc();
+      return 1;
+    }
+  printf("[ INFO ] Receiving thread Initialised\n");
+  
+  while(!shutdown_flag)
+    {
+#ifdef _WIN32
+      connect_ipc();
+#endif
       
-      switch(msg.message_type)
+      memset(&ipc_msg, 0, sizeof(IPCMessage));
+      recv_ipc_message(&ipc_msg);
+
+       switch(ipc_msg.message_type)
 	{
-	case SHUTDOWN:
+	case I_SHUTDOWN:
 	  printf("Shutting down\n");
-	  running = 0;
+	  shutdown_flag = 1;
 	  break;
-	case ENABLE:
-	  printf("Enabling\n");
-	  enabled = 1;
+	case I_ENABLE:
+	  printf("Transacations have been enabled\n");
+	  enabled_flag = 1;
 	  break;
-	case DISABLE:
-	  printf("Disabling\n");
-	  enabled = 0;
+	case I_DISABLE:
+	  printf("Transaction have been disabled\n");
+	  enabled_flag = 0;
 	  break;
-	case RULE:
-	  printf("New Firewall Rule\n");
-	  /* Do firewall stuff */
+	case I_RULE:
+	  printf("Received local firewall rule\n");
+	  /*send_new_rule();*/
   	  break;
 	default:
-	  printf("Unknown message type.\n");
+	  printf("Unknown IPC message type.\n");
 	}
-      
     }
 
+  printf("Waiting for receiving thread to terminate\n");
+  pthread_join(recv_thread, NULL);
+
+  cleanup_net();
   cleanup_ipc();
   return 0;
 }

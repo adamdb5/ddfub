@@ -7,6 +7,8 @@
 
 #ifdef _WIN32
 #include <ws2tcpip.h>
+#include <stdint.h>
+typedef uint16_t u_int16_t;
 #else
 #include <arpa/inet.h>
 #endif

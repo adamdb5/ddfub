@@ -7,15 +7,18 @@
 
 #include "socket.h"
 #include <stdio.h>
+#include <string.h>
 
 #ifdef _WIN32
 #ifndef _WIN32_WINNT
 #define _WIN32_WINNT 0x0501 /* Patch for older NT kernels */
 #endif
+
 #include <io.h>
 #include <winsock2.h>
 #else
 #include <unistd.h>
+#include <sys/time.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #endif
@@ -46,12 +49,25 @@ int cleanup_sockets(void)
 
 socket_t create_socket(void)
 {
+  socket_t sock;
+  #ifdef _WIN32
+  DWORD ival;
+  #else
+  struct timeval tv;
+  #endif
+  
   printf("[ INFO ] Creating new socket.\n");
 #ifdef _WIN32
-  return socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    ival = 1000;
+  sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+  setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&ival, sizeof(DWORD));
 #else
-  return socket(AF_INET, SOCK_DGRAM, 0);
+  memset(&tv, 0, sizeof(struct timeval));
+  tv.tv_sec = 1;
+  sock = socket(AF_INET, SOCK_DGRAM, 0);
+  setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(struct timeval));
 #endif
+  return sock;
 }
 
 void close_socket(socket_t sock)
@@ -67,13 +83,12 @@ void close_socket(socket_t sock)
 int bind_socket(socket_t sock, int port)
 {
   struct sockaddr_in addr;
-  
   printf("[ INFO ] Binding socket. \n");
   
   addr.sin_family = AF_INET;
   addr.sin_addr.s_addr = INADDR_ANY;
   addr.sin_port = htons(port);
-  
+ 
   return bind(sock, (struct sockaddr*)&addr, sizeof(addr));
 }
 
