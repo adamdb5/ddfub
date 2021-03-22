@@ -8,8 +8,7 @@
 int main(void)
 {
   IPCMessage m;
-  char *buffer;
-  ssize_t bytes_read;
+  char buffer[100];
   int running = 1;
   
   memset(&m, 0, sizeof(m));
@@ -18,11 +17,10 @@ int main(void)
 
   while(running)
     {
-      buffer = NULL;
-      bytes_read = 0;
       printf("dfw>");
-      getline(&buffer, &bytes_read, stdin);
-
+      memset(buffer, 0, 100);
+      scanf("%s", buffer);
+      
       printf("buffer: %s\n", buffer);
       
       if(strlen(buffer) >= 4 && strncmp(buffer, "quit", 4) == 0)
@@ -50,7 +48,7 @@ int main(void)
 	  printf("m.message_type = SHUTDOWN\n");
 	  m.message_type = I_SHUTDOWN;
 	}
-      free(buffer);
+      
 
       if(running)
 	send_ipc_message(&m);

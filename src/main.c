@@ -28,10 +28,11 @@ void *recv_thread_func(void *data)
   char buffer[sizeof(RuleMessage)];
   while(!shutdown_flag)
     {
+      memset(buffer, 0, sizeof(RuleMessage));
       if(enabled_flag)
 	{
 	  printf("recv_thread_func()\n");
-	  memset(buffer, 0, sizeof(RuleMessage));
+	  /*	  memset(buffer, 0, sizeof(RuleMessage)); */
 	  poll_message(buffer, sizeof(RuleMessage));
 	}
 #ifdef _WIN32
@@ -72,13 +73,13 @@ int main(int argc, char** argv)
       return 1;
     }
   printf("[ INFO ] Receiving thread Initialised\n");
+
+#ifdef _WIN32
+  connect_ipc();
+#endif
   
   while(!shutdown_flag)
-    {
-#ifdef _WIN32
-      connect_ipc();
-#endif
-      
+    { 
       memset(&ipc_msg, 0, sizeof(IPCMessage));
       recv_ipc_message(&ipc_msg);
 
