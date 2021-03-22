@@ -11,7 +11,7 @@
 #ifdef _WIN32
 
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT 0x0501  /* Patch for older NT kernels */
+#define _WIN32_WINNT 0x0501
 #endif
 
 #include <winsock2.h>
@@ -33,8 +33,7 @@ typedef SOCKET socket_t;
 typedef int socket_t;
 
 /** 
- * @brief
- * UNIX equivalent to WinSocks's INVALID_SOCKET constant
+ * @brief UNIX equivalent to WinSocks's INVALID_SOCKET constant.
  */
 #define INVALID_SOCKET -1 
 #endif

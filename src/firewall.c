@@ -1,6 +1,8 @@
 /**
- * firewall.c
- * the implementations of all the fun firewall stuff!!
+ * @file firewall.c
+ * @brief High level functions for handling firewall interactions.
+ * @author Adam Bruce
+ * @date 22 Mar 2021
  */
 
 #include "blockchain.h"
@@ -34,26 +36,15 @@ int send_new_rule(FirewallRule *rule)
   ConsensusMessage consensus_msg;
   RuleMessage rule_msg;
   FirewallBlock block;
-  /* Send a new rule */
 
-  /* - broadcast new rule
-   * - collect acks
-   * - wait a set timeout
-   * - If acks > hosts / 2:
-   *   - send rule to all hosts.
-   *   - add to local chain
-   * - Else
-   *   - Do nothing
-   */
   get_local_address(local_address);
   consensus_msg.type = CONSENSUS;
   consensus_msg.hops = 0;
-  consensus_msg.consensus_type = C_BROADCAST;
+  consensus_msg.consensus_type = BROADCAST;
   strncpy(consensus_msg.source_addr, local_address, INET_ADDRSTRLEN);
   get_last_hash(consensus_msg.last_block_hash);
   send_to_all_consensus_message(&consensus_msg);
 
-  /* wait timeout */
 #ifdef _WIN32
   Sleep(TIMEOUT);
 #else
@@ -70,7 +61,7 @@ int send_new_rule(FirewallRule *rule)
 
   rule_msg.type = RULE;
   rule_msg.hops = 0;
-  rule_msg.rule_type = R_BROADCAST;
+  rule_msg.rule_type = BROADCAST;
   strncpy(rule_msg.source_addr, local_address, INET_ADDRSTRLEN);
   memcpy(&rule_msg.rule, rule, sizeof(FirewallRule));
   send_to_all_rule_message(&rule_msg);

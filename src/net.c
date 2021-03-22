@@ -2,7 +2,7 @@
  * @file net.c
  * @brief Network and protocol interface
  * @author Adam Bruce
- * @date 12 Feb 2021
+ * @date 22 Mar 2021
  */
 
 #include "net.h"
@@ -26,31 +26,34 @@
 #include <ifaddrs.h>
 #endif
 
+/**
+ * @brief The maximum length of a *nix ethernet adapter prefix.
+ */ 
 #define ETH_PREFIX_LEN 5
 
 /**
- * @brief the local sending socket.
+ * @brief The local sending socket.
  */
 static socket_t socket_send;
 
 /**
- * @brief the local receiving socket.
+ * @brief The local receiving socket.
  */
 static socket_t socket_recv;
 
 /** 
- * @brief the list of known hosts.
+ * @brief The list of known hosts.
  */
 static HostList* host_list;
 
 /**
- * @brief the local IP address.
+ * @brief The local IP address.
  */
 static char local_address[INET_ADDRSTRLEN];
 
 #ifndef _WIN32
 /** 
- * @brief known ethernet adapter prefixes.
+ * @brief Known ethernet adapter prefixes.
  *
  * Used for obtaining the assigned ethernet address.
  */
@@ -635,10 +638,10 @@ int recv_consensus_message(void *buffer)
 
   switch(message.consensus_type)
     {
-    case C_BROADCAST:
+    case BROADCAST:
       recv_consensus_broadcast(&message);
       break;
-    case C_ACK:
+    case ACK:
       recv_consensus_ack(&message);
       break;
     }
@@ -673,7 +676,7 @@ int recv_consensus_broadcast(ConsensusMessage *message)
       add_pending_rule(message->source_addr);
       new_message.type = CONSENSUS;
       new_message.hops = 0;
-      new_message.consensus_type = C_ACK;
+      new_message.consensus_type = ACK;
       strncpy(new_message.source_addr, local_address, INET_ADDRSTRLEN);
       strncpy(new_message.target_addr, message->source_addr, INET_ADDRSTRLEN);
       memcpy(new_message.last_block_hash, message->last_block_hash,
@@ -811,8 +814,10 @@ int recv_rule_message(void *buffer)
 
   switch(message.rule_type)
     {
-    case R_BROADCAST:
+    case BROADCAST:
       recv_rule_broadcast(&message);
+      break;
+    case ACK:
       break;
     }
   

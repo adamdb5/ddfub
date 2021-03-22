@@ -2,13 +2,13 @@
  * @file ipc.c
  * @brief Inter-process Communication interface
  * @author Adam Bruce
- * @date 4 Mar 2021
+ * @date 22 Mar 2021
  */
 
 #include "ipc.h"
 
 #ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN /* We don't need all Windows headers */
 #include <windows.h>
 #include <ws2tcpip.h>
 #else

@@ -2,7 +2,7 @@
  * @file main.c
  * @brief Entry point for the application.
  * @author Adam Bruce
- * @date 15 Dec 2020
+ * @date 22 Mar 2021
  */
 
 #include "net.h"
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 
 #ifdef _WIN32
-#define HAVE_STRUCT_TIMESPEC
+#define HAVE_STRUCT_TIMESPEC /* Prevent pthread from redefining timespec */
 #else
 #include <unistd.h>
 #endif
@@ -32,7 +32,6 @@ void *recv_thread_func(void *data)
       if(enabled_flag)
 	{
 	  printf("recv_thread_func()\n");
-	  /*	  memset(buffer, 0, sizeof(RuleMessage)); */
 	  poll_message(buffer, sizeof(RuleMessage));
 	}
 #ifdef _WIN32
@@ -99,7 +98,7 @@ int main(int argc, char** argv)
 	  break;
 	case I_RULE:
 	  printf("Received local firewall rule\n");
-	  /*send_new_rule();*/
+	  send_new_rule(&ipc_msg.rule);
   	  break;
 	default:
 	  printf("Unknown IPC message type.\n");

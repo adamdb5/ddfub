@@ -2,7 +2,7 @@
  * @file blockchain.c
  * @brief Functions for creating and validating blockchains.
  * @author Adam Bruce
- * @date 03 Feb 2021
+ * @date 22 Mar 2021
  */
 
 #include "blockchain.h"
@@ -60,8 +60,8 @@ int add_block_to_chain(FirewallBlock *block)
   
   if(!chain)
     {
-      fw_chain = (FirewallBlock*)malloc(sizeof(FirewallBlock));
-      memcpy(chain, fw_chain, sizeof(FirewallBlock));
+      chain = (FirewallBlock*)malloc(sizeof(FirewallBlock));
+      memcpy(chain, block, sizeof(FirewallBlock));
       return 0;
     }
 
