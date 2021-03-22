@@ -92,7 +92,7 @@ int bind_socket(socket_t sock, int port)
   return bind(sock, (struct sockaddr*)&addr, sizeof(addr));
 }
 
-int send_to_socket(socket_t sock, void* message, size_t length, int flags,
+int send_to_socket(socket_t sock, void *message, size_t length, int flags,
                    struct sockaddr_in dest_addr)
 {
   printf("[ INFO ] Sending message of length %zu to socket.\n", length);
@@ -100,8 +100,8 @@ int send_to_socket(socket_t sock, void* message, size_t length, int flags,
 		sizeof(dest_addr));
 }
 
-int recv_from_socket(socket_t sock, void* buffer, size_t length, int flags)
+int recv_from_socket(socket_t sock, void *buffer, size_t length, int flags)
 {
-  printf("[ INFO ] Attempting to read %zu bytes from socket.\n", length);
+  /* printf("[ INFO ] Attempting to read %zu bytes from socket.\n", length); */
   return recv(sock, buffer, length, flags);
 }

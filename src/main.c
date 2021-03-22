@@ -31,7 +31,7 @@ void *recv_thread_func(void *data)
       memset(buffer, 0, sizeof(RuleMessage));
       if(enabled_flag)
 	{
-	  printf("recv_thread_func()\n");
+	  /* printf("recv_thread_func()\n"); */
 	  poll_message(buffer, sizeof(RuleMessage));
 	}
 #ifdef _WIN32
@@ -47,6 +47,7 @@ void *recv_thread_func(void *data)
 int main(int argc, char** argv)
 {
   IPCMessage ipc_msg;
+  AdvertisementMessage adv_msg;
   pthread_t recv_thread;
 
   if(init_ipc_server())
@@ -63,6 +64,13 @@ int main(int argc, char** argv)
       return 1;
     }
   printf("Network Stack Initialised.\n");
+  load_hosts_from_file("hosts.txt");
+
+  adv_msg.type = ADVERTISEMENT;
+  adv_msg.hops = 0;
+  adv_msg.advertisement_type = BROADCAST;
+  strncpy(adv_msg.source_addr, local_address, INET_ADDRSTRLEN);
+  send_to_all_advertisement_message(&adv_msg);
 
   if(pthread_create(&recv_thread, NULL, recv_thread_func, NULL))
     {

@@ -99,7 +99,7 @@ int bind_socket(socket_t sock, int port);
  * @return how many bytes were successfully sent. If an error has occurred,
  * a negative value will be returned.
  */
-int send_to_socket(socket_t sock, void* message, size_t length, int flags,
+int send_to_socket(socket_t sock, void *message, size_t length, int flags,
                    struct sockaddr_in dest_addr);
                  
 /**
@@ -113,6 +113,6 @@ int send_to_socket(socket_t sock, void* message, size_t length, int flags,
  * @return how many bytes were successfully read. If an error has occurred,
  * a negative value will be returned.
  */  
-int recv_from_socket(socket_t sock, void* buffer, size_t length, int flags);
+int recv_from_socket(socket_t sock, void *buffer, size_t length, int flags);
 
 #endif

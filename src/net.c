@@ -44,12 +44,7 @@ static socket_t socket_recv;
 /** 
  * @brief The list of known hosts.
  */
-static HostList* host_list;
-
-/**
- * @brief The local IP address.
- */
-static char local_address[INET_ADDRSTRLEN];
+static HostList *host_list;
 
 #ifndef _WIN32
 /** 
@@ -113,7 +108,7 @@ int get_local_address(char* buffer)
   return 1;
 }
 #else
-int get_local_address(char* buffer)
+int get_local_address(char *buffer)
 {
   struct ifaddrs *interfaces = NULL, *addr = NULL;
   void *addr_ptr = NULL;
@@ -390,7 +385,7 @@ int cleanup_net(void)
   return cleanup_sockets();
 }
 
-int send_to_host(char* ip_address, void* message, size_t length)
+int send_to_host(char *ip_address, void *message, size_t length)
 {
   struct sockaddr_in remote_addr;
 
@@ -445,10 +440,10 @@ int send_to_all_advertisement_message(AdvertisementMessage *message)
   return 0;
 }
 
-int recv_advertisement_message(void* buffer)
+int recv_advertisement_message(void *buffer)
 {
   AdvertisementMessage message;
-  char* char_buffer;
+  char *char_buffer;
   struct sockaddr_in target, source;
 
   printf("[ INFO ] Received advertisement message.\n");
@@ -619,7 +614,7 @@ int send_to_all_consensus_message(ConsensusMessage *message)
 int recv_consensus_message(void *buffer)
 {
   ConsensusMessage message;
-  char* char_buffer;
+  char *char_buffer;
   struct sockaddr_in target, source;
 
   printf("[ INFO ] Received consensus message.\n");
@@ -795,7 +790,7 @@ int send_to_all_rule_message(RuleMessage *message)
 int recv_rule_message(void *buffer)
 {
   RuleMessage message;
-  char* char_buffer;
+  char *char_buffer;
   struct sockaddr_in target, source;
 
   printf("[ INFO ] Received rule message.\n");
@@ -882,16 +877,16 @@ int poll_message(void *buffer, size_t length)
 {
   int bytes_read;
 
-  printf("[ INFO ] Polling for message.\n");
+  /* printf("[ INFO ] Polling for message.\n"); */
   
   bytes_read = recv_from_socket(socket_recv, buffer, length, 0);
   if(errno == EAGAIN || bytes_read <= 0)
     {
-      printf("empty message\n");
+      /* printf("empty message\n"); */
       return 0;
     }
     
-  printf("bytes_read: %d\n", bytes_read);
+  /* printf("bytes_read: %d\n", bytes_read); */
   printf("errno: %d\n", errno);
   perror("");
   

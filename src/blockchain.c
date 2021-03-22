@@ -21,7 +21,7 @@
 #define PENDING_RULES_BUF_LEN 10
 static char pending_rules[PENDING_RULES_BUF_LEN][INET_ADDRSTRLEN];
 
-int get_block_hash(unsigned char* buffer, FirewallBlock *block, int buffer_size)
+int get_block_hash(unsigned char *buffer, FirewallBlock *block, int buffer_size)
 {
   SHA256_CTX sha256;
   
@@ -37,7 +37,7 @@ int get_block_hash(unsigned char* buffer, FirewallBlock *block, int buffer_size)
   return 0;
 }
 
-int get_hash_string(char* buffer, unsigned char* hash, int buffer_size)
+int get_hash_string(char *buffer, unsigned char *hash, int buffer_size)
 {
   int i;
 

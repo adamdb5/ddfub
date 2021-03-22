@@ -43,6 +43,11 @@
 #define MAX_CONSENSUS_HOPS 5
 
 /**
+ * @brief The local IP address.
+ */
+static char local_address[INET_ADDRSTRLEN];
+
+/**
  * @brief All available message types for network transactions.
  */
 typedef enum
@@ -193,7 +198,7 @@ int cleanup_net(void);
  * @return the number of bytes sent to the remote host. If an error has
  * occurred, a negative value will be returned.
  */
-int send_to_host(char* ip_address, void* message, size_t length);
+int send_to_host(char *ip_address, void *message, size_t length);
 
 /**
  * @brief Sends an advertisement message.
@@ -240,7 +245,7 @@ int recv_advertisement_message(void *buffer);
  * @return whether the message was handled correctly. If an error has occurred,
  * the return value will be 1, otherwise the return value will be 0.
  */
-int recv_advertisement_broadcast(AdvertisementMessage* message);
+int recv_advertisement_broadcast(AdvertisementMessage *message);
 
 /**
  * @brief Handles advertisement acknowledgements.
@@ -251,7 +256,7 @@ int recv_advertisement_broadcast(AdvertisementMessage* message);
  * @return whether the message was handled correctly. If an error has occurred,
  * the return value will be 1, otherwise the return value will be 0.
  */
-int recv_advertisement_ack(AdvertisementMessage* message);
+int recv_advertisement_ack(AdvertisementMessage *message);
 
 /**
  * @brief Sends a consensus message.
@@ -367,6 +372,6 @@ int recv_rule_broadcast(RuleMessage *message);
  * @return the number of bytes received. If an error has occurred, a negative
  * value will be returned.
  */
-int poll_message(void* buffer, size_t length);
+int poll_message(void *buffer, size_t length);
 
 #endif

@@ -62,7 +62,7 @@ static FirewallBlock *chain;
  * are invalid, the return value will be 1, otherwise the return value will be
  * 0. 
  */
-int get_block_hash(unsigned char* buffer, FirewallBlock* block, int buffer_size);
+int get_block_hash(unsigned char *buffer, FirewallBlock *block, int buffer_size);
 
 /**
  * @brief Formats a SHA256 digest into human-readable string.
@@ -76,7 +76,7 @@ int get_block_hash(unsigned char* buffer, FirewallBlock* block, int buffer_size)
  * are invalid, the return value will be 1, otherwise the return value will be
  * 0.
  */
-int get_hash_string(char* buffer, unsigned char* hash, int buffer_size);
+int get_hash_string(char *buffer, unsigned char *hash, int buffer_size);
 
 /**
  * @brief Adds a new firewall block onto the chain.

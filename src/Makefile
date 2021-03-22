@@ -1,12 +1,12 @@
 CC=clang
 OBJECTS=main.o socket.o net.o ipc.o blockchain.o firewall.o
-CFLAGS=-Wall -pedantic -std=c89 -O3 -c -g -D_XOPEN_SOURCE=500
+CFLAGS=-Wall -pedantic -std=c89 -O3 -c -D_XOPEN_SOURCE=500
 INCLUDE=
 LIBS=-lrt -lcrypto -lpthread
 
 dfw:	$(OBJECTS)
 	$(CC) -o dfw $(OBJECTS) $(LIBS)
-	#strip dfw
+	strip dfw
 
 %.o:	%.c
 	$(CC) $(CFLAGS) $(INCLUDE) $< -o $@ 
