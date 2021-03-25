@@ -8,10 +8,9 @@
 int main(void)
 {
   IPCMessage m;
-  char buffer[100];
+  char buffer[100], manip_buf[100];
   int running = 1;
   
-  memset(&m, 0, sizeof(m));
   init_ipc_client();
   printf("Client ready\n");
 
@@ -19,39 +18,63 @@ int main(void)
     {
       printf("dfw>");
       memset(buffer, 0, 100);
+      memset(&m, 0, sizeof(IPCMessage));
       scanf("%s", buffer);
-      
-      printf("buffer: %s\n", buffer);
       
       if(strlen(buffer) >= 4 && strncmp(buffer, "quit", 4) == 0)
 	{
-	  printf("quitting...\n");
 	  running = 0;
 	}
-      if(strlen(buffer) >= 4 && strncmp(buffer, "rule", 4) == 0)
+      else if(strlen(buffer) >= 4 && strncmp(buffer, "rule", 4) == 0)
 	{
-	  printf("m.message_type = RULE\n");
-	  m.message_type = I_RULE;
-	}
-      if(strlen(buffer) >= 6 && strncmp(buffer, "enable", 6) == 0)
-	{
-	  printf("m.message_type = ENABLE\n");
-	  m.message_type = I_ENABLE;
-	}
-      if(strlen(buffer) >= 7 && strncmp(buffer, "disable", 7) == 0)
-	{
-	  printf("m.message_type = DISABLE\n");
-	  m.message_type = I_DISABLE;
-	}
-      if(strlen(buffer) >= 8 && strncmp(buffer, "shutdown", 8) == 0)
-	{
-	  printf("m.message_type = SHUTDOWN\n");
-	  m.message_type = I_SHUTDOWN;
-	}
-      
+	  scanf("%s", m.rule.source_addr);
+	  scanf("%hd", &m.rule.source_port);
+	  scanf("%s", m.rule.dest_addr);
+	  scanf("%hd", &m.rule.dest_port);
 
-      if(running)
-	send_ipc_message(&m);
+	  memset(buffer, 0, 100);
+	  scanf("%s", buffer);
+
+	  m.rule.action = DENY;
+	  if(strcmp(buffer, "ALLOW") == 0 || strcmp(buffer, "allow") == 0)
+	    {
+	      m.rule.action = ALLOW;
+	    }
+
+	  m.message_type = I_RULE;
+
+	  printf("Sending firewall rule to daemon:\n");
+	  printf("    Source Address:      %s\n", m.rule.source_addr);
+	  printf("    Source Port:         %hd\n", m.rule.source_port);
+	  printf("    Destination Address: %s\n", m.rule.dest_addr);
+	  printf("    Destination Port:    %hd\n", m.rule.dest_port);
+	  printf("    Action:              %s\n",
+		 (m.rule.action == ALLOW ? "ALLOW" : "DENY"));
+
+	  send_ipc_message(&m);
+	}
+      else if(strlen(buffer) >= 6 && strncmp(buffer, "enable", 6) == 0)
+	{
+	  printf("Sending Enable message to daemon\n");
+	  m.message_type = I_ENABLE;
+	  send_ipc_message(&m);
+	}
+      else if(strlen(buffer) >= 7 && strncmp(buffer, "disable", 7) == 0)
+	{
+	  printf("Sending Disable message to daemon\n");
+       	  m.message_type = I_DISABLE;
+	  send_ipc_message(&m);
+	}
+      else if(strlen(buffer) >= 8 && strncmp(buffer, "shutdown", 8) == 0)
+	{
+	  printf("Sending Shutdown message to daemon\n");
+	  m.message_type = I_SHUTDOWN;
+	  send_ipc_message(&m);
+	}
+      else
+	{
+	  printf("Unknown command\n");
+	}
     }
 
   cleanup_ipc();

@@ -127,7 +127,7 @@ typedef struct
  * @return whether the address was succesfully obtained. If an error has
  * occurred, the return value will be 1, otherwise the return value will be 0.
  */ 
-int get_local_address(char* buffer);
+int get_local_address(char *buffer);
 
 /**
  * @brief Loads a list of hosts from a file.
@@ -137,7 +137,17 @@ int get_local_address(char* buffer);
  * @return whether the list of hosts was successfully loaded. If an error has
  * occurred, the return value will be 1, otherwise the return value will be 0.
  */
-int load_hosts_from_file(const char* fname);
+int load_hosts_from_file(const char *fname);
+
+/**
+ * @brief Saves all known hosts currently loaded into a file.
+ *
+ * Saves all hosts currently stored in the HostList struct into a file.
+ * @param fname the name of the file to save the hosts.
+ * @return whether the list of hosts was successfully saved. If an error has
+ * occurred, the return value will be 1, otherwise the return value will be 0.
+ */
+int save_hosts_to_file(const char *fname);
 
 /**
  * @brief Adds a host to the host list.

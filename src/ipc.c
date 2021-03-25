@@ -146,7 +146,7 @@ int cleanup_ipc(void)
 
 int send_ipc_message(IPCMessage *message)
 {
-  if(mq_send(queue, (void*)message, sizeof(message), 0) == -1)
+  if(mq_send(queue, (void*)message, sizeof(IPCMessage), 0) == -1)
     {
       return 1;
     }

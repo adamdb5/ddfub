@@ -67,7 +67,7 @@ int get_local_address(char* buffer)
   PIP_ADAPTER_UNICAST_ADDRESS ua;
   char address[INET_ADDRSTRLEN], name[ADAPTER_NAME_LEN];
 
-  printf("[ INFO ] Retrieving adapter information\n");
+  /*printf("[ INFO ] Retrieving adapter information\n");*/
   
   rv = GetAdaptersAddresses(AF_INET, GAA_FLAG_INCLUDE_PREFIX, NULL, NULL, &size);
   if (rv != ERROR_BUFFER_OVERFLOW)
@@ -115,7 +115,7 @@ int get_local_address(char *buffer)
   char addr_str[INET_ADDRSTRLEN];
   int prefix_index, match;
 
-  printf("[ INFO ] Retrieving adapter information\n");
+  /*printf("[ INFO ] Retrieving adapter information\n");*/
   
   if(getifaddrs(&interfaces) != 0)
     {
@@ -164,18 +164,18 @@ int load_hosts_from_file(const char *fname)
   char buffer[INET_ADDRSTRLEN], *newline_ptr;
   HostList *host;
 
-  printf("[ INFO ] Loading known hosts from file.\n");
+  /* printf("[ INFO ] Loading known hosts from file.\n");*/
   
   if(!host_list)
     {
-      printf("Network stack not yet initialised!\n");
+      printf("[ ERR  ] Network stack not yet initialised\n");
       return 1;
     }
   
   file = fopen(fname, "r");
   if(!file)
     {
-      printf("File %s does not exist\n", fname);
+      printf("[ INFO ] No hostfile found\n");
       return 1;
     }
 
@@ -223,11 +223,61 @@ int load_hosts_from_file(const char *fname)
   return 0;
 }
 
+int save_hosts_to_file(const char *fname)
+{
+  FILE *file;
+  HostList *host;
+  
+  if(!host_list)
+    {
+      printf("[ ERR  ] Network stack not yet initialised\n");
+      return 1;
+    }
+  
+  file = fopen(fname, "w+");
+  if(!file)
+    {
+      printf("[ INFO ] No hostfile found\n");
+      return 1;
+    }
+
+  host = host_list;
+  if(host)
+    {
+      while(host && strlen(host->addr) > 0)
+	{
+	  fwrite(host->addr, strlen(host->addr), 1, file);
+	  fputc('\n', file);
+	  host = host->next;
+	}
+    }
+
+  fclose(file);
+  return 0;
+}
+
+int print_hosts(void)
+{
+  HostList *host;
+  host = host_list;
+  
+  if(host)
+    {
+      while(host)
+	{
+	  printf("Host: %s\n", host->addr);
+	  host = host->next;
+	}
+      
+    }
+  return 0;
+}
+
 int add_host(char *addr)
 {
   HostList *host;
 
-  printf("[ INFO ] Adding new host (%s).\n", addr);
+  printf("[ INFO ] Adding new host (%s)\n", addr);
   
   if(!host_list)
     {
@@ -254,37 +304,21 @@ int add_host(char *addr)
       memset(host->next, 0, sizeof(HostList));
       strncpy(host->next->addr, addr, INET_ADDRSTRLEN);
     }
-
-  return 0;
+  return save_hosts_to_file("hosts.txt");
 }
 
-int print_hosts(void)
-{
-  HostList *host;
-  host = host_list;
-  
-  if(host)
-    {
-      while(host)
-	{
-	  printf("Host: %s\n", host->addr);
-	  host = host->next;
-	}
-      
-    }
-  return 0;
-}
+
 
 int check_host_exists(char *addr)
 {
   HostList *host;
 
-  printf("[ INFO ] Checking if %s is already known.\n", addr);
+  /* printf("[ INFO ] Checking if %s is already known.\n", addr);*/
   
   host = host_list;
   if(!host)
     {
-      printf("Network stack not yet initialised!\n");
+      printf("[ ERR  ] Network stack not yet initialised\n");
       return 0;
     }
   if(!addr)
@@ -310,7 +344,7 @@ int get_host_count(void)
   int count;
   
   host = host_list;
-  if(!host)
+  if(!host || strlen(host->addr) == 0)
     {
       return 0;
     }
@@ -327,7 +361,7 @@ int get_host_count(void)
 
 int init_net(void)
 {
-  printf("[ INFO ] Initiating network API.\n");
+  /*intf("[ INFO ] Initiating network API.\n");*/
   if(init_sockets() != 0)
     {
       return 1;
@@ -367,11 +401,12 @@ int init_net(void)
 
 int cleanup_net(void)
 {
-  /* TODO: Writeback host_list */
   HostList *host, *temp;
   host = host_list;
 
-  printf("[ INFO ] Cleaning up network API.\n");
+  /* printf("[ INFO ] Cleaning up network API.\n"); */
+
+  save_hosts_to_file("hosts.txt");
   
   while(host)
     {
@@ -389,7 +424,7 @@ int send_to_host(char *ip_address, void *message, size_t length)
 {
   struct sockaddr_in remote_addr;
 
-  printf("[ INFO ] Sending message of length %zu to %s.\n", length, ip_address);
+  /*printf("[ INFO ] Sending message of length %zu to %s.\n", length, ip_address);*/
   
   remote_addr.sin_family = AF_INET;
   remote_addr.sin_addr.s_addr = inet_addr(ip_address);
@@ -408,18 +443,19 @@ int send_advertisement_message(AdvertisementMessage *message)
   buffer[1] = message->hops;
   buffer[2] = message->advertisement_type;
 
-  printf("[ INFO ] Sending advertisement message.\n");
-  
+  /*printf("[ INFO ] Sending advertisement message.\n");*/
   status = inet_pton(AF_INET, message->source_addr, &addr);
   if(status == 0)
     {
+      printf("err1\n");
       return 1;
     }
   memcpy(buffer + 3, &addr.s_addr, sizeof(addr.s_addr));
 
-  status = inet_pton(AF_INET, message->target_addr, &addr);
+  status = inet_pton(AF_INET, message->next_addr, &addr);
   if(status == 0)
     {
+      printf("err2\n");
       return 1;
     }
   memcpy(buffer + 7, &addr.s_addr, sizeof(addr.s_addr));
@@ -446,7 +482,7 @@ int recv_advertisement_message(void *buffer)
   char *char_buffer;
   struct sockaddr_in target, source;
 
-  printf("[ INFO ] Received advertisement message.\n");
+  /*printf("[ INFO ] Received advertisement message.\n");*/
   
   char_buffer = (char*)buffer;
   message.type = char_buffer[0];
@@ -458,6 +494,11 @@ int recv_advertisement_message(void *buffer)
   inet_ntop(AF_INET, &source.sin_addr, message.source_addr, INET_ADDRSTRLEN);
   inet_ntop(AF_INET, &target.sin_addr, message.target_addr, INET_ADDRSTRLEN);
 
+  if(strncmp(local_address, message.source_addr, INET_ADDRSTRLEN) == 0)
+    {
+      return 0;
+    }
+  
   switch(message.advertisement_type)
     {
     case BROADCAST:
@@ -468,8 +509,8 @@ int recv_advertisement_message(void *buffer)
       break;
     }
   
-  printf("Source: %s\n", message.source_addr);
-  printf("Target: %s\n", message.target_addr);
+  /* printf("Source: %s\n", message.source_addr);
+     printf("Target: %s\n", message.target_addr); */
   
   return 0;
 }
@@ -477,18 +518,12 @@ int recv_advertisement_message(void *buffer)
 int recv_advertisement_broadcast(AdvertisementMessage *message)
 {
   AdvertisementMessage new_message;
-  HostList *host;
-
-  printf("Received ADVERTISEMENT::BROADCAST\n");
   
   if(!message)
     {
       return 1;
     }
   
-  printf("local_addr: %s\n", local_address);
-  printf("message->target_addr: %s\n", message->target_addr);
-
   /* If new host, add */
   if(!check_host_exists(message->source_addr))
     {
@@ -500,31 +535,15 @@ int recv_advertisement_broadcast(AdvertisementMessage *message)
       strncpy(new_message.target_addr, message->source_addr, INET_ADDRSTRLEN);
 
       /* Send ACK */
-      host = host_list;
-      while(host)
-	{
-	  strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
-	  send_advertisement_message(&new_message);
-	  host = host->next;
-	}
+      send_to_all_advertisement_message(&new_message);
     }
 
   /* If under max hop count, forward to all hosts */
   if(message->hops < MAX_ADVERTISEMENT_HOPS)
     {
-      host = host_list;
-      if(host)
-	{
-	  memcpy(&new_message, message, sizeof(AdvertisementMessage));
-	  new_message.hops++;
-	  
-	  while(host)
-	    {
-	      strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
-	      send_advertisement_message(&new_message);
-	      host = host->next;
-	    }     
-	}
+      memcpy(&new_message, message, sizeof(AdvertisementMessage));
+      new_message.hops++;
+      send_to_all_advertisement_message(&new_message);
     }
   
   return 0;
@@ -534,8 +553,6 @@ int recv_advertisement_ack(AdvertisementMessage* message)
 {
   HostList *host;
 
-  printf("Received ADVERTISEMENT::ACK\n");
-  
   if(!message)
     {
       return 1;
@@ -585,7 +602,7 @@ int send_consensus_message(ConsensusMessage *message)
     }
   memcpy(buffer + 3, &addr.s_addr, sizeof(addr.s_addr));
 
-  status = inet_pton(AF_INET, message->target_addr, &addr);
+  status = inet_pton(AF_INET, message->next_addr, &addr);
   if(status == 0)
     {
       return 1;
@@ -880,15 +897,16 @@ int poll_message(void *buffer, size_t length)
   /* printf("[ INFO ] Polling for message.\n"); */
   
   bytes_read = recv_from_socket(socket_recv, buffer, length, 0);
-  if(errno == EAGAIN || bytes_read <= 0)
+  /*  printf("READ %d BYTES\n", bytes_read); */
+  if(bytes_read <= 0)
     {
-      /* printf("empty message\n"); */
+      /*printf("empty message\n");*/
       return 0;
     }
     
-  /* printf("bytes_read: %d\n", bytes_read); */
-  printf("errno: %d\n", errno);
-  perror("");
+  /*printf("bytes_read: %d\n", bytes_read);
+    printf("errno: %d\n", errno); */
+  /*perror("");*/
   
   switch(((char*)buffer)[0])
     {

@@ -51,10 +51,11 @@ int send_new_rule(FirewallRule *rule)
   usleep(TIMEOUT * 1000);
 #endif
   
-  /* at least half known hosts have have consensus */
-  if(ack_count < (get_host_count() / 2))
+  /* at least half known hosts have consensus */
+  /* TODO remove 1 */
+  if(1 || ack_count < (get_host_count() / (float)2))
     {
-      printf("[INFO] Consensus not achieved.\n");
+      printf("[ INFO ] Consensus not achieved\n");
       ack_count = 0;
       return 1;
     }
@@ -66,6 +67,7 @@ int send_new_rule(FirewallRule *rule)
   memcpy(&rule_msg.rule, rule, sizeof(FirewallRule));
   send_to_all_rule_message(&rule_msg);
 
+  memset(&block, 0, sizeof(FirewallBlock));
   get_last_hash(block.last_hash);
   strncpy(block.author, local_address, INET_ADDRSTRLEN);
   memcpy(&block.rule, rule, sizeof(FirewallRule));

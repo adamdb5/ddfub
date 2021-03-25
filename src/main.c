@@ -25,14 +25,13 @@ static int shutdown_flag = 0;
 
 void *recv_thread_func(void *data)
 {
-  char buffer[sizeof(RuleMessage)];
+  char buffer[11];
   while(!shutdown_flag)
     {
-      memset(buffer, 0, sizeof(RuleMessage));
+      memset(buffer, 0, 11);
       if(enabled_flag)
 	{
-	  /* printf("recv_thread_func()\n"); */
-	  poll_message(buffer, sizeof(RuleMessage));
+	  poll_message(buffer, 11);
 	}
 #ifdef _WIN32
       Sleep(10);
@@ -40,7 +39,6 @@ void *recv_thread_func(void *data)
       usleep(10 * 1000);
 #endif
     }
-  printf("recv_thread_func() terminated\n");
   return NULL;
 }
 
@@ -49,38 +47,44 @@ int main(int argc, char** argv)
   IPCMessage ipc_msg;
   AdvertisementMessage adv_msg;
   pthread_t recv_thread;
+  char local_addr[INET_ADDRSTRLEN];
 
   if(init_ipc_server())
     {
-      perror("");
+      perror("[ ERR  ] Failed to initialise IPC: ");
       return 1;
     }
-  printf("IPC Initialised.\n");
+  printf("[ INFO ] Initialised IPC\n");
 
   if(init_net())
     {
       cleanup_ipc();
-      perror("");
+      perror("[ ERR  ] Failed to initialise network stack: ");
       return 1;
     }
-  printf("Network Stack Initialised.\n");
+  printf("[ INFO ] Initialised network stack\n");
   load_hosts_from_file("hosts.txt");
-
-  adv_msg.type = ADVERTISEMENT;
-  adv_msg.hops = 0;
-  adv_msg.advertisement_type = BROADCAST;
-  strncpy(adv_msg.source_addr, local_address, INET_ADDRSTRLEN);
-  send_to_all_advertisement_message(&adv_msg);
 
   if(pthread_create(&recv_thread, NULL, recv_thread_func, NULL))
     {
-      perror("");
+      perror("[ ERR  ] Failed to initialise receiving thread: ");
       cleanup_net();
       cleanup_ipc();
       return 1;
     }
-  printf("[ INFO ] Receiving thread Initialised\n");
+  printf("[ INFO ] Initialised receiving thread\n");
 
+  if(get_host_count() > 0)
+    {
+      adv_msg.type = ADVERTISEMENT;
+      adv_msg.hops = 0;
+      adv_msg.advertisement_type = BROADCAST;
+      get_local_address(local_addr);
+      strncpy(adv_msg.source_addr, local_addr, INET_ADDRSTRLEN);
+      send_to_all_advertisement_message(&adv_msg);
+      printf("[ INFO ] Sent advertisement to %d known host(s)\n", get_host_count());
+    }
+  
 #ifdef _WIN32
   connect_ipc();
 #endif
@@ -93,27 +97,33 @@ int main(int argc, char** argv)
        switch(ipc_msg.message_type)
 	{
 	case I_SHUTDOWN:
-	  printf("Shutting down\n");
+	  printf("[ INFO ] Received IPC Message: Shutting down\n");
 	  shutdown_flag = 1;
 	  break;
 	case I_ENABLE:
-	  printf("Transacations have been enabled\n");
+	  printf("[ INFO ] Received IPC Message: Enabling Transactions\n");
 	  enabled_flag = 1;
 	  break;
 	case I_DISABLE:
-	  printf("Transaction have been disabled\n");
+	  printf("[ INFO ] Received IPC Message: Disabling Transactions\n");
 	  enabled_flag = 0;
 	  break;
 	case I_RULE:
-	  printf("Received local firewall rule\n");
+	  printf("[ INFO ] Received IPC Message: New Firewall Rule\n");
+	  printf("RULE: %s %d %s %d %d\n",
+		 ipc_msg.rule.source_addr,
+		 ipc_msg.rule.source_port,
+		 ipc_msg.rule.dest_addr,
+		 ipc_msg.rule.dest_port,
+		 ipc_msg.rule.action);
 	  send_new_rule(&ipc_msg.rule);
   	  break;
 	default:
-	  printf("Unknown IPC message type.\n");
+	  printf("[ ERR  ] Recieved Unknown IPC Message Type\n");
 	}
     }
 
-  printf("Waiting for receiving thread to terminate\n");
+  printf("[ INFO ] Waiting for receiving thread to terminate\n");
   pthread_join(recv_thread, NULL);
 
   cleanup_net();

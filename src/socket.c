@@ -1,6 +1,6 @@
 /**
  * @file socket.c
- * @brief Cross-platform socket interface.
+ * @brief Cross-pflatform socket interface.
  * @author Adam Bruce
  * @date 15 Dec 2020
  */
@@ -29,7 +29,7 @@ int init_sockets(void)
 #ifdef _WIN32
   WSADATA wsa_data;
 #endif
-  printf("[ INFO ] Setting up sockets.\n");
+  /*printf("[ INFO ] Setting up sockets.\n");*/
 #ifdef _WIN32
   return WSAStartup(MAKEWORD(1,1), &wsa_data);
 #else
@@ -39,7 +39,7 @@ int init_sockets(void)
 
 int cleanup_sockets(void)
 {
-  printf("[ INFO ] Cleaning up sockets.\n");
+  /*  printf("[ INFO ] Cleaning up sockets.\n");*/
 #ifdef _WIN32
   return WSACleanup();
 #else
@@ -56,7 +56,7 @@ socket_t create_socket(void)
   struct timeval tv;
   #endif
   
-  printf("[ INFO ] Creating new socket.\n");
+  /*  printf("[ INFO ] Creating new socket.\n");*/
 #ifdef _WIN32
     ival = 1000;
   sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
@@ -72,7 +72,7 @@ socket_t create_socket(void)
 
 void close_socket(socket_t sock)
 {
-  printf("[ INFO ] Closing socket.\n");
+  /*  printf("[ INFO ] Closing socket.\n");*/
 #ifdef _WIN32
   closesocket(sock);
 #else
@@ -83,7 +83,7 @@ void close_socket(socket_t sock)
 int bind_socket(socket_t sock, int port)
 {
   struct sockaddr_in addr;
-  printf("[ INFO ] Binding socket. \n");
+  /*  printf("[ INFO ] Binding socket. \n"); */
   
   addr.sin_family = AF_INET;
   addr.sin_addr.s_addr = INADDR_ANY;
@@ -95,7 +95,7 @@ int bind_socket(socket_t sock, int port)
 int send_to_socket(socket_t sock, void *message, size_t length, int flags,
                    struct sockaddr_in dest_addr)
 {
-  printf("[ INFO ] Sending message of length %zu to socket.\n", length);
+  /*  printf("[ INFO ] Sending message of length %zu to socket.\n", length);*/
   return sendto(sock, message, length, flags, (struct sockaddr*)&dest_addr, 
 		sizeof(dest_addr));
 }

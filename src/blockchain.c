@@ -61,6 +61,7 @@ int add_block_to_chain(FirewallBlock *block)
   if(!chain)
     {
       chain = (FirewallBlock*)malloc(sizeof(FirewallBlock));
+      memset(chain, 0, sizeof(FirewallBlock));
       memcpy(chain, block, sizeof(FirewallBlock));
       return 0;
     }
@@ -153,6 +154,6 @@ int get_last_hash(unsigned char *buffer)
       fw_chain = fw_chain->next;
     }
 
-  get_block_hash(buffer, fw_chain, SHA256_DIGEST_LENGTH);
+  get_block_hash(buffer, fw_chain->next, SHA256_DIGEST_LENGTH);
   return 0;
 }
