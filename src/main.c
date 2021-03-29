@@ -5,6 +5,7 @@
  * @date 22 Mar 2021
  */
 
+#include "firewall.h"
 #include "net.h"
 #include "ipc.h"
 
@@ -25,13 +26,13 @@ static int shutdown_flag = 0;
 
 void *recv_thread_func(void *data)
 {
-  char buffer[11];
+  char buffer[sizeof(RuleMessage)];
   while(!shutdown_flag)
     {
-      memset(buffer, 0, 11);
+      memset(buffer, 0, sizeof(RuleMessage));
       if(enabled_flag)
 	{
-	  poll_message(buffer, 11);
+	  poll_message(buffer, sizeof(RuleMessage));
 	}
 #ifdef _WIN32
       Sleep(10);
@@ -51,10 +52,10 @@ int main(int argc, char** argv)
 
   if(init_ipc_server())
     {
-      perror("[ ERR  ] Failed to initialise IPC: ");
+      perror("[ IPC  ] Failed to initialise IPC: ");
       return 1;
     }
-  printf("[ INFO ] Initialised IPC\n");
+  printf("[ IPC  ] Initialised IPC\n");
 
   if(init_net())
     {
@@ -62,7 +63,7 @@ int main(int argc, char** argv)
       perror("[ ERR  ] Failed to initialise network stack: ");
       return 1;
     }
-  printf("[ INFO ] Initialised network stack\n");
+  printf("[ NET  ] Initialised network stack\n");
   load_hosts_from_file("hosts.txt");
 
   if(pthread_create(&recv_thread, NULL, recv_thread_func, NULL))
@@ -82,13 +83,14 @@ int main(int argc, char** argv)
       get_local_address(local_addr);
       strncpy(adv_msg.source_addr, local_addr, INET_ADDRSTRLEN);
       send_to_all_advertisement_message(&adv_msg);
-      printf("[ INFO ] Sent advertisement to %d known host(s)\n", get_host_count());
+      printf("[ ADV  ] Sent advertisement to %d known host(s)\n", get_host_count());
     }
   
 #ifdef _WIN32
   connect_ipc();
 #endif
-  
+
+  printf("[ INFO ] Ready\n");
   while(!shutdown_flag)
     { 
       memset(&ipc_msg, 0, sizeof(IPCMessage));
@@ -97,25 +99,19 @@ int main(int argc, char** argv)
        switch(ipc_msg.message_type)
 	{
 	case I_SHUTDOWN:
-	  printf("[ INFO ] Received IPC Message: Shutting down\n");
+	  printf("[ IPC  ] Received IPC Message: Shutting down\n");
 	  shutdown_flag = 1;
 	  break;
 	case I_ENABLE:
-	  printf("[ INFO ] Received IPC Message: Enabling Transactions\n");
+	  printf("[ IPC  ] Received IPC Message: Enabling Transactions\n");
 	  enabled_flag = 1;
 	  break;
 	case I_DISABLE:
-	  printf("[ INFO ] Received IPC Message: Disabling Transactions\n");
+	  printf("[ IPC  ] Received IPC Message: Disabling Transactions\n");
 	  enabled_flag = 0;
 	  break;
 	case I_RULE:
-	  printf("[ INFO ] Received IPC Message: New Firewall Rule\n");
-	  printf("RULE: %s %d %s %d %d\n",
-		 ipc_msg.rule.source_addr,
-		 ipc_msg.rule.source_port,
-		 ipc_msg.rule.dest_addr,
-		 ipc_msg.rule.dest_port,
-		 ipc_msg.rule.action);
+	  printf("[ IPC  ] Received IPC Message: New Firewall Rule\n");
 	  send_new_rule(&ipc_msg.rule);
   	  break;
 	default:

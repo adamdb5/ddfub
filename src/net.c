@@ -67,8 +67,6 @@ int get_local_address(char* buffer)
   PIP_ADAPTER_UNICAST_ADDRESS ua;
   char address[INET_ADDRSTRLEN], name[ADAPTER_NAME_LEN];
 
-  /*printf("[ INFO ] Retrieving adapter information\n");*/
-  
   rv = GetAdaptersAddresses(AF_INET, GAA_FLAG_INCLUDE_PREFIX, NULL, NULL, &size);
   if (rv != ERROR_BUFFER_OVERFLOW)
     {
@@ -114,8 +112,6 @@ int get_local_address(char *buffer)
   void *addr_ptr = NULL;
   char addr_str[INET_ADDRSTRLEN];
   int prefix_index, match;
-
-  /*printf("[ INFO ] Retrieving adapter information\n");*/
   
   if(getifaddrs(&interfaces) != 0)
     {
@@ -157,14 +153,78 @@ int get_local_address(char *buffer)
 }
 #endif
 
+int get_acks(void)
+{
+  HostList *host;
+  int count;
+  
+  host = host_list;
+  if(!host || strlen(host->addr) == 0)
+    {
+      return 0;
+    }
+
+  count = 0;
+  while(host)
+    {
+      if(host->ack > 0)
+	{
+	  count++;
+	}
+      host = host->next;
+    }
+
+  return count;
+}
+
+int reset_acks(void)
+{
+  HostList *host;
+  
+  host = host_list;
+  if(!host || strlen(host->addr) == 0)
+    {
+      return 1;
+    }
+  
+  while(host)
+    {
+      host->ack = 0;
+      host = host->next;
+    }
+
+  return 0;
+}
+
+int set_ack(char *addr)
+{
+  HostList *host;
+  
+  host = host_list;
+  if(!host || strlen(host->addr) == 0)
+    {
+      return 1;
+    }
+  
+  while(host)
+    {
+      if(strncmp(host->addr, addr, INET_ADDRSTRLEN) == 0)
+	{
+	  host->ack = 1;
+	  return 0;
+	}
+      host = host->next;
+    }
+
+  return 1;
+}
+
 int load_hosts_from_file(const char *fname)
 {
   FILE *file;
   size_t len, read;
   char buffer[INET_ADDRSTRLEN], *newline_ptr;
   HostList *host;
-
-  /* printf("[ INFO ] Loading known hosts from file.\n");*/
   
   if(!host_list)
     {
@@ -175,7 +235,7 @@ int load_hosts_from_file(const char *fname)
   file = fopen(fname, "r");
   if(!file)
     {
-      printf("[ INFO ] No hostfile found\n");
+      printf("[ NET  ] No hostfile found\n");
       return 1;
     }
 
@@ -237,7 +297,7 @@ int save_hosts_to_file(const char *fname)
   file = fopen(fname, "w+");
   if(!file)
     {
-      printf("[ INFO ] No hostfile found\n");
+      printf("[ NET  ] No hostfile found\n");
       return 1;
     }
 
@@ -277,7 +337,7 @@ int add_host(char *addr)
 {
   HostList *host;
 
-  printf("[ INFO ] Adding new host (%s)\n", addr);
+  printf("[ NET  ] Adding new host (%s)\n", addr);
   
   if(!host_list)
     {
@@ -312,8 +372,6 @@ int add_host(char *addr)
 int check_host_exists(char *addr)
 {
   HostList *host;
-
-  /* printf("[ INFO ] Checking if %s is already known.\n", addr);*/
   
   host = host_list;
   if(!host)
@@ -361,7 +419,6 @@ int get_host_count(void)
 
 int init_net(void)
 {
-  /*intf("[ INFO ] Initiating network API.\n");*/
   if(init_sockets() != 0)
     {
       return 1;
@@ -404,8 +461,6 @@ int cleanup_net(void)
   HostList *host, *temp;
   host = host_list;
 
-  /* printf("[ INFO ] Cleaning up network API.\n"); */
-
   save_hosts_to_file("hosts.txt");
   
   while(host)
@@ -424,8 +479,6 @@ int send_to_host(char *ip_address, void *message, size_t length)
 {
   struct sockaddr_in remote_addr;
 
-  /*printf("[ INFO ] Sending message of length %zu to %s.\n", length, ip_address);*/
-  
   remote_addr.sin_family = AF_INET;
   remote_addr.sin_addr.s_addr = inet_addr(ip_address);
   remote_addr.sin_port = htons(PORT_RECV);
@@ -443,11 +496,9 @@ int send_advertisement_message(AdvertisementMessage *message)
   buffer[1] = message->hops;
   buffer[2] = message->advertisement_type;
 
-  /*printf("[ INFO ] Sending advertisement message.\n");*/
   status = inet_pton(AF_INET, message->source_addr, &addr);
   if(status == 0)
     {
-      printf("err1\n");
       return 1;
     }
   memcpy(buffer + 3, &addr.s_addr, sizeof(addr.s_addr));
@@ -455,7 +506,6 @@ int send_advertisement_message(AdvertisementMessage *message)
   status = inet_pton(AF_INET, message->next_addr, &addr);
   if(status == 0)
     {
-      printf("err2\n");
       return 1;
     }
   memcpy(buffer + 7, &addr.s_addr, sizeof(addr.s_addr));
@@ -481,8 +531,6 @@ int recv_advertisement_message(void *buffer)
   AdvertisementMessage message;
   char *char_buffer;
   struct sockaddr_in target, source;
-
-  /*printf("[ INFO ] Received advertisement message.\n");*/
   
   char_buffer = (char*)buffer;
   message.type = char_buffer[0];
@@ -508,9 +556,6 @@ int recv_advertisement_message(void *buffer)
       recv_advertisement_ack(&message);
       break;
     }
-  
-  /* printf("Source: %s\n", message.source_addr);
-     printf("Target: %s\n", message.target_addr); */
   
   return 0;
 }
@@ -592,8 +637,6 @@ int send_consensus_message(ConsensusMessage *message)
   buffer[0] = message->type;
   buffer[1] = message->hops;
   buffer[2] = message->consensus_type;
-
-  printf("[ INFO ] Sending consensus message.\n");
   
   status = inet_pton(AF_INET, message->source_addr, &addr);
   if(status == 0)
@@ -602,7 +645,7 @@ int send_consensus_message(ConsensusMessage *message)
     }
   memcpy(buffer + 3, &addr.s_addr, sizeof(addr.s_addr));
 
-  status = inet_pton(AF_INET, message->next_addr, &addr);
+  status = inet_pton(AF_INET, message->target_addr, &addr);
   if(status == 0)
     {
       return 1;
@@ -611,7 +654,7 @@ int send_consensus_message(ConsensusMessage *message)
 
   
   memcpy(buffer + 11, message->last_block_hash, SHA256_DIGEST_LENGTH);
-  
+
   return send_to_host(message->next_addr, (void*)buffer, sizeof(buffer));
 }
 
@@ -619,7 +662,7 @@ int send_to_all_consensus_message(ConsensusMessage *message)
 {
   HostList *host;
   host = host_list;
-  while(host)
+  while(host && strlen(host->addr) > 0)
     {
       strncpy(message->next_addr, host->addr, INET_ADDRSTRLEN);
       send_consensus_message(message);
@@ -633,8 +676,6 @@ int recv_consensus_message(void *buffer)
   ConsensusMessage message;
   char *char_buffer;
   struct sockaddr_in target, source;
-
-  printf("[ INFO ] Received consensus message.\n");
   
   char_buffer = (char*)buffer;
   message.type = char_buffer[0];
@@ -658,68 +699,56 @@ int recv_consensus_message(void *buffer)
       break;
     }
   
-  printf("Source: %s\n", message.source_addr);
-  printf("Target: %s\n", message.target_addr);
-  
   return 0;
 }
 
 int recv_consensus_broadcast(ConsensusMessage *message)
 {
   ConsensusMessage new_message;
-  HostList *host;
   unsigned char last_hash[SHA256_DIGEST_LENGTH];
-
-  printf("Received CONSENSUS::BROADCAST\n");
   
   if(!message)
     {
       return 1;
     }
-  
-  printf("local_addr: %s\n", local_address);
-  printf("message->target_addr: %s\n", message->target_addr);
+
+  /* We've just received our own broadcast, do nothing */
+  if(strncmp(message->source_addr, local_address, INET_ADDRSTRLEN) == 0)
+    {
+      return 0;
+    }
  
   /* If hashes match, add to pending_rules */
   get_last_hash(last_hash);
   if(memcmp(last_hash, "\0", 1) == 0 ||
      memcmp(message->last_block_hash, last_hash, SHA256_DIGEST_LENGTH) == 0)
     {
-      add_pending_rule(message->source_addr);
-      new_message.type = CONSENSUS;
-      new_message.hops = 0;
-      new_message.consensus_type = ACK;
-      strncpy(new_message.source_addr, local_address, INET_ADDRSTRLEN);
-      strncpy(new_message.target_addr, message->source_addr, INET_ADDRSTRLEN);
-      memcpy(new_message.last_block_hash, message->last_block_hash,
-	      SHA256_DIGEST_LENGTH);
+      if(!is_pending(message->source_addr))
+	{
+	  printf("[ CONS ] Received consensus message with matching hash\n");
+	  add_pending_rule(message->source_addr);
+	  new_message.type = CONSENSUS;
+	  new_message.hops = 0;
+	  new_message.consensus_type = ACK;
+	  strncpy(new_message.source_addr, local_address, INET_ADDRSTRLEN);
+	  strncpy(new_message.target_addr, message->source_addr, INET_ADDRSTRLEN);
+	  memcpy(new_message.last_block_hash, message->last_block_hash,
+		 SHA256_DIGEST_LENGTH);
+	}
 
       /* Send ACK */
-      host = host_list;
-      while(host)
-	{
-	  strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
-	  send_consensus_message(&new_message);
-	  host = host->next;
-	}
+      send_to_all_consensus_message(&new_message);
+    }
+  else
+    {
+      printf("[ CONS ] Received consensus message with mismatched hash\n");
     }
 
   /* If under max hop count, forward to all hosts */
   if(message->hops < MAX_CONSENSUS_HOPS)
     {
-      host = host_list;
-      if(host)
-	{
-	  memcpy(&new_message, message, sizeof(ConsensusMessage));
-	  new_message.hops++;
-	  
-	  while(host)
-	    {
-	      strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
-	      send_consensus_message(&new_message);
-	      host = host->next;
-	    }     
-	}
+	  message->hops++;
+	  send_to_all_consensus_message(message);
     }
   
   return 0;
@@ -728,8 +757,6 @@ int recv_consensus_broadcast(ConsensusMessage *message)
 int recv_consensus_ack(ConsensusMessage *message)
 {
   HostList *host;
-
-  printf("Received CONSENSUS::ACK\n");
   
   if(!message)
     {
@@ -739,7 +766,7 @@ int recv_consensus_ack(ConsensusMessage *message)
   /* Check if we are the intended recipient */
   if(strncmp(local_address, message->target_addr, INET_ADDRSTRLEN) == 0)
     {
-      ack_count++;
+      set_ack(message->source_addr);
     }
   else
     {
@@ -762,15 +789,13 @@ int recv_consensus_ack(ConsensusMessage *message)
 
 int send_rule_message(RuleMessage *message)
 {
-  char buffer[11 + sizeof(FirewallRule)];
+  char buffer[11 + 4 + 4 + 2 + 2 + 4];
   struct in_addr addr;
   int status;
   
   buffer[0] = message->type;
   buffer[1] = message->hops;
   buffer[2] = message->rule_type;
-
-  printf("[ INFO ] Sending rule message.\n");
   
   status = inet_pton(AF_INET, message->source_addr, &addr);
   if(status == 0)
@@ -786,8 +811,24 @@ int send_rule_message(RuleMessage *message)
     }
   memcpy(buffer + 7, &addr.s_addr, sizeof(addr.s_addr));
 
-  memcpy(buffer + 11, (void*)(&message->rule), sizeof(FirewallRule));
-  
+  status = inet_pton(AF_INET, (void*)&message->rule.source_addr, &addr);
+  if(status == 0)
+    {
+      return 1;
+    }
+  memcpy(buffer + 11, &addr.s_addr, sizeof(addr.s_addr));
+
+  status = inet_pton(AF_INET, (void*)&message->rule.dest_addr, &addr);
+  if(status == 0)
+    {
+      return 1;
+    }
+  memcpy(buffer + 15, &addr.s_addr, sizeof(addr.s_addr));
+
+  memcpy(buffer + 19, (void*)&message->rule.source_port, 2);
+  memcpy(buffer + 21, (void*)&message->rule.dest_port, 2);
+  memcpy(buffer + 23, (void*)&message->rule.action, 4);
+
   return send_to_host(message->next_addr, (void*)buffer, sizeof(buffer));
 }
 
@@ -808,9 +849,7 @@ int recv_rule_message(void *buffer)
 {
   RuleMessage message;
   char *char_buffer;
-  struct sockaddr_in target, source;
-
-  printf("[ INFO ] Received rule message.\n");
+  struct sockaddr_in target, source, fw_source, fw_dest;
   
   char_buffer = (char*)buffer;
   message.type = char_buffer[0];
@@ -822,8 +861,15 @@ int recv_rule_message(void *buffer)
   inet_ntop(AF_INET, &source.sin_addr, message.source_addr, INET_ADDRSTRLEN);
   inet_ntop(AF_INET, &target.sin_addr, message.target_addr, INET_ADDRSTRLEN);
 
-  memcpy((void*)(&message.rule), char_buffer + 11, sizeof(FirewallRule));
+  fw_source.sin_addr.s_addr = *(int*)(char_buffer + 11);
+  fw_dest.sin_addr.s_addr = *(int*)(char_buffer + 15);
+  inet_ntop(AF_INET, &fw_source.sin_addr, message.rule.source_addr, INET_ADDRSTRLEN);
+  inet_ntop(AF_INET, &fw_dest.sin_addr, message.rule.dest_addr, INET_ADDRSTRLEN);
 
+  memcpy(&message.rule.source_port, (uint16_t*)(char_buffer + 19), 2);
+  memcpy(&message.rule.dest_port, (uint16_t*)(char_buffer + 21), 2);
+  memcpy(&message.rule.action, (int*)(char_buffer + 23), 4);
+  
   switch(message.rule_type)
     {
     case BROADCAST:
@@ -833,38 +879,28 @@ int recv_rule_message(void *buffer)
       break;
     }
   
-  printf("Source: %s\n", message.source_addr);
-  printf("Target: %s\n", message.target_addr);
-  
   return 0;
 }
 
 int recv_rule_broadcast(RuleMessage *message)
 {
-  RuleMessage new_message;
   FirewallBlock new_block;
-  HostList *host;
   unsigned char last_hash[SHA256_DIGEST_LENGTH];
-
-  printf("Received RULE::BROADCAST\n");
   
   if(!message)
     {
       return 1;
     }
   
-  printf("local_addr: %s\n", local_address);
-  printf("message->target_addr: %s\n", message->target_addr);
- 
   if(is_pending(message->source_addr))
     {
-      /* get new hash */
       get_last_hash(last_hash);
       
       memcpy(new_block.last_hash, last_hash, SHA256_DIGEST_LENGTH);
       strncpy(new_block.author, message->source_addr, INET_ADDRSTRLEN);
       memcpy(&new_block.rule, &message->rule, sizeof(FirewallRule));
       add_block_to_chain(&new_block);
+      /* TODO: ADD recv_new_rule() */
 
       remove_pending_rule(message->source_addr);
     }
@@ -872,19 +908,8 @@ int recv_rule_broadcast(RuleMessage *message)
   /* If under max hop count, forward to all hosts */
   if(message->hops < MAX_CONSENSUS_HOPS)
     {
-      host = host_list;
-      if(host)
-	{
-	  memcpy(&new_message, message, sizeof(RuleMessage));
-	  new_message.hops++;
-	  
-	  while(host)
-	    {
-	      strncpy(new_message.next_addr, host->addr, INET_ADDRSTRLEN);
-	      send_rule_message(&new_message);
-	      host = host->next;
-	    }     
-	}
+      message->hops++;
+      send_to_all_rule_message(message);
     }
   
   return 0;
@@ -894,20 +919,12 @@ int poll_message(void *buffer, size_t length)
 {
   int bytes_read;
 
-  /* printf("[ INFO ] Polling for message.\n"); */
-  
   bytes_read = recv_from_socket(socket_recv, buffer, length, 0);
-  /*  printf("READ %d BYTES\n", bytes_read); */
   if(bytes_read <= 0)
     {
-      /*printf("empty message\n");*/
       return 0;
     }
     
-  /*printf("bytes_read: %d\n", bytes_read);
-    printf("errno: %d\n", errno); */
-  /*perror("");*/
-  
   switch(((char*)buffer)[0])
     {
     case ADVERTISEMENT:

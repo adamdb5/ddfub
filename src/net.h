@@ -71,8 +71,9 @@ typedef enum
  */
 struct HostList
 {
-  struct HostList *next;       /**< The next host in the list */
-  char addr[INET_ADDRSTRLEN];  /**< The host's address        */
+  struct HostList *next;       /**< The next host in the list   */
+  char addr[INET_ADDRSTRLEN];  /**< The host's address          */
+  uint8_t ack;                 /**< The ack status for the host */
 };
 typedef struct HostList HostList; 
 
@@ -128,6 +129,10 @@ typedef struct
  * occurred, the return value will be 1, otherwise the return value will be 0.
  */ 
 int get_local_address(char *buffer);
+
+int get_acks(void);
+int reset_acks(void);
+int set_ack(char *addr);
 
 /**
  * @brief Loads a list of hosts from a file.

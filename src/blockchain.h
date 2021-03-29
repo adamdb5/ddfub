@@ -41,11 +41,6 @@ typedef struct FirewallBlock FirewallBlock;
 static FirewallBlock block;
 
 /**
- * The number of acknowledgements this host has received for a proposed rule.
- */
-static unsigned int ack_count;
-
-/**
  * The blockchain of current firewall rules.
  */
 static FirewallBlock *chain;

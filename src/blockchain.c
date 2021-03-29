@@ -24,14 +24,18 @@ static char pending_rules[PENDING_RULES_BUF_LEN][INET_ADDRSTRLEN];
 int get_block_hash(unsigned char *buffer, FirewallBlock *block, int buffer_size)
 {
   SHA256_CTX sha256;
+  unsigned char data_to_hash[INET_ADDRSTRLEN + sizeof(FirewallRule)];
   
   if(buffer_size < SHA256_DIGEST_LENGTH || !buffer || !block)
     {
       return 1;
     }
 
+  memcpy(data_to_hash, block->author, INET_ADDRSTRLEN);
+  memcpy(data_to_hash + INET_ADDRSTRLEN, (void*)&block->rule, sizeof(FirewallRule));
+
   SHA256_Init(&sha256);
-  SHA256_Update(&sha256, block, sizeof(FirewallBlock));
+  SHA256_Update(&sha256, data_to_hash, INET_ADDRSTRLEN + sizeof(FirewallRule));
   SHA256_Final(buffer, &sha256);
  
   return 0;
@@ -50,19 +54,28 @@ int get_hash_string(char *buffer, unsigned char *hash, int buffer_size)
     {
       sprintf(buffer + (i * 2), "%02x", hash[i]);
     }
-  hash[SHA256_STRING_LENGTH] = '\0';
+  buffer[SHA256_STRING_LENGTH] = '\0';
   return 0;
 }
 
 int add_block_to_chain(FirewallBlock *block)
 {
   FirewallBlock *fw_chain;
+  unsigned char hash[SHA256_DIGEST_LENGTH + 1];
+  char hash_string[SHA256_STRING_LENGTH + 1];
+
+  get_block_hash(hash, block, SHA256_DIGEST_LENGTH + 1);
+  get_hash_string(hash_string, hash, SHA256_STRING_LENGTH + 1);
+  hash_string[9] = '\0';
   
   if(!chain)
     {
       chain = (FirewallBlock*)malloc(sizeof(FirewallBlock));
       memset(chain, 0, sizeof(FirewallBlock));
       memcpy(chain, block, sizeof(FirewallBlock));
+
+      printf("[ BLOC ] Added new block with hash %s...%s\n",
+	     hash_string, hash_string + (SHA256_STRING_LENGTH - 10));
       return 0;
     }
 
@@ -74,6 +87,9 @@ int add_block_to_chain(FirewallBlock *block)
 
   fw_chain->next = (FirewallBlock*)malloc(sizeof(FirewallBlock));
   memcpy(fw_chain->next, block, sizeof(FirewallBlock));
+  printf("[ BLOC ] Added new block with hash %10s...%10s\n",
+	 hash, hash + (SHA256_STRING_LENGTH - 10));
+  
   return 0;
   
 }
@@ -140,7 +156,7 @@ int remove_pending_rule(char *addr)
 
 int get_last_hash(unsigned char *buffer)
 {
-   FirewallBlock *fw_chain;
+  FirewallBlock *fw_chain;
   
   if(!chain)
     {
@@ -154,6 +170,6 @@ int get_last_hash(unsigned char *buffer)
       fw_chain = fw_chain->next;
     }
 
-  get_block_hash(buffer, fw_chain->next, SHA256_DIGEST_LENGTH);
+  get_block_hash(buffer, fw_chain, SHA256_DIGEST_LENGTH);
   return 0;
 }
