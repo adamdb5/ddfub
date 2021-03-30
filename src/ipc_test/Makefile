@@ -1,5 +1,5 @@
 CC=clang
-CFLAGS=-Wall -pedantic --std=c99 -O3 -c
+CFLAGS=-Wall -pedantic --std=c89 -O3 -c
 
 all:	     com
 

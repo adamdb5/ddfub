@@ -31,12 +31,10 @@ int main(void)
 	  scanf("%hd", &m.rule.source_port);
 	  scanf("%s", m.rule.dest_addr);
 	  scanf("%hd", &m.rule.dest_port);
-
-	  memset(buffer, 0, 100);
 	  scanf("%s", buffer);
 
 	  m.rule.action = DENY;
-	  if(strcmp(buffer, "ALLOW") == 0 || strcmp(buffer, "allow") == 0)
+	  if(strncmp(buffer, "ALLOW", 5) == 0 || strncmp(buffer, "allow", 5) == 0)
 	    {
 	      m.rule.action = ALLOW;
 	    }

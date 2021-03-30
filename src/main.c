@@ -21,9 +21,16 @@
 
 #include <pthread.h>
 
+/* Flags */
 static int enabled_flag = 1;
 static int shutdown_flag = 0;
 
+/**
+ * @brief Receiving thread.
+ *
+ * This function is automatically run on the second thread, receiving and
+ * processing data from the network.
+ */
 void *recv_thread_func(void *data)
 {
   char buffer[sizeof(RuleMessage)];
@@ -50,31 +57,35 @@ int main(int argc, char** argv)
   pthread_t recv_thread;
   char local_addr[INET_ADDRSTRLEN];
 
+  /* Initialise IPC */
   if(init_ipc_server())
     {
-      perror("[ IPC  ] Failed to initialise IPC: ");
+      perror("[ IPC  ] Failed to initialise IPC");
       return 1;
     }
   printf("[ IPC  ] Initialised IPC\n");
 
+  /* Initialise the network stack */
   if(init_net())
     {
       cleanup_ipc();
-      perror("[ ERR  ] Failed to initialise network stack: ");
+      perror("[ ERR  ] Failed to initialise network stack");
       return 1;
     }
   printf("[ NET  ] Initialised network stack\n");
   load_hosts_from_file("hosts.txt");
 
+  /* Create the receiving thread */
   if(pthread_create(&recv_thread, NULL, recv_thread_func, NULL))
     {
-      perror("[ ERR  ] Failed to initialise receiving thread: ");
+      perror("[ ERR  ] Failed to initialise receiving thread");
       cleanup_net();
       cleanup_ipc();
       return 1;
     }
   printf("[ INFO ] Initialised receiving thread\n");
 
+  /* Send advertisement when joining the network */
   if(get_host_count() > 0)
     {
       adv_msg.type = ADVERTISEMENT;
@@ -91,6 +102,8 @@ int main(int argc, char** argv)
 #endif
 
   printf("[ INFO ] Ready\n");
+
+  /* Process IPC commands */
   while(!shutdown_flag)
     { 
       memset(&ipc_msg, 0, sizeof(IPCMessage));
@@ -119,9 +132,9 @@ int main(int argc, char** argv)
 	}
     }
 
+  /* Cleanup and terminate */
   printf("[ INFO ] Waiting for receiving thread to terminate\n");
   pthread_join(recv_thread, NULL);
-
   cleanup_net();
   cleanup_ipc();
   return 0;

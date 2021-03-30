@@ -316,23 +316,6 @@ int save_hosts_to_file(const char *fname)
   return 0;
 }
 
-int print_hosts(void)
-{
-  HostList *host;
-  host = host_list;
-  
-  if(host)
-    {
-      while(host)
-	{
-	  printf("Host: %s\n", host->addr);
-	  host = host->next;
-	}
-      
-    }
-  return 0;
-}
-
 int add_host(char *addr)
 {
   HostList *host;
@@ -631,13 +614,14 @@ int recv_advertisement_ack(AdvertisementMessage* message)
 int send_consensus_message(ConsensusMessage *message)
 {
   char buffer[11 + SHA256_DIGEST_LENGTH];
+  char hash_string[SHA256_STRING_LENGTH + 1];
   struct in_addr addr;
   int status;
   
   buffer[0] = message->type;
   buffer[1] = message->hops;
   buffer[2] = message->consensus_type;
-  
+ 
   status = inet_pton(AF_INET, message->source_addr, &addr);
   if(status == 0)
     {
@@ -654,7 +638,8 @@ int send_consensus_message(ConsensusMessage *message)
 
   
   memcpy(buffer + 11, message->last_block_hash, SHA256_DIGEST_LENGTH);
-
+  get_hash_string(hash_string, message->last_block_hash, SHA256_STRING_LENGTH + 1);
+  
   return send_to_host(message->next_addr, (void*)buffer, sizeof(buffer));
 }
 
@@ -706,6 +691,7 @@ int recv_consensus_broadcast(ConsensusMessage *message)
 {
   ConsensusMessage new_message;
   unsigned char last_hash[SHA256_DIGEST_LENGTH];
+  char hash_string[SHA256_STRING_LENGTH + 1];
   
   if(!message)
     {
@@ -717,7 +703,9 @@ int recv_consensus_broadcast(ConsensusMessage *message)
     {
       return 0;
     }
- 
+
+  get_hash_string(hash_string, message->last_block_hash, SHA256_STRING_LENGTH + 1);
+   
   /* If hashes match, add to pending_rules */
   get_last_hash(last_hash);
   if(memcmp(last_hash, "\0", 1) == 0 ||
@@ -850,7 +838,8 @@ int recv_rule_message(void *buffer)
   RuleMessage message;
   char *char_buffer;
   struct sockaddr_in target, source, fw_source, fw_dest;
-  
+
+  memset(&message, '\0', sizeof(RuleMessage));
   char_buffer = (char*)buffer;
   message.type = char_buffer[0];
   message.hops = char_buffer[1];
@@ -895,7 +884,7 @@ int recv_rule_broadcast(RuleMessage *message)
   if(is_pending(message->source_addr))
     {
       get_last_hash(last_hash);
-      
+      memset(&new_block, '\0', sizeof(FirewallBlock));
       memcpy(new_block.last_hash, last_hash, SHA256_DIGEST_LENGTH);
       strncpy(new_block.author, message->source_addr, INET_ADDRSTRLEN);
       memcpy(&new_block.rule, &message->rule, sizeof(FirewallRule));
