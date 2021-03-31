@@ -183,8 +183,8 @@ int save_hosts_to_file(const char *fname);
  *
  * Appends the given host to the list of hosts.
  * @param addr the address of the new host.
- * @return whether the host was appended successfully. If an error has occurred,
- * the return value will be 1, otherwise the return value will be 0.
+ * @return whether the host was appended successfully. If an error has 
+ * occurred, the return value will be 1, otherwise the return value will be 0.
  */
 int add_host(char* addr);
 
@@ -277,8 +277,8 @@ int recv_advertisement_message(void *buffer);
 /**
  * @brief Handles advertisement broadcasts.
  *
- * Handles advertisement broadcast messages. If the host is not known, then they
- * are appended to the host list. Additionally, if the hop count has not
+ * Handles advertisement broadcast messages. If the host is not known, then 
+ * they are appended to the host list. Additionally, if the hop count has not
  * exceeded the hop limit, it is forwarded to all known hosts.
  * @param message the received message.
  * @return whether the message was handled correctly. If an error has occurred,
@@ -289,8 +289,8 @@ int recv_advertisement_broadcast(AdvertisementMessage *message);
 /**
  * @brief Handles advertisement acknowledgements.
  *
- * Handles advertisement acknowledgement messages. Upon receiving an ack, if the
- * host is not known, then thay are appended to the host list.
+ * Handles advertisement acknowledgement messages. Upon receiving an ack, if 
+ * the host is not known, then thay are appended to the host list.
  * @param message the received message.
  * @return whether the message was handled correctly. If an error has occurred,
  * the return value will be 1, otherwise the return value will be 0.
@@ -335,10 +335,10 @@ int recv_consensus_message(void *buffer);
 /**
  * @brief Handles consensus broadcasts.
  *
- * Handles consensus broadcast messages. If the host is known, and the consensus
- * hash matches the host's last hash, then an ack is sent. Additionally, if the
- * hop count has not exceeded the hop limit, the broadcast is forwarded to all
- * known hosts.
+ * Handles consensus broadcast messages. If the host is known, and the 
+ * consensus hash matches the host's last hash, then an ack is sent. 
+ * Additionally, if the hop count has not exceeded the hop limit, the broadcast
+ * is forwarded to all known hosts.
  * @param message the received message.
  * @return whether the message was handled correctly. If an error has occurred,
  * the return value will be 1, otherwise the return value will be 0.
@@ -393,8 +393,9 @@ int recv_rule_message(void *buffer);
 /**
  * @brief Handles firewall rule broadcasts.
  *
- * Handles firewall rule messages. If the host is known, and the host has sent a
- * consensus ack, then the firewall rule is accepted and appended to the chain.
+ * Handles firewall rule messages. If the host is known, and the host has sent 
+ * a consensus ack, then the firewall rule is accepted and appended to the 
+ * chain.
  * @param message the received message.
  * @return whether the message was handled correctly. If an error has occurred,
  * the return value will be 1, otherwise the return value will be 0.

@@ -28,9 +28,12 @@
  */
 struct FirewallBlock
 {
-  unsigned char last_hash[SHA256_DIGEST_LENGTH]; /**< The hash of the previous block              */
-  char author[INET_ADDRSTRLEN];                  /**< The address of the block author             */
-  FirewallRule rule;                             /**< The firewall rule associated with the block */
+  unsigned char last_hash[SHA256_DIGEST_LENGTH]; /**< The hash of the
+						    previous block            */
+  char author[INET_ADDRSTRLEN];                  /**< The address of the block 
+						    author                    */
+  FirewallRule rule;                             /**< The firewall rule 
+						    associated with the block */
   struct FirewallBlock *next;
 };
 typedef struct FirewallBlock FirewallBlock;
@@ -55,15 +58,17 @@ static FirewallBlock *chain;
  * @param buffer_size the size of the buffer to store the hash in.
  * @return whether the hash has been calculated successfully. If any parameters
  * are invalid, the return value will be 1, otherwise the return value will be
- * 0. 
+ * 0.
  */
-int get_block_hash(unsigned char *buffer, FirewallBlock *block, int buffer_size);
+int get_block_hash(unsigned char *buffer, FirewallBlock *block,
+		   int buffer_size);
 
 /**
  * @brief Formats a SHA256 digest into human-readable string.
  *
- * Formats a SHA256 digest into a human-readable string, storing the result into
- * the given buffer. This buffer should have a size of SHA256_STRING_LENGTH.
+ * Formats a SHA256 digest into a human-readable string, storing the result 
+ * into the given buffer. This buffer should have a size of 
+ * SHA256_STRING_LENGTH.
  * @param buffer the buffer to store the string in.
  * @param hash the hash digest to format into a string.
  * @param buffer_size the size of the buffer to store the string in.
@@ -73,7 +78,8 @@ int get_block_hash(unsigned char *buffer, FirewallBlock *block, int buffer_size)
  */
 int get_hash_string(char *buffer, unsigned char *hash, int buffer_size);
 
-int get_hash_from_string(unsigned char *buffer, char *hash_string, int buffer_size);
+int get_hash_from_string(unsigned char *buffer, char *hash_string,
+			 int buffer_size);
 
 /**
  * @brief Adds a new firewall block onto the chain.
@@ -89,8 +95,8 @@ int add_block_to_chain(FirewallBlock *block);
 /**
  * @brief Rotates the pending firewall rules.
  *
- * Rotates this host's list of pending firewall rules, such that the oldest rule
- * is removed from the list, allowing a new block to be added.
+ * Rotates this host's list of pending firewall rules, such that the oldest 
+ * rule is removed from the list, allowing a new block to be added.
  * @return whether the list was rotated. If an error has occurred, the return
  * value will be 1, otherwise the return value will be 0.
  */
@@ -110,11 +116,12 @@ int add_pending_rule(char *addr);
 /**
  * @brief Checks if the given address has a pending rule.
  *
- * Searches the pending rule list for the given address. If the address is found
- * then the host has a pending rule.
+ * Searches the pending rule list for the given address. If the address is 
+ * found then the host has a pending rule.
  * @param addr the author to check for pending rules.
- * @return whether any pending rules for the author were found. If a pending rule
- * is found, the return value will be 1, otherwise the return value will be 0.
+ * @return whether any pending rules for the author were found. If a pending 
+ * rule is found, the return value will be 1, otherwise the return value will 
+ * be 0.
  */
 int is_pending(char *addr);
 
@@ -134,8 +141,8 @@ int remove_pending_rule(char *addr);
  *
  * Gets the SHA256 hash of the last firewall block in the chain. If the chain
  * is empty, the buffer will be empty.
- * @param buffer the buffer that the hash value will be copied into. This buffer
- * should be at least SHA256_DIGEST_LENGTH bytes in size.
+ * @param buffer the buffer that the hash value will be copied into. This 
+ * buffer should be at least SHA256_DIGEST_LENGTH bytes in size.
  * @return whether the hash value was copied successfully, If an error has
  * occurred, the return value will be 1, otherwuse the return value will be 0.
  */

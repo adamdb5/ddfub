@@ -47,8 +47,8 @@ typedef struct
  * host, and the network has given consenus to the new firewall rule.
  * @param rule the new firewall rule that was received.
  * @return whether the corresponding IPC message to the OS was sent
- * successfully. If an error has occurred, the return value will be 1, otherwise
- * the return value will be 0.
+ * successfully. If an error has occurred, the return value will be 1, 
+ * otherwise the return value will be 0.
  */
 int recv_new_rule(FirewallRule *rule);
 

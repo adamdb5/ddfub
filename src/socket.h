@@ -42,8 +42,8 @@ typedef int socket_t;
  * @brief Initialises the socket API.
  * 
  * Initialises the relevent socket APIs for each operating system.
- * For the NT kernel, this involves initialising Winsock. For UNIX systems, this
- * function does nothing.
+ * For the NT kernel, this involves initialising Winsock. For UNIX systems, 
+ * this function does nothing.
  * @return the status of the socket API. If an error has occurred, a non-zero
  * value will be returned, otherwise the return value will be 0.
  */
@@ -55,8 +55,9 @@ int init_sockets(void);
  * Uninitialises the relevent socket APIs for each operating system.
  * For the NT kernel, this involves uninitialising Winsock. For UNIX systems, 
  * this function does nothing.
- * @return whether the API was succesfully cleaned up. If an error has occurred, 
- * a non-zero value will be returned, otherwise the return value will be 0.
+ * @return whether the API was succesfully cleaned up. If an error has 
+ * occurred, a non-zero value will be returned, otherwise the return value will
+ * be 0.
  */
 int cleanup_sockets(void);
 
@@ -82,8 +83,9 @@ void close_socket(socket_t sock);
  * Binds the socket to a port, and configures it to use IP and UDP.
  * @param sock the socket to bind.
  * @param port the port to bind the socket to. 
- * @return whether the socket was successfully binded. If an error has occurred,
- * the return value will be -1, otherwise the return value will be 0.
+ * @return whether the socket was successfully binded. If an error has 
+ * occurred, the return value will be -1, otherwise the return value will 
+ * be 0.
  */
 int bind_socket(socket_t sock, int port);
 

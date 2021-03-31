@@ -21,7 +21,8 @@
 #define PENDING_RULES_BUF_LEN 10
 static char pending_rules[PENDING_RULES_BUF_LEN][INET_ADDRSTRLEN];
 
-int get_block_hash(unsigned char *buffer, FirewallBlock *block, int buffer_size)
+int get_block_hash(unsigned char *buffer, FirewallBlock *block,
+		   int buffer_size)
 {
   SHA256_CTX sha256;
   unsigned char data_to_hash[(INET_ADDRSTRLEN * 3) + 8];
@@ -32,16 +33,16 @@ int get_block_hash(unsigned char *buffer, FirewallBlock *block, int buffer_size)
     }
 
   memcpy(data_to_hash, block->author, INET_ADDRSTRLEN);
-  memcpy(data_to_hash + INET_ADDRSTRLEN, (void*)&block->rule.source_addr,
-	 INET_ADDRSTRLEN);
-  memcpy(data_to_hash + INET_ADDRSTRLEN * 2, (void*)&block->rule.dest_addr,
-	 INET_ADDRSTRLEN);
-  memcpy(data_to_hash + INET_ADDRSTRLEN * 3, (void*)&block->rule.source_port,
-	 2);
-  memcpy(data_to_hash + (INET_ADDRSTRLEN * 3) + 2, (void*)&block->rule.dest_port,
-	 2);
-  memcpy(data_to_hash + (INET_ADDRSTRLEN * 3) + 4, (void*)&block->rule.action,
-	 4);
+  memcpy(data_to_hash + INET_ADDRSTRLEN,
+	 (void*)&block->rule.source_addr, INET_ADDRSTRLEN);
+  memcpy(data_to_hash + INET_ADDRSTRLEN * 2,
+	 (void*)&block->rule.dest_addr, INET_ADDRSTRLEN);
+  memcpy(data_to_hash + INET_ADDRSTRLEN * 3,
+	 (void*)&block->rule.source_port, 2);
+  memcpy(data_to_hash + (INET_ADDRSTRLEN * 3) + 2,
+	 (void*)&block->rule.dest_port, 2);
+  memcpy(data_to_hash + (INET_ADDRSTRLEN * 3) + 4,
+	 (void*)&block->rule.action, 4);
   
   SHA256_Init(&sha256);
   SHA256_Update(&sha256, data_to_hash, (INET_ADDRSTRLEN * 3) + 4 + 4);

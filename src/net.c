@@ -67,14 +67,16 @@ int get_local_address(char* buffer)
   PIP_ADAPTER_UNICAST_ADDRESS ua;
   char address[INET_ADDRSTRLEN], name[ADAPTER_NAME_LEN];
 
-  rv = GetAdaptersAddresses(AF_INET, GAA_FLAG_INCLUDE_PREFIX, NULL, NULL, &size);
+  rv = GetAdaptersAddresses(AF_INET, GAA_FLAG_INCLUDE_PREFIX, NULL, NULL,
+			    &size);
   if (rv != ERROR_BUFFER_OVERFLOW)
     {
       return 1;
     }
   adapter_addresses = (PIP_ADAPTER_ADDRESSES)malloc(size);
   
-  rv = GetAdaptersAddresses(AF_INET, GAA_FLAG_INCLUDE_PREFIX, NULL, adapter_addresses, &size);
+  rv = GetAdaptersAddresses(AF_INET, GAA_FLAG_INCLUDE_PREFIX, NULL,
+			    adapter_addresses, &size);
   if (rv != ERROR_SUCCESS)
     {
       free(adapter_addresses);
@@ -84,7 +86,8 @@ int get_local_address(char* buffer)
   for (aa = adapter_addresses; aa != NULL; aa = aa->Next)
     {
       memset(name, '\0', ADAPTER_NAME_LEN);      
-      WideCharToMultiByte(CP_ACP, 0, aa->FriendlyName, wcslen(aa->FriendlyName), name, ADAPTER_NAME_LEN,
+      WideCharToMultiByte(CP_ACP, 0, aa->FriendlyName,
+			  wcslen(aa->FriendlyName), name, ADAPTER_NAME_LEN,
 			  NULL, NULL);
 
       if(strncmp(name, "Ethernet", ADAPTER_NAME_LEN) == 0)
@@ -92,8 +95,8 @@ int get_local_address(char* buffer)
 	  for (ua = aa->FirstUnicastAddress; ua != NULL; ua = ua->Next)
 	    {
 	      memset(address, '\0', INET_ADDRSTRLEN);
-	      getnameinfo(ua->Address.lpSockaddr, ua->Address.iSockaddrLength, address, INET_ADDRSTRLEN,
-			  NULL, 0, NI_NUMERICHOST);
+	      getnameinfo(ua->Address.lpSockaddr, ua->Address.iSockaddrLength,
+			  address, INET_ADDRSTRLEN, NULL, 0, NI_NUMERICHOST);
 
 	      strncpy(buffer, address, INET_ADDRSTRLEN);
 	      free(adapter_addresses);
@@ -636,7 +639,8 @@ int send_consensus_message(ConsensusMessage *message)
 
   
   memcpy(buffer + 11, message->last_block_hash, SHA256_DIGEST_LENGTH);
-  get_hash_string(hash_string, message->last_block_hash, SHA256_STRING_LENGTH + 1);
+  get_hash_string(hash_string, message->last_block_hash,
+		  SHA256_STRING_LENGTH + 1);
   
   return send_to_host(message->next_addr, (void*)buffer, sizeof(buffer));
 }
@@ -702,7 +706,8 @@ int recv_consensus_broadcast(ConsensusMessage *message)
       return 0;
     }
 
-  get_hash_string(hash_string, message->last_block_hash, SHA256_STRING_LENGTH + 1);
+  get_hash_string(hash_string, message->last_block_hash,
+		  SHA256_STRING_LENGTH + 1);
    
   /* If hashes match, add to pending_rules */
   get_last_hash(last_hash);
@@ -850,8 +855,10 @@ int recv_rule_message(void *buffer)
 
   fw_source.sin_addr.s_addr = *(int*)(char_buffer + 11);
   fw_dest.sin_addr.s_addr = *(int*)(char_buffer + 15);
-  inet_ntop(AF_INET, &fw_source.sin_addr, message.rule.source_addr, INET_ADDRSTRLEN);
-  inet_ntop(AF_INET, &fw_dest.sin_addr, message.rule.dest_addr, INET_ADDRSTRLEN);
+  inet_ntop(AF_INET, &fw_source.sin_addr, message.rule.source_addr,
+	    INET_ADDRSTRLEN);
+  inet_ntop(AF_INET, &fw_dest.sin_addr, message.rule.dest_addr,
+	    INET_ADDRSTRLEN);
 
   memcpy(&message.rule.source_port, (uint16_t*)(char_buffer + 19), 2);
   memcpy(&message.rule.dest_port, (uint16_t*)(char_buffer + 21), 2);

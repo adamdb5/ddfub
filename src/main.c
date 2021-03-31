@@ -98,7 +98,8 @@ int main(int argc, char** argv)
       get_local_address(local_addr);
       strncpy(adv_msg.source_addr, local_addr, INET_ADDRSTRLEN);
       send_to_all_advertisement_message(&adv_msg);
-      printf("[ ADV  ] Sent advertisement to %d known host(s)\n", get_host_count());
+      printf("[ ADV  ] Sent advertisement to %d known host(s)\n",
+	     get_host_count());
     }
   
 #ifdef _WIN32
