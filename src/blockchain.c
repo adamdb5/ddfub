@@ -67,6 +67,29 @@ int get_hash_string(char *buffer, unsigned char *hash, int buffer_size)
   return 0;
 }
 
+int get_hash_from_string(unsigned char *buffer, char *hash_string,
+			 int buffer_size)
+{
+  int i;
+  uint16_t hex_val;
+  char buf[3];
+
+  if(buffer_size < SHA256_DIGEST_LENGTH || !buffer || !hash_string)
+    {
+      return 1;
+    }
+
+  buf[2] = '\0';
+  for(i = 0; i < SHA256_DIGEST_LENGTH; i++)
+    {
+      memcpy(buf, hash_string + (i * 2), 2);
+      hex_val = strtol(buf, NULL, 16);
+      memcpy(buffer + i, &hex_val, 2);
+    }
+
+  return 0;
+}
+
 int add_block_to_chain(FirewallBlock *block)
 {
   FirewallBlock *fw_chain;
@@ -85,6 +108,7 @@ int add_block_to_chain(FirewallBlock *block)
 
       printf("[ BLOC ] Added new block with hash %s...%s\n",
 	     hash_string, hash_string + (SHA256_STRING_LENGTH - 10));
+      save_blocks_to_file("chain.txt");
       return 0;
     }
 
@@ -99,7 +123,8 @@ int add_block_to_chain(FirewallBlock *block)
   memcpy(fw_chain->next, block, sizeof(FirewallBlock));
   printf("[ BLOC ] Added new block with hash %s...%s\n",
 	 hash_string, hash_string + (SHA256_STRING_LENGTH - 10));
-  
+
+  save_blocks_to_file("chain.txt");
   return 0;
   
 }
@@ -181,5 +206,177 @@ int get_last_hash(unsigned char *buffer)
     }
 
   get_block_hash(buffer, fw_chain, SHA256_DIGEST_LENGTH);
+  return 0;
+}
+
+int load_blocks_from_file(const char *fname)
+{
+  FILE *file;
+  FirewallBlock block;
+  char buffer[256], temp_buf[6], *next_delim;
+  int c;
+  size_t pos;
+   
+  file = fopen(fname, "r");
+  if(!file)
+    {
+      printf("[ BLOC ] No block file found\n");
+      return 1;
+    }
+
+  pos = 0;
+  while((c = fgetc(file)) != EOF)
+    {
+      if((char)c == '\r')
+	{
+	  continue;
+	}
+
+      if((char)c == '\n')
+	{
+	  buffer[pos] = '\0';
+	  memset(&block, 0, sizeof(FirewallBlock));
+
+	  /* Hash */
+	  get_hash_from_string(block.last_hash, buffer, SHA256_DIGEST_LENGTH);
+	  next_delim = strchr(buffer, ',');
+
+	  /* Author */
+	  memcpy(buffer, next_delim + 1, (buffer + 256) - next_delim - 1);
+	  next_delim = strchr(buffer, ',');
+	  memcpy(block.author, buffer, next_delim - buffer);
+
+	  /* Source address */
+	  memcpy(buffer, next_delim + 1, (buffer + 256) - next_delim - 1);
+	  next_delim = strchr(buffer, ',');
+	  memcpy(block.rule.source_addr, buffer, next_delim - buffer);
+
+	  /* Source port */
+	  memcpy(buffer, next_delim + 1, (buffer + 256) - next_delim - 1);
+	  next_delim = strchr(buffer, ',');
+	  memset(temp_buf, '\0', 6);
+	  memcpy(temp_buf, buffer, next_delim - buffer);
+	  block.rule.source_port = atoi(temp_buf);
+
+	  /* Destination address */
+	  memcpy(buffer, next_delim + 1, (buffer + 256) - next_delim - 1);
+	  next_delim = strchr(buffer, ',');
+	  memcpy(block.rule.dest_addr, buffer, next_delim - buffer); 
+
+	  /* Destination port */
+	  memcpy(buffer, next_delim + 1, (buffer + 256) - next_delim - 1);
+	  next_delim = strchr(buffer, ',');
+	  memset(temp_buf, '\0', 6);
+	  memcpy(temp_buf, buffer, next_delim - buffer);
+	  block.rule.dest_port = atoi(temp_buf);
+
+	  memcpy(buffer, next_delim + 1, (buffer + 265) - next_delim - 1);
+	  if(strcmp("ALLOW", buffer) == 0)
+	    {
+	      block.rule.action = ALLOW;
+	    }
+	  else if(strcmp("DENY", buffer) == 0)
+	    {
+	      block.rule.action = DENY;
+	    }
+	  else if(strcmp("BYPASS", buffer) == 0)
+	    {
+	      block.rule.action = BYPASS;
+	    }
+	  else if(strcmp("FORCE_ALLOW", buffer) == 0)
+	    {
+	      block.rule.action = FORCE_ALLOW;
+	    }
+	  else
+	    {
+	      block.rule.action = LOG;
+	    }
+
+	  add_block_to_chain(&block);
+	  
+	  memset(buffer, '\0', 256);
+	  pos = 0;
+	  continue;
+	}
+      buffer[pos++] = (char)c;
+    }
+
+  fclose(file);
+  return 0;
+}
+
+int save_blocks_to_file(const char *fname)
+{
+  FILE *file;
+  FirewallBlock *block;
+  char hash_string[SHA256_STRING_LENGTH + 1];
+  
+  file = fopen(fname, "w+");
+  if(!file)
+    {
+      printf("[ ERR  ] Could not create block file\n");
+      return 1;
+    }
+
+  block = chain;
+  if(block)
+    {
+      while(block && strlen(block->author) > 0)
+	{
+	  memset(hash_string, '\0', SHA256_STRING_LENGTH + 1);
+	  get_hash_string(hash_string, block->last_hash,
+			  SHA256_STRING_LENGTH + 1);
+	  fwrite(hash_string, SHA256_STRING_LENGTH, 1, file);
+	  fputc(',', file);
+	  fwrite(block->author, strlen(block->author), 1, file);
+	  fputc(',', file);
+	  fwrite(block->rule.source_addr, strlen(block->rule.source_addr), 1,
+		 file);
+	  fputc(',', file);
+	  fprintf(file, "%hd,", block->rule.source_port);
+	  fwrite(block->rule.dest_addr, strlen(block->rule.dest_addr), 1,
+		 file);
+	  fputc(',', file);
+	  fprintf(file, "%hd,", block->rule.dest_port);
+
+	  switch(block->rule.action)
+	    {
+	    case ALLOW:
+	      fputs("ALLOW", file);
+	      break;
+	    case DENY:
+	      fputs("DENY", file);
+	      break;
+	    case BYPASS:
+	      fputs("BYPASS", file);
+	      break;
+	    case FORCE_ALLOW:
+	      fputs("FORCE_ALLOW", file);
+	      break;
+	    case LOG:
+	      fputs("LOG", file);
+	    }
+	  
+	  fputc('\n', file);
+	  block = block->next;
+	}
+    }
+
+  fclose(file);
+  return 0;
+}
+
+int free_chain(void)
+{
+  FirewallBlock *block, *temp;
+  block = chain;
+
+  while(block)
+    {
+      temp = block;
+      block = block->next;
+      free(temp);
+    }
+  
   return 0;
 }

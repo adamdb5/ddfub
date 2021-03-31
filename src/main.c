@@ -8,6 +8,7 @@
 #include "firewall.h"
 #include "net.h"
 #include "ipc.h"
+#include "blockchain.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -75,6 +76,9 @@ int main(int argc, char** argv)
   printf("[ NET  ] Initialised network stack\n");
   load_hosts_from_file("hosts.txt");
 
+  /* Load any stored blocks */
+  load_blocks_from_file("chain.txt");
+
   /* Create the receiving thread */
   if(pthread_create(&recv_thread, NULL, recv_thread_func, NULL))
     {
@@ -137,5 +141,6 @@ int main(int argc, char** argv)
   pthread_join(recv_thread, NULL);
   cleanup_net();
   cleanup_ipc();
+  free_chain();
   return 0;
 }

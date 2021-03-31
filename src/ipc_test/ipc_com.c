@@ -8,7 +8,7 @@
 int main(void)
 {
   IPCMessage m;
-  char buffer[100], manip_buf[100];
+  char buffer[100];
   int running = 1;
   
   init_ipc_client();

@@ -297,7 +297,7 @@ int save_hosts_to_file(const char *fname)
   file = fopen(fname, "w+");
   if(!file)
     {
-      printf("[ NET  ] No hostfile found\n");
+      printf("[ ERR  ] Could not create hostfile\n");
       return 1;
     }
 
@@ -443,8 +443,6 @@ int cleanup_net(void)
 {
   HostList *host, *temp;
   host = host_list;
-
-  save_hosts_to_file("hosts.txt");
   
   while(host)
     {

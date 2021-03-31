@@ -130,8 +130,32 @@ typedef struct
  */ 
 int get_local_address(char *buffer);
 
+/**
+ * @brief Returns the current number of acknowledgements.
+ *
+ * Returns the current number of acknowledgements this host has received since
+ * sending it's consensus message.
+ * @return The number of acknowledgements.
+ */
 int get_acks(void);
+
+/**
+ * @brief Resets the number of acknowledgements.
+ *
+ * Sets the ack state of each host to 0.
+ * @return whether the acknowledgements were succesfully reset. If an error has
+ * occurred, the return value will be 1, otherwise the return value will be 0.
+ */
 int reset_acks(void);
+
+/**
+ * @brief Sets the acknowledgement state of a host.
+ *
+ * Sets the acknowledgement state of the given host to 1.
+ * @param addr the address of the host who's acknowledgement should be set.
+ * @return if the acknowledgement was set successfully. If an error has
+ * occurred, the return value will be 1, otherwise the return value will be 0.
+ */
 int set_ack(char *addr);
 
 /**
@@ -159,7 +183,7 @@ int save_hosts_to_file(const char *fname);
  *
  * Appends the given host to the list of hosts.
  * @param addr the address of the new host.
- * @return whether the host was appended successfully. If an error has occurred
+ * @return whether the host was appended successfully. If an error has occurred,
  * the return value will be 1, otherwise the return value will be 0.
  */
 int add_host(char* addr);

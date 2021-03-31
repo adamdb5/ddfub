@@ -73,6 +73,8 @@ int get_block_hash(unsigned char *buffer, FirewallBlock *block, int buffer_size)
  */
 int get_hash_string(char *buffer, unsigned char *hash, int buffer_size);
 
+int get_hash_from_string(unsigned char *buffer, char *hash_string, int buffer_size);
+
 /**
  * @brief Adds a new firewall block onto the chain.
  * 
@@ -138,4 +140,35 @@ int remove_pending_rule(char *addr);
  * occurred, the return value will be 1, otherwuse the return value will be 0.
  */
 int get_last_hash(unsigned char *buffer);
+
+/**
+ * @brief Loads a list of firewall blocks from a file.
+ *
+ * Loads a list of firewalls blocks from the given file and constructs the
+ * local blockchain.
+ * @param fname the name of the file containing the chain.
+ * @return whether the chain was sucecssfully loaded. If an error has occurred,
+ * the return value will be 1, otherwise the return value will be 0.
+ */ 
+int load_blocks_from_file(const char *fname);
+
+/**
+ * @brief Saves the current loaded blockchain into a file.
+ *
+ * Saves all blocks currently loaded into the blockchain.
+ * @param fname the name of the file to save the blockchain.
+ * @return whether the blockchain was successfully saved. If an error has
+ * occurred, the return value will be 1, otherwise the return value will be 0.
+ */
+int save_blocks_to_file(const char *fname);
+
+/**
+ * @brief Frees the currently loaded blockchain.
+ *
+ * Frees the memory currently allocated to blocks on the chain.
+ * @return whether the chain was successfully freed. If an error has occurred,
+ * the return value will be 1, otherwise the return value will be 0.
+ */
+int free_chain(void);
+
 #endif

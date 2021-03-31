@@ -19,7 +19,7 @@
 
 #include <openssl/sha.h>
 
-#define TIMEOUT 5000 /* remove last 0 */
+#define TIMEOUT 500
 
 static char local_address[INET_ADDRSTRLEN];
 
@@ -54,7 +54,7 @@ int send_new_rule(FirewallRule *rule)
   usleep(TIMEOUT * 1000);
 #endif
 
-  /* at least half known hosts have consensus */
+  /* At least half known hosts have consensus */
   if(get_acks() < (get_host_count() + 1) / 2)
     {
       printf("[ CONS ] Consensus not achieved (%d/%d hosts)\n", get_acks(),
