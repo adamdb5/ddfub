@@ -225,9 +225,9 @@ int set_ack(char *addr)
 int load_hosts_from_file(const char *fname)
 {
   FILE *file;
-  size_t len, read;
-  char buffer[INET_ADDRSTRLEN], *newline_ptr;
-  HostList *host;
+  int c;
+  size_t pos;
+  char buffer[INET_ADDRSTRLEN + 10];
   
   if(!host_list)
     {
@@ -242,44 +242,22 @@ int load_hosts_from_file(const char *fname)
       return 1;
     }
 
-  len = 0;
-  read = 0;
-  memset(buffer, '\0', INET_ADDRSTRLEN);
-
-  while((read = fread(buffer + len, 1, 1, file)))
+  pos = 0;
+  while((c = fgetc(file)) != EOF)
     {
-      if(buffer[0] == '\r' || buffer[0] == '\n'){
-	buffer[0] = '\0';
-	len = 0;
-	continue;
-      }
-
-      len++;
-      newline_ptr = strpbrk(buffer, "\r\n");
-      if(newline_ptr)
+      if((char)c == '\r')
 	{
-	  buffer[len - 1] = '\0';
-
-	  if(strlen(host_list->addr) == 0)
-	    {
-	      strncpy(host_list->addr, buffer, INET_ADDRSTRLEN);
-	    }
-	  else
-	    {
-	      host = host_list;
-	      while(host && host->next)
-		{
-		  host = host->next;
-		}
-
-	      host->next = (HostList*)malloc(sizeof(HostList));
-	      memset(host->next, 0, sizeof(HostList));
-	      strncpy(host->next->addr, buffer, INET_ADDRSTRLEN);
-	    }
-	  
-	  memset(buffer, '\0', INET_ADDRSTRLEN);
-	  len = 0;
+	  continue;
 	}
+
+      if((char)c == '\n')
+	{
+	  add_host(buffer);
+	  memset(buffer, '\0', INET_ADDRSTRLEN + 10);
+	  pos = 0;
+	  continue;
+	}
+      buffer[pos++] = (char)c;
     }
 
   fclose(file);
