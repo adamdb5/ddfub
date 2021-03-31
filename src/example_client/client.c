@@ -12,8 +12,18 @@ int main(void)
   int running = 1;
   
   init_ipc_client();
-  printf("Client ready\n");
+  printf("****************************************************************\n");
+  printf("*             Decentralised Firewall IPC Interface             *\n");
+  printf("*                        by Adam Bruce                         *\n");
+  printf("****************************************************************\n");
 
+  printf("\nAvailable commands:\n");
+  printf("  enable   :  Enables communication over the network.\n");
+  printf("  disable  :  Disables communication over the network.\n");
+  printf("  rule     :  Generates a new block containing the rule,\n");
+  printf("              and broadcasts the block for consensus.\n");
+  printf("  shutdown :  Terminates the framework.\n");
+  printf("  quit     :  Quits this program.\n\n");
   while(running)
     {
       printf("dfw>");
@@ -34,7 +44,8 @@ int main(void)
 	  scanf("%s", buffer);
 
 	  m.rule.action = DENY;
-	  if(strncmp(buffer, "ALLOW", 5) == 0 || strncmp(buffer, "allow", 5) == 0)
+	  if(strncmp(buffer, "ALLOW", 5) == 0 ||
+	     strncmp(buffer, "allow", 5) == 0)
 	    {
 	      m.rule.action = ALLOW;
 	    }
@@ -75,6 +86,7 @@ int main(void)
 	}
     }
 
+  printf("Bye!\n");
   cleanup_ipc();
   return 0;
 }

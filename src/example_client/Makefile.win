@@ -1,0 +1,8 @@
+CC=clang
+CFLAGS=-Wall -pedantic --std=c89 -O3 -c
+
+client:	     ../ipc.c client.c
+	     $(CC) ../ipc.c client.c -o client.exe
+
+clean:
+	del client.exe
