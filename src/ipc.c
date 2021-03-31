@@ -29,8 +29,9 @@ int init_ipc_server(void)
 {
   HANDLE mqueue;
 
-  mqueue = CreateNamedPipe(TEXT("\\\\.\\pipe\\dfw"), PIPE_ACCESS_DUPLEX,
-				PIPE_TYPE_MESSAGE, 1, 0, 0, 0, NULL);
+  mqueue = CreateNamedPipe(TEXT("\\\\.\\pipe\\dfw"),
+			   PIPE_ACCESS_DUPLEX | FILE_FLAG_OVERLAPPED,
+			   PIPE_TYPE_MESSAGE, 1, 0, 0, 0, NULL);
 
   if(!mqueue || mqueue == INVALID_HANDLE_VALUE)
     {
