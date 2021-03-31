@@ -58,6 +58,13 @@ int main(int argc, char** argv)
   pthread_t recv_thread;
   char local_addr[INET_ADDRSTRLEN];
 
+  /* Banner */
+  printf("****************************************************************\n");
+  printf("*         Decentralised Distributed Firewall Framework         *\n");
+  printf("*                        by Adam Bruce                         *\n");
+  printf("****************************************************************\n");
+  printf("\n");
+  
   /* Initialise IPC */
   if(init_ipc_server())
     {
