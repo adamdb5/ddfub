@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{APT29}
+NCSC and CSE, ``Advisory: {APT29} targets {COVID-19} vaccine development.''
+  \url{https://www.ncsc.gov.uk/files/Advisory-APT29-targets-COVID-19-vaccine-development-V1-1.pdf},
+  2020.
+
+\bibitem{covspill}
+P.~Ozili and T.~Arun, ``Spillover of {COVID-19}: Impact on the global
+  economy.''
+  \url{https://mpra.ub.uni-muenchen.de/99850/1/MPRA_paper_99850.pdf}, 2020.
+
+\bibitem{diffattack}
+H.~S. Lallie, L.~A. Shepherd, J.~R.~C. Nurse, A.~Erola, G.~Epiphaniou,
+  C.~Maple, and X.~Bellekens, ``Cyber security in the age of {COVID-19}: A
+  timeline and analysis of cyber-crime and cyber-attacks during the pandemic.''
+  \url{https://arxiv.org/pdf/2006.11929.pdf}, 2020.
+
+\bibitem{newhack}
+BBC, ``Newcastle university cyber attack 'to take weeks to fix'.''
+  \url{https://www.bbc.co.uk/news/uk-england-tyne-54047179}, 2020.
+\newblock Accessed: 01/04/2020.
+
+\bibitem{norhack}
+BBC, ``Northumbria university hit by cyber attack.''
+  \url{https://www.bbc.co.uk/news/uk-england-tyne-53989404}, 2020.
+\newblock AccessedL 01/04/2020.
+
+\end{thebibliography}
