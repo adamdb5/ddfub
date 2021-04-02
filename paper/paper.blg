@@ -13,45 +13,51 @@ Warning--entry type for "newhack" isn't style-file defined
 --line 22 of file bib.bib
 Warning--entry type for "norhack" isn't style-file defined
 --line 30 of file bib.bib
-You've used 5 entries,
+Warning--entry type for "namingSyncDec" isn't style-file defined
+--line 45 of file bib.bib
+Warning--entry type for "bitcoin" isn't style-file defined
+--line 61 of file bib.bib
+Warning--entry type for "ethereum" isn't style-file defined
+--line 68 of file bib.bib
+You've used 10 entries,
             1876 wiz_defined-function locations,
-            500 strings with 4382 characters,
-and the built_in function-call counts, 788 in all, are:
-= -- 64
-> -- 47
+            527 strings with 5062 characters,
+and the built_in function-call counts, 1682 in all, are:
+= -- 149
+> -- 81
 < -- 0
-+ -- 18
-- -- 13
-* -- 44
-:= -- 129
-add.period$ -- 7
-call.type$ -- 5
-change.case$ -- 5
++ -- 32
+- -- 22
+* -- 92
+:= -- 257
+add.period$ -- 13
+call.type$ -- 10
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 20
-empty$ -- 91
-format.name$ -- 13
-if$ -- 189
+cite$ -- 10
+duplicate$ -- 58
+empty$ -- 195
+format.name$ -- 22
+if$ -- 413
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 0
-newline$ -- 20
-num.names$ -- 5
-pop$ -- 30
+int.to.str$ -- 10
+missing$ -- 3
+newline$ -- 36
+num.names$ -- 10
+pop$ -- 56
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 20
+skip$ -- 47
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 32
+swap$ -- 10
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 5
-width$ -- 6
-write$ -- 46
-(There were 5 warnings)
+while$ -- 13
+width$ -- 12
+write$ -- 89
+(There were 8 warnings)

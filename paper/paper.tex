@@ -1,15 +1,22 @@
-\documentclass[a4paper]{report}
+\documentclass[a4paper, 12pt]{report}
 \usepackage[margin=1in]{geometry}
-\usepackage{hyperref}
 \usepackage{listings}
 \usepackage[strings]{underscore}
-
-\hypersetup{colorlinks=false, linktoc=all}
+\usepackage{dirtytalk}
 \usepackage{xcolor}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[acronym,toc]{glossaries}
 
 \definecolor{comment}{RGB}{0,128,0} % dark green
 \definecolor{string}{RGB}{255,0,0}  % red
 \definecolor{keyword}{RGB}{0,0,255} % blue
+\graphicspath{ {./images/} }
+
+\loadglsentries{glossary}
+\makeglossaries
+
 
 \lstdefinestyle{c}{
 	commentstyle=\color{comment},
@@ -44,58 +51,96 @@
 }
 
 
-\title{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}
+%%%%%%%%%%%%%%%%%%
+% TITLE
+%%%%%%%%%%%%%%%%%%
+\title{\Huge{\textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}}}
 \date{April 2021}
-\author{Adam Bruce \\ \texttt{\href{mailto:a.bruce3@ncl.ac.uk}{a.bruce3@ncl.ac.uk}}}
+\author{\Large{Adam David Bruce} \\ \texttt{\href{mailto:a.bruce3@newcastle.ac.uk}{a.bruce3@newcastle.ac.uk}}}
 \begin{document}
 \maketitle
 
+%%%%%%%%%%%%%%%%%%
+% ABSTRACT
+%%%%%%%%%%%%%%%%%%
 \begin{abstract}
 //TODO
 \end{abstract}
 
+%%%%%%%%%%%%%%%%%%
+% TABLE OF CONTENTS, FIGURES and TABLES
+%%%%%%%%%%%%%%%%%%
 \tableofcontents
+\listoffigures
+\listoftables
 
 \newpage
 
+%%%%%%%%%%%%%%%%%%
+% INTRODUCTION
+%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}
-\section{University Cyberattacks}
-In the summer of 2020 during the midst of the COVID-19 pandemic, universities and research institutions worldwide were working hard to understand the structure of the virus and develop a vaccine in an attempt to return to normality. However, whereas some countries were making fast progress in understanding the virus, others were falling behind, and the virus began to put a strain on healthcare, and increasing critique on governments. In order to keep up with the nations at the forefront of vaccine development, nations turned to state-sponsored cyberattacks in order to both hinder nations, and also obtain research and information about other countries' vaccine efforts. One such example was the threat group 'Cozy Bear', formally known as Advanced Persistent Threat (APT) 29. APT29 used a number of tools to target various organisations involved in COVID-19 vaccine development in Canada, the United States and the United Kingdom. The NCSC believe that the intention was highly likely stealing information and intellectual property relating to the vaccine \cite{APT29}.
+\section{COVID-19 and Cyberattacks}
+In the summer of 2020 during the midst of the COVID-19 pandemic, universities and research institutions worldwide were working hard to understand the structure of the virus and develop a vaccine in an attempt to return to normality. However, whereas some countries were making fast progress in understanding the virus, others were falling behind, and the virus began to put a strain on healthcare, and increasing critique on governments. In order to keep up with the nations at the forefront of vaccine development, nations turned to state-sponsored cyberattacks in order to both hinder nations, and also obtain research and information about other countries' vaccine efforts. One such example was the threat group 'Cozy Bear', formally known as \acrfull{APT} 29. \acrshort{APT}29 used a number of tools to target various organisations involved in COVID-19 vaccine development in Canada, the United States and the United Kingdom. The \acrfull{NCSC} believe that the intention was highly likely stealing information and intellectual property relating to the vaccine \cite{APT29}.
 
-In addition to the mortality of COVID-19, the virus also caused a number of economic issues across a number of nations. Global stock markets lost \$6 trillion in value over size days from 23 to 28 February \cite{covspill}. This gave private companies no other choice than to make large volumes of staff redundant, which increased job insecurity causing many people to become redundant, and in nations without suitable support or benefits, attackers turned to cybercrime for financial gain. These attacks represented the majority of cyberattacks aimed at both universities and the general public. A study of cyber-crime throughout the COVID-19 pandemic determined that 34\% of attacks directly involved financial fraud with a number of attack surfaces used, the majority being phishing, smishing and malware \cite{diffattack}.
+In addition to the mortality of COVID-19, the virus also caused a number of economic issues across a number of nations. Global stock markets lost \$6 trillion in value over size days from 23 to 28 February \cite{covspill}. This gave private companies no other choice than to make large volumes of staff redundant, which increased job insecurity causing many people to become redundant, and in nations without suitable support or benefits, attackers turned to cybercrime for financial gain. These attacks represented the majority of cyberattacks aimed at both universities and the general public. A study of cyber-crime throughout the COVID-19 pandemic determined that 34\% of attacks directly involved financial fraud with a number of attack surfaces used, the majority being \gls{phishing}, \gls{smishing} and \gls{malware}~\cite{diffattack}.
 
 University attacks became a frequent headline in the UK as universities suffered attacks from different threat actors. A number of threat actors launched attacks against multiple universities in the hope to find a vulnerability in at least one. One such attack was aimed at both Newcastle University and Northumbria University, two universities in extremely close proximity \cite{newhack,norhack}. The attack crippled both Newcastle and Northumbria Universities, however the attackers only managed to exfiltrate data from Newcastle University. Why was the attack successful on both occasions? Why wasn't knowledge of the attack shared? 
 
 One reason is that currently, there is no reliable or automated system in place to share this information. Such a system is what this paper will aim to create. 
 
-\chapter{Background Material}
+\section{Distributed Systems} \label{distributed}
+A distributed system is defined by Tanenbaum and van Steen as a \say{collection of independent computers that appears to its users as a single coherent system} \cite{tanenbaumdist}. Such systems are commonplace in peer-to-peer computing and sensor networks where each systems contributes some data via transactions to the system. A distributed system therefore should be autonomous and to the user, should appear as though they are interacting with a single system. Furthermore users and applications should be able to interact with the distributed system in a consistent and uniform way, regardless of where and when system interaction takes place. This requires a common interface provided by a \gls{stub} which is used to bridge the gap between a programming language or protocol and the distributed system. This \gls{stub} hides the differences in machine architecture and communication between the computer and the distributed system. The use of \gls{stub}s creates a new software layer, known as \gls{middleware} which runs on an \acrfull{OS} and exposes distributed functions to higher-level applications and users.
 
-\section{Distributed Systems}
-A distributed system consists of a collection 
+\begin{center}
+	\begin{figure}[!htb]
+		\includegraphics[width=\textwidth,keepaspectratio]{TanenbaumDistributed}
+		\caption{A Distributed System visualised as \gls{middleware} \cite{tanenbaumdist}} 
+		\label{fig:middleware}
+	\end{figure}
+\end{center}
 
+\section{Decentralised Systems}
+Reed defines a decentralised computer system as a computer system that \say{involves separation of the computers in the system by physical distance, by boundaries of administrative responsibility for individual computers and their applications, and by firewalls} \cite{namingSyncDec}. Reed suggests that for a computer system to be decentralised, it must be separated by both physical distance and administrative responsibility, such that no single body administrates the system. One of the most well-known examples of decentralisation is \gls{cryptocurrency}, a currency which takes no physical form, but instead exists entirely digitally. If cryptocurrency were to be governed by a central body, nefarious transactions could be used to launder money. Using a decentralised system ensures the transaction can only take place if all nodes within the system are in consensus that the transaction is genuine.
 
+\section{Blockchain}
+Nofer et al. define \gls{blockchain}s as \say{data sets which are composed of a chain of data packages (blocks) where a block comprises multiple transactions. The \gls{blockchain} is extended by each additional block and hence represents a complete \gls{ledger} of the transaction history.} \cite{blockchain}. Nofer et al. describe the basic fundamentals of a \gls{blockchain}, which is that numerous blocks of transactions contribute to a larger chain. This chain is never controlled by a single body, instead a copy of the chain is stored at each node within a system, making \gls{blockchain} a popular candidate for controlling transactions over a decentralised computer system. Hence, \gls{blockchain} is the foundation for the vast majority of cryptocurrencies including Bitcoin\cite{bitcoin} and Ethereum\cite{ethereum}. One of the key aspects of \gls{blockchain} is the use of cryptographic \gls{hashing} algorithms, these algorithms represent a block as a fixed-length string. For a block to be added to the chain, it must contain the hash of the previous block.
+
+\begin{center}
+	\begin{figure}[!htb]
+		\includegraphics[width=\textwidth,keepaspectratio]{NoferBlock}
+		\caption{An example of a \gls{blockchain} \cite{blockchain}} 
+		\label{fig:middleware}
+	\end{figure}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%
+% AIMS AND OBJECTIVES
+%%%%%%%%%%%%%%%%%%
+\chapter{Project Aims and Objectives}
 
 \section{Aim}
-The original aim of this project was to create a decentralised firewall for distributed systems using blockchain, however throughout my preliminary investigation, I learned that there was no existing public research for any implementation or framework for establishing decentralised security.
-Consequently, I decided that I would adapt my project to research how we could use blockchain to create a general model for decentralised security, and provide an implementation of such a system in the C programming language. This allowed me to focus primarily on designing a model for decentralised security, instead of creating a firewall, which is already a well established area of research.
+The original aim for this project was to design and create a decentralised firewall that could communicate knowledge of cyberattacks aimed at universities in real-time, allowing other universities to protect themselves from the same attacks. This system would be distributed, and hence must conform to the previous description of a distributed system in section \ref{distributed}. Following an extensive amount of background reading, there appeared to be no existing implementation or design of such a system which inspired me to alter my aim and instead focus entirely on designing a protocol and implementing a \gls{stub} to demonstrate the protocol's effectiveness. This project will therefore not be implementing a firewall, but instead a system to coordinate firewalls. Further research determined that \gls{blockchain} was the best choice for the underlying structure for such a protocol, and so this final change shaped the current aim for this project: \textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}.
 
 \section{Objectives}
-During the midst of the COVID-19 pandemic in 2020, several organisations in addition to numerous research and educational institutions were hit by cyberattacks. Two of these universities were Newcastle University and Northumbria University, and due to both the geographical proximity of these universities and the short interval between the attacks provides a strong ground to believe that the same actor used the same attack on both universities.
-The apparent lack of communication between universities that were under attack appeared to contribute largely to the repeated effectiveness of such attacks, which inspired me to investigate how we could create a decentralised system to allow universities to share both attempted and successful cyberattacks, allowing other universities to configure their firewalls accordingly, enabling them to successfully defend against these now known attack vectors.
+The following objectives provide an outline for what this project hopes to achieve:
 
-During the midst of the COVID-19 pandemic in 2020, several organisations in addition to numerous research and educational institutions were hit by cyberattacks. Two of these universities were Newcastle University and Northumbria University, and due to both the geographical proximity of these universities and the short interval between the attacks provides a strong ground to believe that the same actor used the same attack on both universities.
-The apparent lack of communication between universities that were under attack appeared to contribute largely to the repeated effectiveness of such attacks, which inspired me to investigate how we could create a decentralised system to allow universities to share both attempted and successful cyberattacks, allowing other universities to configure their firewalls accordingly, enabling them to successfully defend against these now known attack vectors.
+\begin{enumerate}
+    \item Evaluate the effectiveness of existing distributed security mechanisms.
+    \item Investigate methods of establishing connections and synchronising computers within distributed systems.
+    \item Understand the structure of \gls{blockchain}s and adapt them for firewall transactions.
+    \item Implement and rest relevant resilience, fault tolerance and security mechanisms.
+    \item Compare the use of decentralised security mechanisms.
+\end{enumerate}
 
-During the midst of the COVID-19 pandemic in 2020, several organisations in addition to numerous research and educational institutions were hit by cyberattacks. Two of these universities were Newcastle University and Northumbria University, and due to both the geographical proximity of these universities and the short interval between the attacks provides a strong ground to believe that the same actor used the same attack on both universities.
-The apparent lack of communication between universities that were under attack appeared to contribute largely to the repeated effectiveness of such attacks, which inspired me to investigate how we could create a decentralised system to allow universities to share both attempted and successful cyberattacks, allowing other universities to configure their firewalls accordingly, enabling them to successfully defend against these now known attack vectors.
+%%%%%%%%%%%%%%%%%%
+% BACKGROUND
+%%%%%%%%%%%%%%%%%%
+\chapter{Background}
 
-
-background.
-
-\chapter{What I did and why}
+\printglossaries
 
 \bibliography{bib} 
 \bibliographystyle{ieeetr}
-
 
 \end{document}

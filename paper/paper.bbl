@@ -1,4 +1,13 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{tanenbaumdist}
+A.~S. Tanenbaum and M.~{van Steen}, {\em Distributed Systems: Principles and
+  Paradigms}.
+\newblock Pearson Prentice Hall, 2007.
+
+\bibitem{blockchain}
+M.~Nofer, P.~Gomber, O.~Hinz, and D.~Schiereck, ``Blockchain,'' {\em Business
+  \& Information Systems Engineering}, vol.~59, pp.~183--187, 2017.
 
 \bibitem{APT29}
 NCSC and CSE, ``Advisory: {APT29} targets {COVID-19} vaccine development.''
@@ -24,6 +33,19 @@ BBC, ``Newcastle university cyber attack 'to take weeks to fix'.''
 \bibitem{norhack}
 BBC, ``Northumbria university hit by cyber attack.''
   \url{https://www.bbc.co.uk/news/uk-england-tyne-53989404}, 2020.
-\newblock AccessedL 01/04/2020.
+\newblock Accessed: 01/04/2020.
+
+\bibitem{namingSyncDec}
+D.~P. Reed, ``Naming and synchronisation in a decentralized computer system.''
+  \url{https://dspace.mit.edu/bitstream/handle/1721.1/16279/05331643-MIT.pdf},
+  1978.
+
+\bibitem{bitcoin}
+S.~Nakamoto, ``Bitcoin: A peer-to-peer electronic cash system.''
+  \url{https://bitcoin.org/bitcoin.pdf}, 2008.
+
+\bibitem{ethereum}
+V.~Buterin, ``A next generation smart contract \& decentralized application
+  platform.'' \url{https://whitepaper.io/coin/ethereum}, 2013.
 
 \end{thebibliography}
