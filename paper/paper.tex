@@ -6,6 +6,9 @@
 \usepackage{xcolor}
 \usepackage{multicol}
 \usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{appendix}
+\usepackage{float}
 \usepackage{hyperref}
 \usepackage[acronym,toc]{glossaries}
 
@@ -16,7 +19,6 @@
 
 \loadglsentries{glossary}
 \makeglossaries
-
 
 \lstdefinestyle{c}{
 	commentstyle=\color{comment},
@@ -92,6 +94,9 @@ One reason is that currently, there is no reliable or automated system in place 
 \section{Distributed Systems} \label{distributed}
 A distributed system is defined by Tanenbaum and van Steen as a \say{collection of independent computers that appears to its users as a single coherent system} \cite{tanenbaumdist}. Such systems are commonplace in peer-to-peer computing and sensor networks where each systems contributes some data via transactions to the system. A distributed system therefore should be autonomous and to the user, should appear as though they are interacting with a single system. Furthermore users and applications should be able to interact with the distributed system in a consistent and uniform way, regardless of where and when system interaction takes place. This requires a common interface provided by a \gls{stub} which is used to bridge the gap between a programming language or protocol and the distributed system. This \gls{stub} hides the differences in machine architecture and communication between the computer and the distributed system. The use of \gls{stub}s creates a new software layer, known as \gls{middleware} which runs on an \acrfull{OS} and exposes distributed functions to higher-level applications and users.
 
+\section{Decentralised Systems}
+Reed defines a decentralised computer system as a computer system that \say{involves separation of the computers in the system by physical distance, by boundaries of administrative responsibility for individual computers and their applications, and by firewalls} \cite{namingSyncDec}. Reed suggests that for a computer system to be decentralised, it must be separated by both physical distance and administrative responsibility, such that no single body administrates the system. One of the most well-known examples of decentralisation is \gls{cryptocurrency}, a currency which takes no physical form, but instead exists entirely digitally. If cryptocurrency were to be governed by a central body, nefarious transactions could be used to launder money. Using a decentralised system ensures the transaction can only take place if all nodes within the system are in consensus that the transaction is genuine.
+
 \begin{center}
 	\begin{figure}[!htb]
 		\includegraphics[width=\textwidth,keepaspectratio]{TanenbaumDistributed}
@@ -100,14 +105,11 @@ A distributed system is defined by Tanenbaum and van Steen as a \say{collection 
 	\end{figure}
 \end{center}
 
-\section{Decentralised Systems}
-Reed defines a decentralised computer system as a computer system that \say{involves separation of the computers in the system by physical distance, by boundaries of administrative responsibility for individual computers and their applications, and by firewalls} \cite{namingSyncDec}. Reed suggests that for a computer system to be decentralised, it must be separated by both physical distance and administrative responsibility, such that no single body administrates the system. One of the most well-known examples of decentralisation is \gls{cryptocurrency}, a currency which takes no physical form, but instead exists entirely digitally. If cryptocurrency were to be governed by a central body, nefarious transactions could be used to launder money. Using a decentralised system ensures the transaction can only take place if all nodes within the system are in consensus that the transaction is genuine.
-
 \section{Blockchain}
 Nofer et al. define \gls{blockchain}s as \say{data sets which are composed of a chain of data packages (blocks) where a block comprises multiple transactions. The \gls{blockchain} is extended by each additional block and hence represents a complete \gls{ledger} of the transaction history.} \cite{blockchain}. Nofer et al. describe the basic fundamentals of a \gls{blockchain}, which is that numerous blocks of transactions contribute to a larger chain. This chain is never controlled by a single body, instead a copy of the chain is stored at each node within a system, making \gls{blockchain} a popular candidate for controlling transactions over a decentralised computer system. Hence, \gls{blockchain} is the foundation for the vast majority of cryptocurrencies including Bitcoin\cite{bitcoin} and Ethereum\cite{ethereum}. One of the key aspects of \gls{blockchain} is the use of cryptographic \gls{hashing} algorithms, these algorithms represent a block as a fixed-length string. For a block to be added to the chain, it must contain the hash of the previous block.
 
 \begin{center}
-	\begin{figure}[!htb]
+	\begin{figure}[H]
 		\includegraphics[width=\textwidth,keepaspectratio]{NoferBlock}
 		\caption{An example of a \gls{blockchain} \cite{blockchain}} 
 		\label{fig:middleware}
@@ -138,9 +140,84 @@ The following objectives provide an outline for what this project hopes to achie
 %%%%%%%%%%%%%%%%%%
 \chapter{Background}
 
+\section{Distributed Systems}
+The primary reference used for distributed systems was Tanenbaum and van Steen's \say{Distributed Systems: Principles and Paradigms}\cite{tanenbaumdist}, who's literature provides an in-depth explanation from the fundamental theory of distributed systems to the design and implementation of such systems. Key details that were taken from this publication are detailed below. In general, this book covered the essential components of creating a distributed system, however much of the detail with regards to client-server interactions was not applicable to this project due to it's decentralised nature. Furthermore, a large portion of the book was not of interest to this project as it focuses on distributed processing, which only comprises a small element of this project, hence a large volume of information regarding implementation of processing was not useful.
+
+\subsection{Architecture}
+Tanenbaum and van Steen cover many aspects of a distributed system's architecture spanning network, software and physical architecture. This project will implement a decentralised, peer-to-peer network architecture, which will be discussed in detail in section \ref{decentrailsed}. The software used will consist primary of \gls{stub}s, which are used to hide the differences in machine architecture and communication between the computer and the distributed system. The combined use of \gls{stub}s creates a new software layer, known as \gls{middleware} which provides a common interface between a client application, and the distributed system. Creating this layer enables applications to communicate via an application-level protocol, which is independent from the protocol spoken by the \gls{middleware}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=5cm,keepaspectratio]{appl_layer_proto}
+\caption{Application layer protocol running over \gls{middleware} \cite{tanenbaumdist}} 
+\label{fig:middleware}
+\end{figure}
+
+With regards to physical architecture, Tanenbaum and van Steen discuss a number of approaches to client-server architectures, however due to the decentralised nature of this project, non of Tanenbaum and van Steen's classifications apply. 
+
+\subsection{Remote Procedure Calls (RPC)}
+Tanenbaum and van Steen introduce the concept of a \acrfull{RPC}. \acrshort{RPC}s are used to execute some action on a remote node within a distributed system.  Tanenbaum and van Steen provide a concise breakdown of the steps required to execute an \acrshort{RPC}:
+
+\begin{enumerate}
+    \item The client procedure calls the client \gls{stub} in the normal way.
+    \item The client \gls{stub} builds a message and calls the local \acrfull{OS}.
+    \item The client \acrshort{OS} sends the message to the remote \acrshort{OS}.
+    \item The remote \acrshort{OS} gives the message to the server \gls{stub}.
+    \item The server \gls{stub} unpacks the parameters and calls the server.
+    \item The server does the work and returns the result to the \gls{stub}.
+    \item The server \gls{stub} packs it in a message and calls it's local \acrshort{OS}.
+    \item The server's \acrshort{OS} send the message to the client's acrshort{OS}.
+    \item The client's \acrshort{OS} sends the message to the client \gls{stub}.
+    \item The \gls{stub} unpacks the result and returns to the client.
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{rpc}
+\caption{A breakdown of an \acrshort{RPC} \cite{tanenbaumdist}} 
+\label{fig:rpc}
+\end{figure}
+
+\section{Decentralised Systems} \label{decentrailsed}
+
+
+\section{Blockchain}
+The primary reference used for blockchain was Nofer et al.'s \say{Blockchain}\cite{blockchain}. 
+
+\section{Distributed Security}
+
+\section{Firewall Rules}
+
+\section{Fault Tolerance}
+
+\section{Inter-Process Communication (IPC)}
+
 \printglossaries
 
 \bibliography{bib} 
 \bibliographystyle{ieeetr}
+
+\appendix
+
+%\iffalse
+\chapter{Framework Source Code}
+\lstinputlisting[language=c,style=c,caption=main.c,basicstyle=\ttfamily\scriptsize]{../src/main.c}
+\lstinputlisting[language=c,style=c,caption=blockchain.h,basicstyle=\ttfamily\scriptsize]{../src/blockchain.h}
+\lstinputlisting[language=c,style=c,caption=blockchain.c,basicstyle=\ttfamily\scriptsize]{../src/blockchain.c}
+\lstinputlisting[language=c,style=c,caption=firewall.h,basicstyle=\ttfamily\scriptsize]{../src/firewall.h}
+\lstinputlisting[language=c,style=c,caption=firewall.c,basicstyle=\ttfamily\scriptsize]{../src/firewall.c}
+\lstinputlisting[language=c,style=c,caption=ipc.h,basicstyle=\ttfamily\scriptsize]{../src/ipc.h}
+\lstinputlisting[language=c,style=c,caption=ipc.c,basicstyle=\ttfamily\scriptsize]{../src/ipc.c}
+\lstinputlisting[language=c,style=c,caption=net.h,basicstyle=\ttfamily\scriptsize]{../src/net.h}
+\lstinputlisting[language=c,style=c,caption=net.c,basicstyle=\ttfamily\scriptsize]{../src/net.c}
+\lstinputlisting[language=c,style=c,caption=socket.h,basicstyle=\ttfamily\scriptsize]{../src/socket.h}
+\lstinputlisting[language=c,style=c,caption=socket.c,basicstyle=\ttfamily\scriptsize]{../src/socket.c}
+
+\chapter{Client Program Source Code}
+\lstinputlisting[language=c,style=c,caption=client.c,basicstyle=\ttfamily\scriptsize]{"../src/example\string_client/client.c"}
+
+\chapter{Code and Framework Documentation}
+\includepdf[pages=-]{../docs/latex/refman.pdf}
+%\fi
 
 \end{document}
