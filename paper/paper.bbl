@@ -9,21 +9,29 @@ A.~S. Tanenbaum and M.~{van Steen}, {\em Distributed Systems: Principles and
 M.~Nofer, P.~Gomber, O.~Hinz, and D.~Schiereck, ``Blockchain,'' {\em Business
   \& Information Systems Engineering}, vol.~59, pp.~183--187, 2017.
 
+\bibitem{sdsi}
+R.~L. Rivest and B.~Lampson, ``{SDSI}-a simple distributed security
+  infrastructure,'' Crypto, 1996.
+
+\bibitem{faulttol}
+R.~Guerraoui and A.~Schiper, ``Fault-tolerance by replication in distributed
+  systems,'' in {\em International conference on reliable software
+  technologies}, pp.~38--57, Springer, 1996.
+
 \bibitem{APT29}
 NCSC and CSE, ``Advisory: {APT29} targets {COVID-19} vaccine development.''
   \url{https://www.ncsc.gov.uk/files/Advisory-APT29-targets-COVID-19-vaccine-development-V1-1.pdf},
   2020.
 
 \bibitem{covspill}
-P.~Ozili and T.~Arun, ``Spillover of {COVID-19}: Impact on the global
-  economy.''
-  \url{https://mpra.ub.uni-muenchen.de/99850/1/MPRA_paper_99850.pdf}, 2020.
+P.~K. Ozili and T.~Arun, ``Spillover of covid-19: impact on the global
+  economy,'' {\em SSRN 3562570}, 2020.
 
 \bibitem{diffattack}
-H.~S. Lallie, L.~A. Shepherd, J.~R.~C. Nurse, A.~Erola, G.~Epiphaniou,
-  C.~Maple, and X.~Bellekens, ``Cyber security in the age of {COVID-19}: A
-  timeline and analysis of cyber-crime and cyber-attacks during the pandemic.''
-  \url{https://arxiv.org/pdf/2006.11929.pdf}, 2020.
+H.~S. Lallie, L.~A. Shepherd, J.~R. Nurse, A.~Erola, G.~Epiphaniou, C.~Maple,
+  and X.~Bellekens, ``Cyber security in the age of {COVID-19}: A timeline and
+  analysis of cyber-crime and cyber-attacks during the pandemic,'' {\em
+  Computers \& Security}, vol.~105, 2021.
 
 \bibitem{newhack}
 BBC, ``Newcastle university cyber attack 'to take weeks to fix'.''
@@ -36,9 +44,9 @@ BBC, ``Northumbria university hit by cyber attack.''
 \newblock Accessed: 01/04/2020.
 
 \bibitem{namingSyncDec}
-D.~P. Reed, ``Naming and synchronisation in a decentralized computer system.''
-  \url{https://dspace.mit.edu/bitstream/handle/1721.1/16279/05331643-MIT.pdf},
-  1978.
+D.~P. Reed, {\em Naming and synchronization in a decentralized computer
+  system.}
+\newblock PhD thesis, Massachusetts Institute of Technology, 1978.
 
 \bibitem{bitcoin}
 S.~Nakamoto, ``Bitcoin: A peer-to-peer electronic cash system.''
@@ -47,5 +55,27 @@ S.~Nakamoto, ``Bitcoin: A peer-to-peer electronic cash system.''
 \bibitem{ethereum}
 V.~Buterin, ``A next generation smart contract \& decentralized application
   platform.'' \url{https://whitepaper.io/coin/ethereum}, 2013.
+
+\bibitem{decentralised}
+J.~N. {Gray}, ``An approach to decentralized computer systems,'' {\em IEEE
+  Transactions on Software Engineering}, vol.~SE-12, no.~6, pp.~684--692, 1986.
+
+\bibitem{firewall}
+E.~S. Al-Shaer and H.~H. Hamed, ``Modeling and management of firewall
+  policies,'' {\em IEEE Transactions on network and service management},
+  vol.~1, no.~1, pp.~2--10, 2004.
+
+\bibitem{comptiaSec}
+E.~Dulaney and C.~Easttom, {\em {CompTIA} Security+ Study Guide: Exam SY0-501}.
+\newblock John Wiley \& Sons, 7~ed., 2018.
+
+\bibitem{comptiaNet}
+T.~Lammle, {\em {CompTIA} Network+ Study Guide: Exam N10-007}.
+\newblock John Wiley \& Sons, 4~ed., 2018.
+
+\bibitem{operatingsystems}
+A.~S. Tanenbaum and A.~S. Woodhull, {\em Operating systems: design and
+  implementation}.
+\newblock Pearson, 3~ed., 2015.
 
 \end{thebibliography}

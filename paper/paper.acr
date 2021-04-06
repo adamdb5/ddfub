@@ -3,15 +3,31 @@
 \glsgroupheading{A}\relax \glsresetentrylist %
 \glossentry{APT}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{4}}}\glsgroupskip
+\glsgroupheading{D}\relax \glsresetentrylist %
+\glossentry{DMZ}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{11\delimN 12}}}\glsgroupskip
+\glsgroupheading{I}\relax \glsresetentrylist %
+\glossentry{IPC}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{13}}}\glsgroupskip
 \glsgroupheading{N}\relax \glsresetentrylist %
 \glossentry{NCSC}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{4}}}\glsgroupskip
 \glsgroupheading{O}\relax \glsresetentrylist %
 \glossentry{OS}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{5}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{9}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{9}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{13}}}\glsgroupskip
 \glsgroupheading{R}\relax \glsresetentrylist %
 \glossentry{RPC}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{2}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{9\delimN 10}}}%
+		\setentrycounter[]{page}\glsnumberformat{9\delimN 10}}}\glsgroupskip
+\glsgroupheading{T}\relax \glsresetentrylist %
+\glossentry{TCP}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{11}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{13}}}\glsgroupskip
+\glsgroupheading{U}\relax \glsresetentrylist %
+\glossentry{UDP}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{11}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{13}}}%
 \end{theglossary}\glossarypostamble

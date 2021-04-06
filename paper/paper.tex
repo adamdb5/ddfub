@@ -1,4 +1,4 @@
-\documentclass[a4paper, 12pt]{report}
+\documentclass[a4paper, 11pt]{report}
 \usepackage[margin=1in]{geometry}
 \usepackage{listings}
 \usepackage[strings]{underscore}
@@ -112,7 +112,7 @@ Nofer et al. define \gls{blockchain}s as \say{data sets which are composed of a 
 	\begin{figure}[H]
 		\includegraphics[width=\textwidth,keepaspectratio]{NoferBlock}
 		\caption{An example of a \gls{blockchain} \cite{blockchain}} 
-		\label{fig:middleware}
+		\label{fig:blockchain}
 	\end{figure}
 \end{center}
 
@@ -121,7 +121,7 @@ Nofer et al. define \gls{blockchain}s as \say{data sets which are composed of a 
 %%%%%%%%%%%%%%%%%%
 \chapter{Project Aims and Objectives}
 
-\section{Aim}
+\section{Aim} \label{aim}
 The original aim for this project was to design and create a decentralised firewall that could communicate knowledge of cyberattacks aimed at universities in real-time, allowing other universities to protect themselves from the same attacks. This system would be distributed, and hence must conform to the previous description of a distributed system in section \ref{distributed}. Following an extensive amount of background reading, there appeared to be no existing implementation or design of such a system which inspired me to alter my aim and instead focus entirely on designing a protocol and implementing a \gls{stub} to demonstrate the protocol's effectiveness. This project will therefore not be implementing a firewall, but instead a system to coordinate firewalls. Further research determined that \gls{blockchain} was the best choice for the underlying structure for such a protocol, and so this final change shaped the current aim for this project: \textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}.
 
 \section{Objectives}
@@ -140,7 +140,7 @@ The following objectives provide an outline for what this project hopes to achie
 %%%%%%%%%%%%%%%%%%
 \chapter{Background}
 
-\section{Distributed Systems}
+\section{Distributed Systems} \label{dist}
 The primary reference used for distributed systems was Tanenbaum and van Steen's \say{Distributed Systems: Principles and Paradigms}\cite{tanenbaumdist}, who's literature provides an in-depth explanation from the fundamental theory of distributed systems to the design and implementation of such systems. Key details that were taken from this publication are detailed below. In general, this book covered the essential components of creating a distributed system, however much of the detail with regards to client-server interactions was not applicable to this project due to it's decentralised nature. Furthermore, a large portion of the book was not of interest to this project as it focuses on distributed processing, which only comprises a small element of this project, hence a large volume of information regarding implementation of processing was not useful.
 
 \subsection{Architecture}
@@ -150,7 +150,7 @@ Tanenbaum and van Steen cover many aspects of a distributed system's architectur
 \centering
 \includegraphics[height=5cm,keepaspectratio]{appl_layer_proto}
 \caption{Application layer protocol running over \gls{middleware} \cite{tanenbaumdist}} 
-\label{fig:middleware}
+\label{fig:middlewarelayers}
 \end{figure}
 
 With regards to physical architecture, Tanenbaum and van Steen discuss a number of approaches to client-server architectures, however due to the decentralised nature of this project, non of Tanenbaum and van Steen's classifications apply. 
@@ -179,18 +179,99 @@ Tanenbaum and van Steen introduce the concept of a \acrfull{RPC}. \acrshort{RPC}
 \end{figure}
 
 \section{Decentralised Systems} \label{decentrailsed}
+Gray's \say{An Approach to Decentralized Computer Systems} \cite{decentralised} provided the basis for the decentralisation aspect of this project. Gray summarises the advantages of using decentralised systems, a number of which support the argument for using a decentralised topology in this project. The advantages which are relevant to this project are documented below.
+
+\begin{itemize}
+    \item \textbf{Capacity}: A decentralised system can support a large number of devices.
+    \item \textbf{Response Time}: Having devices in close proximity can reduce response times.
+    \item \textbf{Availability}: A failure is likely to be limited to a single site, allowing the rest of the system to continue normal operation.
+    \item \textbf{Security}: Removing the central controller in a traditional distributed system removes the risk of an attack compromising the whole system.
+\end{itemize}
+
+Gray's article also looks at how decentralised systems should be designed including data types, network protocols and transactions. There are a number of similarities between Tanenbaum and van Steen's \acrshort{RPC}s and the structure Gray proposes for decentralised transactions. For this project however, the finer details proposed by Gray's system are not relevant as the literature uses a large number of examples base heavily on financial transactions, which contain a number of additional complexities over the transactions used within this project.
 
 
 \section{Blockchain}
-The primary reference used for blockchain was Nofer et al.'s \say{Blockchain}\cite{blockchain}. 
+The primary reference used for \gls{blockchain} was Nofer et al.'s \say{Blockchain}\cite{blockchain}. Nofer et al. provide a high level overview of \gls{blockchain}, focusing primarily on the structure and implementation, with some consideration of the current applications of \gls{blockchain} in both financial and non-financial settings. Although concise, this publication provides a valuable summary of the essential components of blocks in order to create a ledger which can accurately trace transactions. Although not essential for this project, Nofer et al. additionally discuss how \gls{blockchain} can be implemented into smart contracts. In general, this literature was useful in providing a baseline for the structure of blocks within a \gls{blockchain}, and clearly explained the purpose of each field within the block, which allowed informed decisions to be made in regard to the structure of blocks used in this project. 
+
+\begin{center}
+	\begin{figure}[H]
+		\includegraphics[width=\textwidth,keepaspectratio]{NoferBlock}
+		\caption{An example of a \gls{blockchain} \cite{blockchain}} 
+		\label{fig:blockchain2}
+	\end{figure}
+\end{center}
 
 \section{Distributed Security}
+The primary reference used for distributed security was Rivets and Lampson's \say{SDSI - A Simple Distributed Security Infrastructure} \cite{sdsi}. This publication provides an in-depth explanation of how a public-key infrastructure can be used in conjunction with access control lists to create a distributed security infrastructure. The majority of the literature within this publication is focussed on creating and issuing certificates, something that is not relevant for this project, however Rivets and Lampson did provide clear requirements over the data structures within such a system. Rivets and Lampson implement a message system similar to that of Tanenbaum and van Steen's in section \ref{dist}. The message system proposed by Rivets and Lampson contains only a type and dictionary of attributes.
 
-\section{Firewall Rules}
+\begin{figure}[H]
+\centering
+\includegraphics[height=2cm,keepaspectratio]{distmsg}
+\caption{Message format for the SDSI Model \cite{sdsi}} 
+\label{fig:sdsimessage}
+\end{figure}
+
+Additionally, Rivets and Lampson detail the concept of objects, which are defined by a type. This type is expressed in the form 
+
+\begin{center} 
+\texttt{protocol-name.message-type}
+\end{center}
+
+\section{Firewalls and Firewall Rules}
+Al-Shaer and Hazem provide a detailed explanation of how firewall policies should be modelled and managed in \say{Modeling and Management of Firewall Policies} \cite{firewall}. This article explores methods of modelling policies and rules and provides a deep analysis of how those rules are interpreted by a firewall. The most relevant discussion within this literature is the structure of a firewall policy which is defined by Al-Shaer and Hazem as a set of rules, which act as records, with the following seven fields:
+
+\begin{itemize}
+    \item \textbf{Order}: The priority of a rule.
+    \item \textbf{Protocol}: Either \acrfull{TCP} or \acrfull{UDP}.
+    \item \textbf{Source IP}: The source IP address.
+    \item \textbf{Source Port}: The source port.
+    \item \textbf{Destination IP}: The destination IP address.
+    \item \textbf{Destination Port}: The destination port.
+    \item \textbf{Action}: The action the firewall should take (e.g. ACCEPT, DENY).
+\end{itemize}
+
+In regards to this project, there was little other relevant content in the literature. Following the change in this project's aim detailed in section \ref{aim}, this project was no longer concerned with the implementation of a firewall or the interpretation of firewall rules, which deemed the vast majority of Al-Shaer and Hazem's publication irrelevant.
+
+Additional background information with regards to how firewalls are integrated into infrastructure came from Dulaney and Eastton's \say{CompTIA Security+ Study Guide: Exam SY0-501} \cite{comptiaSec}. Dulaney and Eastton's study guide covers a large number of aspects associated with cyber security, including technological, physical and psychological mitigations. With regards to firewalls, this publication details how the placement of firewalls can be used to form a \acrfull{DMZ}, which is a common network layout used by universities, as it permits certain areas of the network to be accessible from outside the local network.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=10cm,keepaspectratio]{DMZ}
+\caption{Using a firewall to create a \acrshort{DMZ}} 
+\label{fig:dmz}
+\end{figure}
+
+This information provided a strong understanding into where this project would fit in a standard network model. This publication also covered firewalls, however the information provided was not as detailed as that from Al-Shaer and Hazem, and hence no other aspects of this book were used.
 
 \section{Fault Tolerance}
+The primary reference for fault tolerance was Guerraoui and Schiper's \say{Fault-Tolerance by Replication in Distributed Systems}\cite{faulttol}. This literature details how replication can be used to provide fault tolerance in a distributed system in addition to ensuring consistency is maintained.  A number of backup techniques are discussed however the technique that is best suited for application is primary backup replication. Primary backup replication consists of a client invoking an operation which is the applied to the primary data, and then cascaded to a number of additional backups.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=5cm,keepaspectratio]{primback}
+\caption{Primary backup technique \cite{faulttol}} 
+\label{fig:backup}
+\end{figure}
+
+Guerraoui and Schiper continue to discuss methods of detecting faults and appropriate ways to deal with them. The methods covered however require a much greater level of control than that achievable by a single application running on a standard \acrshort{OS}, and hence are not applicable to this project.
+
+\section{Computer Networks}
+The primary reference for computer networks was Lammle's book \say{CompTIA Network+ Study Guide: Exam N10-007} \cite{comptiaNet}. Lammle's study guide covers a wide range of aspects associated with computer networks including physical implementations, subnets, security and protocols. Two sections which are relevant to this project are network layer protocols (\acrshort{TCP} and \acrshort{UDP}), and network topologies. Lammle provides a comprehensive explanation of the differences between \acrfull{TCP} and \acrfull{UDP}, however the difference that is most relevant to this project is \acrshort{TCP}'s requirement for a connection to be established prior to transmission. The book explains how establishing a \acrshort{TCP} connection takes additional time and blocks the port whilst attempting to establish a connection, which prevents any other connection from being made from that port. This is not ideal for a decentralised system as messages will be sent on an ad-hoc basis, with strict time constraints, and therefore \acrshort{UDP} will be more suitable for this project.
+
+With regards to network topologies, Lammle details seven approaches: bus, star, ring, mesh, point-to-point, point-to-multipoint and hybrid. In order to create a truly decentralised distributed system, the mesh topology is best suited to this project. In a mesh topology, each device is connected to every other device, which provides the highest level of redundancy possible, as if one device were to crash, or a cable be disconnected, communication can continue via the other devices.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=5cm,keepaspectratio]{mesh}
+\caption{Mesh Topology} 
+\label{fig:mesh}
+\end{figure}
 
 \section{Inter-Process Communication (IPC)}
+Tanenbaum and Woodhull provide an extremely detailed breakdown of their UNIX based operating system in \say{Operating systems: Design and Implementation} \cite{operatingsystems}. This book covers all aspects of an \acrshort{OS}, providing insightful explanations of the decisions made at every step in the design process. As this project is designed to run as an application, many of the details covered in this publication are irrelevant, however Tanenbaum and Woodhull cover one essential aspect of this project: \acrfull{IPC}. \acrshort{IPC} is a function within many \acrlong{OS} which enables multiple processes to communicate by passing messages to each other. \acrshort{IPC} will be the technique used to interact with the distributed system, as a client process will use \acrshort{IPC} to issue commands to the \gls{stub}. 
+
+\chapter{Design and that}
 
 \printglossaries
 
@@ -199,7 +280,7 @@ The primary reference used for blockchain was Nofer et al.'s \say{Blockchain}\ci
 
 \appendix
 
-%\iffalse
+\iffalse
 \chapter{Framework Source Code}
 \lstinputlisting[language=c,style=c,caption=main.c,basicstyle=\ttfamily\scriptsize]{../src/main.c}
 \lstinputlisting[language=c,style=c,caption=blockchain.h,basicstyle=\ttfamily\scriptsize]{../src/blockchain.h}
@@ -218,6 +299,6 @@ The primary reference used for blockchain was Nofer et al.'s \say{Blockchain}\ci
 
 \chapter{Code and Framework Documentation}
 \includepdf[pages=-]{../docs/latex/refman.pdf}
-%\fi
+\fi
 
 \end{document}

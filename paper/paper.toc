@@ -1,8 +1,8 @@
 \contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.1}%
 \contentsline {section}{\numberline {1.1}COVID-19 and Cyberattacks}{4}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Distributed Systems}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.2}Distributed Systems}{4}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Decentralised Systems}{5}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Blockchain}{6}{section.1.4}%
+\contentsline {section}{\numberline {1.4}Blockchain}{5}{section.1.4}%
 \contentsline {chapter}{\numberline {2}Project Aims and Objectives}{7}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Aim}{7}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Objectives}{7}{section.2.2}%
@@ -10,14 +10,13 @@
 \contentsline {section}{\numberline {3.1}Distributed Systems}{8}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Architecture}{8}{subsection.3.1.1}%
 \contentsline {subsection}{\numberline {3.1.2}Remote Procedure Calls (RPC)}{9}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Decentralised Systems}{10}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Decentralised Systems}{9}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Blockchain}{10}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Distributed Security}{10}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Firewall Rules}{10}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Fault Tolerance}{10}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Inter-Process Communication (IPC)}{10}{section.3.7}%
-\contentsline {chapter}{Glossary}{11}{section*.4}%
-\contentsline {chapter}{Acronyms}{12}{section*.6}%
-\contentsline {chapter}{\numberline {A}Framework Source Code}{14}{appendix.A}%
-\contentsline {chapter}{\numberline {B}Client Program Source Code}{52}{appendix.B}%
-\contentsline {chapter}{\numberline {C}Code and Framework Documentation}{54}{appendix.C}%
+\contentsline {section}{\numberline {3.5}Firewalls and Firewall Rules}{11}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Fault Tolerance}{12}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Computer Networks}{13}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Inter-Process Communication (IPC)}{13}{section.3.8}%
+\contentsline {chapter}{\numberline {4}Design and that}{14}{chapter.4}%
+\contentsline {chapter}{Glossary}{15}{section*.4}%
+\contentsline {chapter}{Acronyms}{16}{section*.6}%

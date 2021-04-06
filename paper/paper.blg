@@ -5,59 +5,54 @@ The style file: ieeetr.bst
 Database file #1: bib.bib
 Warning--entry type for "APT29" isn't style-file defined
 --line 1 of file bib.bib
-Warning--entry type for "covspill" isn't style-file defined
---line 8 of file bib.bib
-Warning--entry type for "diffattack" isn't style-file defined
---line 15 of file bib.bib
 Warning--entry type for "newhack" isn't style-file defined
---line 22 of file bib.bib
+--line 25 of file bib.bib
 Warning--entry type for "norhack" isn't style-file defined
---line 30 of file bib.bib
-Warning--entry type for "namingSyncDec" isn't style-file defined
---line 45 of file bib.bib
+--line 33 of file bib.bib
 Warning--entry type for "bitcoin" isn't style-file defined
---line 61 of file bib.bib
+--line 64 of file bib.bib
 Warning--entry type for "ethereum" isn't style-file defined
---line 68 of file bib.bib
-You've used 10 entries,
+--line 71 of file bib.bib
+Warning--empty booktitle in sdsi
+You've used 17 entries,
             1876 wiz_defined-function locations,
-            527 strings with 5062 characters,
-and the built_in function-call counts, 1682 in all, are:
-= -- 149
-> -- 81
+            572 strings with 5835 characters,
+and the built_in function-call counts, 3239 in all, are:
+= -- 308
+> -- 129
 < -- 0
-+ -- 32
-- -- 22
-* -- 92
-:= -- 257
-add.period$ -- 13
-call.type$ -- 10
-change.case$ -- 9
++ -- 51
+- -- 34
+* -- 192
+:= -- 484
+add.period$ -- 24
+call.type$ -- 17
+change.case$ -- 15
 chr.to.int$ -- 0
-cite$ -- 10
-duplicate$ -- 58
-empty$ -- 195
-format.name$ -- 22
-if$ -- 413
+cite$ -- 18
+duplicate$ -- 159
+empty$ -- 357
+format.name$ -- 34
+if$ -- 796
 int.to.chr$ -- 0
-int.to.str$ -- 10
-missing$ -- 3
-newline$ -- 36
-num.names$ -- 10
-pop$ -- 56
+int.to.str$ -- 17
+missing$ -- 15
+newline$ -- 61
+num.names$ -- 17
+pop$ -- 78
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 47
+skip$ -- 82
 stack$ -- 0
-substring$ -- 32
-swap$ -- 10
+substring$ -- 103
+swap$ -- 37
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 13
-width$ -- 12
-write$ -- 89
-(There were 8 warnings)
+warning$ -- 1
+while$ -- 28
+width$ -- 19
+write$ -- 162
+(There were 6 warnings)
