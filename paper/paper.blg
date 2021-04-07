@@ -13,37 +13,39 @@ Warning--entry type for "bitcoin" isn't style-file defined
 --line 64 of file bib.bib
 Warning--entry type for "ethereum" isn't style-file defined
 --line 71 of file bib.bib
+Warning--entry type for "libcrypto" isn't style-file defined
+--line 140 of file bib.bib
 Warning--empty booktitle in sdsi
-You've used 17 entries,
+You've used 18 entries,
             1876 wiz_defined-function locations,
-            572 strings with 5835 characters,
-and the built_in function-call counts, 3239 in all, are:
-= -- 308
-> -- 129
+            578 strings with 5980 characters,
+and the built_in function-call counts, 3375 in all, are:
+= -- 322
+> -- 133
 < -- 0
-+ -- 51
-- -- 34
-* -- 192
-:= -- 484
-add.period$ -- 24
-call.type$ -- 17
-change.case$ -- 15
++ -- 53
+- -- 35
+* -- 197
+:= -- 504
+add.period$ -- 26
+call.type$ -- 18
+change.case$ -- 16
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 159
-empty$ -- 357
-format.name$ -- 34
-if$ -- 796
+cite$ -- 19
+duplicate$ -- 163
+empty$ -- 375
+format.name$ -- 35
+if$ -- 831
 int.to.chr$ -- 0
-int.to.str$ -- 17
+int.to.str$ -- 18
 missing$ -- 15
-newline$ -- 61
-num.names$ -- 17
-pop$ -- 78
+newline$ -- 65
+num.names$ -- 18
+pop$ -- 84
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 82
+skip$ -- 85
 stack$ -- 0
 substring$ -- 103
 swap$ -- 37
@@ -52,7 +54,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 28
-width$ -- 19
-write$ -- 162
-(There were 6 warnings)
+while$ -- 29
+width$ -- 20
+write$ -- 172
+(There were 7 warnings)

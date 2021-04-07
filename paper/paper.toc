@@ -1,22 +1,37 @@
-\contentsline {chapter}{\numberline {1}Introduction}{4}{chapter.1}%
-\contentsline {section}{\numberline {1.1}COVID-19 and Cyberattacks}{4}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Distributed Systems}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Decentralised Systems}{5}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Blockchain}{5}{section.1.4}%
-\contentsline {chapter}{\numberline {2}Project Aims and Objectives}{7}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Aim}{7}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Objectives}{7}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Background}{8}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Distributed Systems}{8}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Architecture}{8}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Remote Procedure Calls (RPC)}{9}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Decentralised Systems}{9}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Blockchain}{10}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Distributed Security}{10}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Firewalls and Firewall Rules}{11}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Fault Tolerance}{12}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Computer Networks}{13}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Inter-Process Communication (IPC)}{13}{section.3.8}%
-\contentsline {chapter}{\numberline {4}Design and that}{14}{chapter.4}%
-\contentsline {chapter}{Glossary}{15}{section*.4}%
-\contentsline {chapter}{Acronyms}{16}{section*.6}%
+\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}COVID-19 and Cyberattacks}{5}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Distributed Systems}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Decentralised Systems}{6}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Blockchain}{6}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Project Aims and Objectives}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Aim}{8}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Objectives}{8}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Background}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Distributed Systems}{9}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Architecture}{9}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Remote Procedure Calls (RPC)}{10}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Decentralised Systems}{10}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Blockchain}{11}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Distributed Security}{11}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Firewalls and Firewall Rules}{12}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Fault Tolerance}{13}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Computer Networks}{14}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Inter-Process Communication (IPC)}{15}{section.3.8}%
+\contentsline {chapter}{\numberline {4}Design}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}System Architecture}{16}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Data Structures}{16}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Firewall Rule}{17}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Firewall Block}{17}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Message Structures}{17}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Network}{17}{subsection.4.3.1}%
+\contentsline {subsubsection}{Advertisement Messages}{18}{section*.4}%
+\contentsline {subsubsection}{Consensus Messages}{18}{section*.5}%
+\contentsline {subsubsection}{Rule Messages}{19}{section*.6}%
+\contentsline {subsection}{\numberline {4.3.2}IPC}{19}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}Protocol}{19}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Implementation}{20}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Testing}{21}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Evaluation}{22}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Conclusion}{23}{chapter.8}%
+\contentsline {chapter}{Glossary}{24}{section*.7}%
+\contentsline {chapter}{Acronyms}{25}{section*.9}%

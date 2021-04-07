@@ -17,6 +17,18 @@
 \BOOKMARK [1][-]{section.3.6}{Fault Tolerance}{chapter.3}% 17
 \BOOKMARK [1][-]{section.3.7}{Computer Networks}{chapter.3}% 18
 \BOOKMARK [1][-]{section.3.8}{Inter-Process Communication \(IPC\)}{chapter.3}% 19
-\BOOKMARK [0][-]{chapter.4}{Design and that}{}% 20
-\BOOKMARK [0][-]{section*.4}{Glossary}{}% 21
-\BOOKMARK [0][-]{section*.6}{Acronyms}{}% 22
+\BOOKMARK [0][-]{chapter.4}{Design}{}% 20
+\BOOKMARK [1][-]{section.4.1}{System Architecture}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.2}{Data Structures}{chapter.4}% 22
+\BOOKMARK [2][-]{subsection.4.2.1}{Firewall Rule}{section.4.2}% 23
+\BOOKMARK [2][-]{subsection.4.2.2}{Firewall Block}{section.4.2}% 24
+\BOOKMARK [1][-]{section.4.3}{Message Structures}{chapter.4}% 25
+\BOOKMARK [2][-]{subsection.4.3.1}{Network}{section.4.3}% 26
+\BOOKMARK [2][-]{subsection.4.3.2}{IPC}{section.4.3}% 27
+\BOOKMARK [1][-]{section.4.4}{Protocol}{chapter.4}% 28
+\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 29
+\BOOKMARK [0][-]{chapter.6}{Testing}{}% 30
+\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 31
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 32
+\BOOKMARK [0][-]{section*.7}{Glossary}{}% 33
+\BOOKMARK [0][-]{section*.9}{Acronyms}{}% 34

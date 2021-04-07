@@ -78,4 +78,9 @@ A.~S. Tanenbaum and A.~S. Woodhull, {\em Operating systems: design and
   implementation}.
 \newblock Pearson, 3~ed., 2015.
 
+\bibitem{libcrypto}
+{OpenSSL Software Foundation}, ``{Libcrypto API - OpenSSLWiki}.''
+  \url{https://wiki.openssl.org/index.php/Libcrypto_API}, 2014.
+\newblock Accessed: 07/04/2020.
+
 \end{thebibliography}

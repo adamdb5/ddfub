@@ -238,7 +238,7 @@ Additional background information with regards to how firewalls are integrated i
 \begin{figure}[H]
 \centering
 \includegraphics[height=10cm,keepaspectratio]{DMZ}
-\caption{Using a firewall to create a \acrshort{DMZ}} 
+\caption{Using a firewall to create a \acrshort{DMZ}} `
 \label{fig:dmz}
 \end{figure}
 
@@ -269,9 +269,155 @@ With regards to network topologies, Lammle details seven approaches: bus, star, 
 \end{figure}
 
 \section{Inter-Process Communication (IPC)}
-Tanenbaum and Woodhull provide an extremely detailed breakdown of their UNIX based operating system in \say{Operating systems: Design and Implementation} \cite{operatingsystems}. This book covers all aspects of an \acrshort{OS}, providing insightful explanations of the decisions made at every step in the design process. As this project is designed to run as an application, many of the details covered in this publication are irrelevant, however Tanenbaum and Woodhull cover one essential aspect of this project: \acrfull{IPC}. \acrshort{IPC} is a function within many \acrlong{OS} which enables multiple processes to communicate by passing messages to each other. \acrshort{IPC} will be the technique used to interact with the distributed system, as a client process will use \acrshort{IPC} to issue commands to the \gls{stub}. 
+Tanenbaum and Woodhull provide an extremely detailed breakdown of their UNIX based operating system in \say{Operating systems: Design and Implementation} \cite{operatingsystems}. This book covers all aspects of an \acrshort{OS}, providing insightful explanations of the decisions made at every step in the design process. As this project is designed to run as an application, many of the details covered in this publication are irrelevant, however Tanenbaum and Woodhull cover one essential aspect of this project: \acrfull{IPC}. \acrshort{IPC} is a function within many \acrlong{OS}s which enables multiple processes to communicate by passing messages to each other. \acrshort{IPC} will be the technique used to interact with the distributed system, as a client process will use \acrshort{IPC} to issue commands to the \gls{stub}. 
 
-\chapter{Design and that}
+\chapter{Design}
+
+\section{System Architecture}
+The system will be compiled into one single executable binary, but will interface with a number of external libraries and the \acrshort{OS} via system calls. The stub will primarily communicate with the \acrshort{OS} in order to establish sockets and bind them to the desired ports, the framework will then communicate with the \acrfull{NIC} to obtain it's assigned \acrfull{IP} address. Whenever a new block is created or received, OpenSSL's libcrypto library \cite{libcrypto} will be used to generate or validate the block's hash. This interaction is visualised in the following component diagram.
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=8cm,keepaspectratio]{componentdiagram}
+\caption{System Component Diagram} 
+\label{fig:comp}
+\end{figure}
+
+\section{Data Structures}
+The system uses two primary structures for storing data within the system, these are used for storing firewall rules and blocks.
+
+\subsection{Firewall Rule} \label{rule}
+The system supports five different actions that can be applied to a firewall rule: allow, deny, bypass, force allow and log.  These actions are supported by the distributed system but firewall software remains free to interpret these actions freely, which ensures consistency can be achieved despite different firewall vendors.
+The firewall rule structure comprises of the following:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+Field Name & Data Type & Size (Bytes) \\
+\hline
+source_addr & Character Array & 15 \\
+source_port & Unsigned Integer & 2 \\
+dest_addr & Character Array & 15 \\
+dest_port & Unsigned Integer & 2 \\
+action & FirewallAction & 1 \\
+\hline
+\end{tabular}
+\caption{The Structure of a Firewall Rule}
+\label{tab:rulestr}
+\end{table}
+
+This structure supports the standard model for firewall policies, supporting categorisation by the source address, source port, destination address and destination port. Each rule is then given an associated action.
+
+\subsection{Firewall Block}
+Firewall blocks are used to create the chain of firewall rules within the system. These are comprised of the following fields:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+Field Name & Data Type & Size (Bytes) \\
+\hline
+last_hash & Unsigned Char Array & Dependent on Hash Algorithm \\ 
+author & Character Array & 15 \\
+rule & FirewallRule & Dependent on machine architecture \\
+next & FirewallBlock Pointer & Dependent on machine architecture \\
+\hline
+\end{tabular}
+\caption{The Structure of a Firewall Block}
+\label{tab:firewallblock}
+\end{table}
+
+The structure holds the last block hash in order to verify that the block has been validated and fits onto the chain. In addition to the last block hash, the structure includes the author of the block, which enables an audit to verify that the block was submitted by a reputable source. The structure contains a firewall rule which has been described previously in section \ref{rule}. Finally, the structure contains a pointer to another block, this field is used to join the blocks into a chain via a linked list. When a block is appended to the chain, this field will be null, however once the next block is added to the chain, this field will point to the new block.
+
+\section{Message Structures}
+The system uses two different message passing mechanisms, these being via the network for distributed transactions, and via \acrshort{IPC} for client - stub communication. Each message type follows a particular structure which is discussed below.
+
+\subsection{Network}
+For communications within the distributed system, three different message types are used: advertisement, consensus and rule. Furthermore, each message contains a subtype which is either a broadcast or an acknowledgement. All message types contain a set of common fields, which are detailed below.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+Field Name & Data Type & Size (Bytes) \\
+\hline
+type & MessageType & 1 \\ 
+subtype & MessageSubType & 1 \\ 
+hops & Unsigned Integer & 1 \\ 
+source_addr & Character Array & 15 \\
+target_addr & Character Array & 15 \\
+next_addr & Character Array & 15 \\
+\hline
+\end{tabular}
+\caption{Common Fields in all Network Messages}
+\label{tab:common}
+\end{table}
+
+The type field holds an enum which is called MessageType and contains three values: advertisement, consensus and rule. Similarly the subtype field holds an enum that contains two values: broadcast and acknowledgement. Broadcast messages are used to advertise a new device, request consensus and distribute new a firewall transaction, whereas acknowledgements are used to provide a response, such as acknowledging the new device and providing consensus for a proposed transaction. As the system is decentralised, messages are not sent directly to remote hosts as there may be devices on the network that another device is unaware of, which would result in unsynchronised \gls{blockchain}s. The use of a hop count allows us to limit the number of times a message can be sent around the network, essential to prevent older messages from clogging up the system. The last three fields contain addresses of devices. It may appear unnecessary to provide these values as the messages are wrapped in an \acrshort{IP} packet which already contains these values. These are necessary as when messages are relayed, the \acrshort{IP} packet contains the address of the most recent sender, overwriting the original information. The source address contains the address of the origin device, the target address contains the address of the final destination, and the next address contains the address of the next device to propagate the message to.
+
+\subsubsection{Advertisement Messages}
+The advertisement message is used to advertise the presence of a new device within the distributed system. This message contains no additional fields than those described in table \ref{tab:common}. When the advertisement message subtype is broadcast, the source address is set to the new device's \acrshort{IP} address. At least one host must be known to advertise on the network, and this host's address will be placed into the next address field. The target address field is not used for broadcasts as we have no specific target that we wish to send our message to. Once a node receives an advertisement broadcast, it will check whether that host is already known, if so, the message is ignored, and propagated, otherwise if the host is not yet known, the node first adds the new device to its list of known hosts, and then propagates the message. When the acknowledgement is sent, the target address is set to the address of the new device, which ensures that any other nodes which may have advertised do not interpret the acknowledgement as regarding their broadcast. Once the acknowledgement arrives at the new device, the node adds the host which sent the ack, but does not propagate the message.
+
+\subsubsection{Consensus Messages}
+The consensus message is used when a client or firewall submits a new firewall rule to the \gls{stub} via \acrshort{IPC}. This message contains one additional field which holds the hash of the last block. When a node proposes a new firewall rule, it must first submit the hash of it's last block, which is sent to all known hosts. On receipt of a consensus broadcast, the node calculates the hash of the last block on it's chain, and if it matches the hash sent in the message it sends an ack, and appends the origin node's address to a list of pending rules. The node then forwards the message to all known hosts. After broadcasting the message, the origin host resets a counter, which is incremented every time it receives an ack from one of it's known hosts. If this counter reaches atleast half of it's known hosts in some bounded time, it is deemed to have obtained consensus and may now distributed the new firewall rule.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+Field Name & Data Type & Size (Bytes) \\
+\hline
+last_block_hash & Unsigned Char Array & Dependent on Hash Algorithm \\ 
+\hline
+\end{tabular}
+\caption{Additional Fields in a Consensus Message}
+\label{tab:consensus}
+\end{table}
+
+\subsubsection{Rule Messages}
+The rule message is used to distribute a new firewall rule once a node has achieved consensus. Only the broadcast subtype is used for rule messages, as waiting for acknowledgements could halt the system at the time of an attack, which would prevent the node from responding to other attacks. Upon receiving a rule broadcast the node will check to see if has previously approved the transaction by looking up the rule's origin in its list of pending rules. If the origin exists in the pending rules then the new block will be added to the chain, including its author and the last hash, then propagated to all of the node's known hosts.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+Field Name & Data Type & Size (Bytes) \\
+\hline
+rule & FirewallRule & Dependent on machine architecture \\ 
+\hline
+\end{tabular}
+\caption{Additional Fields in a Rule Message}
+\label{tab:rule}
+\end{table}
+
+\subsection{IPC}
+There are four different types of \acrshort{IPC} message: rule, enable, disable, shutdown. The rule type is intended to be sent by a firewall, and contains a new firewall rule to be submitted to the distributed system. The enable and disable message types simply control the status of the stub, if it is believed that a host on the network may be malfunctioning (i.e. a firewall is sending bogus rules), it can be disabled and then re-enabled once the fault is fixed. Finally the shutdown message is used to properly terminate the \gls{stub}. Upon receiving the shutdown message, all sockets will be closed, the \acrshort{IPC} tunnel will be destroyed and the application will wait for all threads to terminate before exiting.
+To ensure messages can be parsed correctly, all of these message types follow the same structure and simply do not use the redundant fields.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c| } 
+\hline
+Field Name & Data Type & Size (Bytes) \\
+\hline
+message_type & IPCMessageType & 1 \\
+rule & FirewallRule & Dependent on machine architecture \\
+\hline
+\end{tabular}
+\caption{Structure of \acrshort{IPC} Messages}
+\label{tab:ipc}
+\end{table}
+ 
+\section{Protocol}
+
+\chapter{Implementation}
+
+\chapter{Testing}
+
+\chapter{Evaluation}
+
+\chapter{Conclusion}
 
 \printglossaries
 

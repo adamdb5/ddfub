@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.4.6)  6 APR 2021 18:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.4.6)  7 APR 2021 17:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -688,96 +688,120 @@ e ignored
 <to be read again> 
                    \relax 
 l.70 \end{abstract}
-                    [1] (./paper.toc)
-\tf@toc=\write7
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
+                    [1] (./paper.tocpdfTeX warning (ext4): destination with the
+ same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.76 \listoffigures
-                    [1
+l.37 ...tsline {chapter}{Acronyms}{25}{section*.9}
+                                                  % [1
 
-] (./paper.lof)
+])
+\tf@toc=\write7
+ [2] (./paper.lof)
 \tf@lof=\write8
- [2
+
+[3
 
 ] (./paper.lot)
 \tf@lot=\write9
- [3
+ [4
 
 ]
 Chapter 1.
-[4
+[5
 
 ]
-<./images//TanenbaumDistributed.png, id=219, 1104.125pt x 456.70625pt>
+<./images//TanenbaumDistributed.png, id=300, 1104.125pt x 456.70625pt>
 File: ./images//TanenbaumDistributed.png Graphic file (type png)
 <use ./images//TanenbaumDistributed.png>
 Package pdftex.def Info: ./images//TanenbaumDistributed.png  used on input line
  102.
 (pdftex.def)             Requested size: 452.9679pt x 187.36226pt.
- [5 <./images//TanenbaumDistributed.png>]
-<./images//NoferBlock.png, id=243, 3368.585pt x 600.2425pt>
+ [6 <./images//TanenbaumDistributed.png>]
+<./images//NoferBlock.png, id=323, 3368.585pt x 600.2425pt>
 File: ./images//NoferBlock.png Graphic file (type png)
 <use ./images//NoferBlock.png>
 Package pdftex.def Info: ./images//NoferBlock.png  used on input line 113.
 (pdftex.def)             Requested size: 452.9679pt x 80.70866pt.
- [6 <./images//NoferBlock.png>]
+ [7 <./images//NoferBlock.png>]
 Chapter 2.
-[7
+[8
 
 ]
 Chapter 3.
-<./images//appl_layer_proto.png, id=272, 876.27374pt x 439.6425pt>
+<./images//appl_layer_proto.png, id=353, 876.27374pt x 439.6425pt>
 File: ./images//appl_layer_proto.png Graphic file (type png)
 <use ./images//appl_layer_proto.png>
 Package pdftex.def Info: ./images//appl_layer_proto.png  used on input line 151
 .
 (pdftex.def)             Requested size: 283.5421pt x 142.26378pt.
-[8
+[9
 
  <./images//appl_layer_proto.png>]
-<./images//rpc.png, id=299, 1073.00874pt x 510.90875pt>
+<./images//rpc.png, id=380, 1073.00874pt x 510.90875pt>
 File: ./images//rpc.png Graphic file (type png)
 <use ./images//rpc.png>
 Package pdftex.def Info: ./images//rpc.png  used on input line 176.
 (pdftex.def)             Requested size: 452.9679pt x 215.67941pt.
- [9 <./images//rpc.png>]
+ [10 <./images//rpc.png>]
 File: ./images//NoferBlock.png Graphic file (type png)
 <use ./images//NoferBlock.png>
 Package pdftex.def Info: ./images//NoferBlock.png  used on input line 199.
 (pdftex.def)             Requested size: 452.9679pt x 80.70866pt.
-<./images//distmsg.png, id=330, 828.09375pt x 196.735pt>
+<./images//distmsg.png, id=410, 828.09375pt x 196.735pt>
 File: ./images//distmsg.png Graphic file (type png)
 <use ./images//distmsg.png>
 Package pdftex.def Info: ./images//distmsg.png  used on input line 210.
 (pdftex.def)             Requested size: 239.52188pt x 56.9055pt.
- [10]
-<./images//DMZ.png, id=345, 702.625pt x 579.16376pt>
+ [11]
+<./images//DMZ.png, id=426, 702.625pt x 579.16376pt>
 File: ./images//DMZ.png Graphic file (type png)
 <use ./images//DMZ.png>
 Package pdftex.def Info: ./images//DMZ.png  used on input line 240.
 (pdftex.def)             Requested size: 345.17911pt x 284.52756pt.
- [11 <./images//distmsg.png>]
-<./images//primback.png, id=360, 996.72375pt x 363.3575pt>
+ [12 <./images//distmsg.png>]
+<./images//primback.png, id=441, 996.72375pt x 363.3575pt>
 File: ./images//primback.png Graphic file (type png)
 <use ./images//primback.png>
 Package pdftex.def Info: ./images//primback.png  used on input line 252.
 (pdftex.def)             Requested size: 390.24158pt x 142.26378pt.
- [12 <./images//DMZ.png> <./images//primback.png>]
-<./images//mesh.png, id=378, 442.65375pt x 274.02374pt>
+ [13 <./images//DMZ.png>]
+<./images//mesh.png, id=459, 442.65375pt x 274.02374pt>
 File: ./images//mesh.png Graphic file (type png)
 <use ./images//mesh.png>
 Package pdftex.def Info: ./images//mesh.png  used on input line 266.
 (pdftex.def)             Requested size: 229.81653pt x 142.26378pt.
- [13 <./images/Mesh.png>]
+ [14 <./images//primback.png>]
+[15 <./images/Mesh.png>]
 Chapter 4.
-(./paper.gls [14
+<./images//componentdiagram.png, id=488, 673.51625pt x 402.50375pt>
+File: ./images//componentdiagram.png Graphic file (type png)
+<use ./images//componentdiagram.png>
+Package pdftex.def Info: ./images//componentdiagram.png  used on input line 281
+.
+(pdftex.def)             Requested size: 380.87653pt x 227.62204pt.
+[16
 
-]) (./paper.acr [15
+ <./images//componentdiagram.png>] [17] [18] [19]
+Chapter 5.
+[20
+
+]
+Chapter 6.
+[21
+
+]
+Chapter 7.
+[22
+
+]
+Chapter 8.
+(./paper.gls [23
+
+]) (./paper.acr [24
 
 
-]) (./paper.bbl [16
+]) (./paper.bbl [25
 
 
 ]
@@ -791,20 +815,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--25
  / / www . ncsc . gov . uk / files /
  []
 
-[17
+[26
 
-]) [18] (./paper.aux)
+]
+Underfull \hbox (badness 1983) in paragraph at lines 82--85
+[]\OT1/cmr/m/n/10.95 OpenSSL Soft-ware Foun-da-tion, ``Libcrypto API - OpenSSLW
+iki.'' []$\OT1/cmtt/m/n/10.95 https : / / wiki .
+ []
+
+) [27] (./paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 37CF88B69B99DA5FA16E96C73ADABD8D;1350.
+(rerunfilecheck)             Checksum: 2A95242158308CFD51E58923355658F3;2027.
  ) 
 Here is how much of TeX's memory you used:
- 13694 strings out of 479383
- 204369 string characters out of 5875831
- 593606 words of memory out of 5000000
- 30427 multiletter control sequences out of 15000+600000
+ 13819 strings out of 479383
+ 206048 string characters out of 5875831
+ 598621 words of memory out of 5000000
+ 30518 multiletter control sequences out of 15000+600000
  411735 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 93i,7n,97p,1158b,450s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 93i,9n,97p,1466b,450s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/publi
@@ -813,10 +843,10 @@ mr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr
 /share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type
 1/public/cm-super/sfrm1095.pfb>
-Output written on paper.pdf (20 pages, 332667 bytes).
+Output written on paper.pdf (29 pages, 375413 bytes).
 PDF statistics:
- 518 PDF objects out of 1000 (max. 8388607)
- 473 compressed objects within 5 object streams
- 105 named destinations out of 1000 (max. 500000)
- 217 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 679 PDF objects out of 1000 (max. 8388607)
+ 621 compressed objects within 7 object streams
+ 139 named destinations out of 1000 (max. 500000)
+ 318 words of extra memory for PDF output out of 10000 (max. 10000000)
 
