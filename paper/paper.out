@@ -25,10 +25,21 @@
 \BOOKMARK [1][-]{section.4.3}{Message Structures}{chapter.4}% 25
 \BOOKMARK [2][-]{subsection.4.3.1}{Network}{section.4.3}% 26
 \BOOKMARK [2][-]{subsection.4.3.2}{IPC}{section.4.3}% 27
-\BOOKMARK [1][-]{section.4.4}{Protocol}{chapter.4}% 28
-\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 29
-\BOOKMARK [0][-]{chapter.6}{Testing}{}% 30
-\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 31
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 32
-\BOOKMARK [0][-]{section*.7}{Glossary}{}% 33
-\BOOKMARK [0][-]{section*.9}{Acronyms}{}% 34
+\BOOKMARK [1][-]{section.4.4}{ACR Protocol}{chapter.4}% 28
+\BOOKMARK [2][-]{subsection.4.4.1}{Advertisement}{section.4.4}% 29
+\BOOKMARK [2][-]{subsection.4.4.2}{Consensus-Rule}{section.4.4}% 30
+\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 31
+\BOOKMARK [1][-]{section.5.1}{Language}{chapter.5}% 32
+\BOOKMARK [1][-]{section.5.2}{IPC}{chapter.5}% 33
+\BOOKMARK [2][-]{subsection.5.2.1}{POSIX}{section.5.2}% 34
+\BOOKMARK [2][-]{subsection.5.2.2}{Windows}{section.5.2}% 35
+\BOOKMARK [1][-]{section.5.3}{Sockets}{chapter.5}% 36
+\BOOKMARK [1][-]{section.5.4}{Network}{chapter.5}% 37
+\BOOKMARK [1][-]{section.5.5}{Multithreading}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.6}{Blockchain}{chapter.5}% 39
+\BOOKMARK [1][-]{section.5.7}{Fault Tolerance}{chapter.5}% 40
+\BOOKMARK [0][-]{chapter.6}{Testing}{}% 41
+\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 42
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 43
+\BOOKMARK [0][-]{section*.7}{Glossary}{}% 44
+\BOOKMARK [0][-]{section*.9}{Acronyms}{}% 45

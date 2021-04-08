@@ -36,7 +36,7 @@
 	tabsize=2,
 }
 
-\lstdefinestyle{make}{
+\lstdefinestyle{java}{
 	commentstyle=\color{comment},
 	stringstyle=\color{string},
 	keywordstyle=\color{keyword},
@@ -51,7 +51,6 @@
 	upquote=true,
 	tabsize=2,
 }
-
 
 %%%%%%%%%%%%%%%%%%
 % TITLE
@@ -238,7 +237,7 @@ Additional background information with regards to how firewalls are integrated i
 \begin{figure}[H]
 \centering
 \includegraphics[height=10cm,keepaspectratio]{DMZ}
-\caption{Using a firewall to create a \acrshort{DMZ}} `
+\caption{Using a firewall to create a \acrshort{DMZ}}
 \label{fig:dmz}
 \end{figure}
 
@@ -333,7 +332,7 @@ The structure holds the last block hash in order to verify that the block has be
 \section{Message Structures}
 The system uses two different message passing mechanisms, these being via the network for distributed transactions, and via \acrshort{IPC} for client - stub communication. Each message type follows a particular structure which is discussed below.
 
-\subsection{Network}
+\subsection{Network} \label{netstruct}
 For communications within the distributed system, three different message types are used: advertisement, consensus and rule. Furthermore, each message contains a subtype which is either a broadcast or an acknowledgement. All message types contain a set of common fields, which are detailed below.
 
 \begin{table}[H]
@@ -409,9 +408,130 @@ rule & FirewallRule & Dependent on machine architecture \\
 \label{tab:ipc}
 \end{table}
  
-\section{Protocol}
+\section{ACR Protocol}
+As described in section \ref{netstruct}, the system supports three message types: advertisement, consensus and rule, which form the ACR protocol.
+
+\subsection{Advertisement}
+The advertisement message is sent at startup and is mutually exclusive from the other messages, as it is executed automatically and does not affect the consensus or rule transaction stages. The advertisement message is sent when the framework is executed. The framework will send an advertisement broadcast to all known hosts, each of which will relay the message to each of their known hosts, provided that the hop count has not yet been exceeded. The known host will then forward the message to all of its known hosts, propagating the message throughout the network. Upon receiving an advertisement message, the host checks if the host is known, if not, it is added, and an acknowledgement is returned.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{advertisement_seq}
+\caption{Advertisement Sequence Diagram} 
+\label{fig:advseq}
+\end{figure}
+
+\subsection{Consensus-Rule}
+The consensus and rule messages are sent when a client or firewall send an \acrshort{IPC} message to the local \gls{stub}. Upon receiving the rule, the \gls{stub} will marshal the parameters into a network message, which is then sent to all known hosts. When a node receives the consensus message, it will compare the hash in the message to the hash of the previous block on its chain, if the hashes match, the block is considered valid and an acknowledgement is returned. The broadcast is then forwarded to all of the hosts known by that node. When the origin node receives an acknowledgement, it will check if that host is known. If it is not, then it will not increment the ack count, as it would interfere with the consensus calculation, however it will still receive the rule, if consensus is achieved. The origin node will then wait for some timeout, after which it will test if a sufficient number of acknowledgements have been received in comparison to the number of known hosts. If this test passes (e.g. at least half of the known hosts must acknowledge), then a rule message is sent. No acknowledgements are sent upon receipt of a rule message, but nodes will continue to propagate the message until the hop limit is reached.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{consensus_rule_seq}
+\caption{Successful Consensus-Rule Sequence Diagram} 
+\label{fig:consruleseq}
+\end{figure}
 
 \chapter{Implementation}
+
+\section{Language}
+The logic within this project could be achieved using a range of programming languages, however such a system needs to be reliable and fast, which narrows down the applicable languages. As cross compatibility is desirable, Java\cite{java} or Python\cite{python} may seem like the best options as Java executes entirely within the Java Virtual Machine (JVM)\cite{jvm} and Python is executed using an interpreter. Each of these technologies provide a suitable abstraction such that if the \acrshort{VM} or interpreter is supported by an \acrshort{OS}, it should work. The drawbacks associated with this are that a \acrshort{VM} or interpreter introduce a large memory overhead, something that is not desirable given this framework is intended to be implemented into edge devices, additionally, with such abstractions we lose both speed and control. Rust\cite{rust} is a modern language focused on performance and reliability, however its immaturity leaves a number of features missing or poorly implemented as it currently relies heavily on community submitted modules. One advantage of Rust however is its low memory footprint, and memory management, which enables small binary executables to be built, ideal for this project. 
+
+The final two languages considered were C\cite{c} and C++\cite{cpp}. It may seem an obvious choice to use C++ over C, however for this project very few features of C++ would be useful, and would simply add additional steps in the program to bridge between \acrfull{POSIX} functions (implemented in C) and C++ types and syntax. One advantage that C has over C++ is its existing dominance in operating systems. Deemed the \textit{system programming language}, the Linux\cite{linux} and NetBSD\cite{netbsd} kernels are written in pure C, along with the vast majority of the FreeBSD\cite{freebsd} and Windows\cite{windows} kernels. This means that using C enables this project to be compiled into an operating system, such that the distributed system is automatically instantiated on boot in kernel space and cannot be stopped or interrupted by a malicious application or user. Furthermore, writing this project in C allows wrappers to be written for all other languages, C++ can be integrated with no changes, and modules can be written for most other languages including Java and Python.
+
+\section{IPC}
+In order to achieve cross-platform \acrshort{IPC}, different approaches were required for \acrfull{POSIX} compliant operating systems and Windows\cite{windows} operating systems. Each \acrshort{OS} type offers a number of \acrshort{IPC} methods, which are briefly discussed the following sections.
+
+The \gls{stub} provides the following abstractions for interfacing with native \acrshort{IPC}. The implementation methods are discussed in their relative sections below.\\\\
+
+\begin{lstlisting}[language=c,style=c,caption=IPC API]
+int init_ipc_server(void);
+int init_ipc_client(void);
+int connect_ipc(void);
+int cleanup_ipc(void);
+int send_ipc_message(IPCMessage *message);
+int recv_ipc_message(IPCMessage *message);
+\end{lstlisting}
+
+\subsection{POSIX} \label{posixipc}
+\acrshort{POSIX} systems provide four interfaces for \acrshort{IPC}: pipes, FIFO, message queues and sockets. Although pipes do allow processes to communicate, the primary purpose of pipes is to obtain the output of one command and pass this output into a second command, which is not suitable for our application. FIFO and message queues operate very similarly, whereby each method creates some file in the filesystem which can then be referenced by any process. FIFO is the predecessor to message queues, and hence different operating systems have varying implementations for FIFO, however as message queues are a \acrshort{POSIX} standard, all implementations provide the same interface, greatly simplifying the processes of making this project cross compatible. For this reason, message queues were used for \acrshort{POSIX} \acrshort{IPC}. The final method is via UNIX sockets. The socket interface is primarily designed for networked communication, but also supports \acrshort{IPC}. Unfortunately, as sockets are intended for use in networks, some implementations still use the \acrshort{NIC} to communicate even locally, which slows down communication, and adds additional points of failure.
+
+\begin{lstlisting}[language=c,style=c,caption=Creating the message queue on a POSIX OS]
+mqueue = mq_open("/dfw", O_CREAT | O_RDWR, 0644, &attr);
+\end{lstlisting}
+
+Whilst testing this application it was discovered that nobody had yet created an interface for \acrshort{POSIX} message queues in Java, so a secondary project was created, called Jmq \cite{jmq} which provides an interface for \acrshort{POSIX} message queues in Java using the Java Native Interface (JNI). This enables a \gls{stub} to be created in Java by passing messages using the following syntax:\\
+
+\begin{lstlisting}[language=java,style=java,caption=Example of Jmq]
+Jmq_attr attrs = new Jmq_attr(0, 2, 1, 0);
+Jmq my_queue = new Jmq("/dfw", Jmq.O_CREAT | Jmq.O_RDWR, 0644, attrs);
+my_queue.unlink();
+\end{lstlisting}
+
+\subsection{Windows}
+Windows\cite{windows} offers three methods of \acrshort{IPC}: Anonymous Pipes, Named Pipes and sockets. Anonymous pipes allow half-duplex communication, which is not ideal for this project, as it is necessary for the client / firewall to send instructions to the \gls{stub}, and for the \gls{stub} to send messages back to the client. Furthermore, Hart\cite{windowsprog} explains the fundamental issue with anonymous pipes: they have no identifier associated with them, which creates a new problem of communicating the pipe handle to any clients wishing to connect. Named pipes are full-duplex, message oriented pipes than can operate locally or over a network. The difference between anonymous and named pipes is that a named pipe can be identified using a string which represents a file path, this enables both client and \gls{stub} to connect directly to the pipe. The final method is via sockets which act similarly to UNIX sockets, and hence have the same pitfalls as UNIX sockets mentioned in section \ref{posixipc}.\\
+
+\begin{lstlisting}[language=c,style=c,caption=Creating the message queue on Windows]
+mqueue = CreateNamedPipe(TEXT("\\\\.\\pipe\\dfw"),
+                           PIPE_ACCESS_DUPLEX | FILE_FLAG_OVERLAPPED,
+                           PIPE_TYPE_MESSAGE, 1, 0, 0, 0, NULL);
+\end{lstlisting}
+
+\section{Sockets}
+Network sockets are the primary method allowing processes to communicate over a network, however similarly to \acrshort{IPC}, \acrshort{POSIX} and Windows system provide slightly different socket interfaces. A numeric port is bound to the socket which enables the network stack to communicate with the socket, and hence the process. The main difference is that Windows requires the initialisation of the WinSock\cite{winsock} library. Thankfully other than the initialisation of WinSock, the rest of the interface provided by WinSock is very similar to the basis of \acrshort{POSIX} sockets, which are known as Berkeley sockets. This similarity means that only small modification need to be made to the source code. After creating the socket, it is then bound to the numeric port. The default ports used for this project are 8070 and 8071.
+
+The \gls{stub} provides the following abstractions for interfacing with native sockets.
+\begin{lstlisting}[language=c,style=c,caption=Socket API]
+int init_sockets(void);
+int cleanup_sockets(void);
+socket_t create_socket(void);
+void close_socket(socket_t sock);
+int bind_socket(socket_t sock, int port);
+int send_to_socket(socket_t sock, void *message, size_t length, int flags,
+                   struct sockaddr_in dest_addr);
+int recv_from_socket(socket_t sock, void *buffer, size_t length, int flags);
+\end{lstlisting}
+
+\section{Network}
+As the project is focussed on creating a distributed system, the vast majority of the implementation is based on networking. Thankfully, due to the previous abstractions created regarding sockets, the network implementation consists primarily of the business logic. The one major difference between the UNIX network stack, and the Windows network stack, is querying the \acrshort{OS} to retrieve information from \acrshort{NIC}s. Implementing this required an entirely different system for each operating system. On UNIX, the \texttt{getifaddrs} function was used, whereas on Windows, the \texttt{GetAdaptersAddresses} function was used.
+
+The \gls{stub} provides the following abstractions for interfacing with the native network stack.
+\begin{lstlisting}[language=c,style=c,caption=Network API]
+int get_local_address(char *buffer);
+int get_acks(void);
+int reset_acks(void);
+int set_ack(char *addr);
+int load_hosts_from_file(const char *fname);
+int save_hosts_to_file(const char *fname);
+int add_host(char* addr);
+int check_host_exists(char *addr);
+int get_host_count(void);
+int init_net(void);
+int cleanup_net(void);
+int send_to_host(char *ip_address, void *message, size_t length);
+int send_advertisement_message(AdvertisementMessage *message);
+int send_to_all_advertisement_message(AdvertisementMessage *message);
+int recv_advertisement_message(void *buffer);
+int recv_advertisement_broadcast(AdvertisementMessage *message);
+int recv_advertisement_ack(AdvertisementMessage *message);
+int send_consensus_message(ConsensusMessage *message);
+int send_to_all_consensus_message(ConsensusMessage *message);
+int recv_consensus_message(void *buffer);
+int recv_consensus_broadcast(ConsensusMessage *message);
+int recv_consensus_ack(ConsensusMessage *message);
+int send_rule_message(RuleMessage *message);
+int send_to_all_rule_message(RuleMessage *message);
+int recv_rule_message(void *buffer);
+int recv_rule_broadcast(RuleMessage *message);
+int poll_message(void *buffer, size_t length);
+\end{lstlisting}
+
+\section{Multithreading}
+In order for the \gls{stub} to be capable of consecutively send and receive messages over both the network, and via \acrshort{IPC}, the framework had to be multithreaded. Unsurprisingly, \acrshort{POSIX} and Windows use different thread models, which means there is no common threading interface. Thankfully, the \acrshort{POSIX} thread model has been ported to Windows in the form of the POSIX Threads for Windows project\cite{pthread}. This allows the source code to be written identically for all operating systems, the only difference being that Windows will be linked with the necessary dll.
+
+\section{Blockchain}
+Once the previous \acrshort{API}s had been created, the  
+
+\section{Fault Tolerance}
 
 \chapter{Testing}
 

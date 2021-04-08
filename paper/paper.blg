@@ -15,46 +15,69 @@ Warning--entry type for "ethereum" isn't style-file defined
 --line 71 of file bib.bib
 Warning--entry type for "libcrypto" isn't style-file defined
 --line 140 of file bib.bib
+Warning--entry type for "jmq" isn't style-file defined
+--line 162 of file bib.bib
+Warning--entry type for "java" isn't style-file defined
+--line 170 of file bib.bib
+Warning--entry type for "python" isn't style-file defined
+--line 178 of file bib.bib
+Warning--entry type for "jvm" isn't style-file defined
+--line 186 of file bib.bib
+Warning--entry type for "rust" isn't style-file defined
+--line 194 of file bib.bib
+Warning--entry type for "linux" isn't style-file defined
+--line 215 of file bib.bib
+Warning--entry type for "netbsd" isn't style-file defined
+--line 223 of file bib.bib
+Warning--entry type for "freebsd" isn't style-file defined
+--line 231 of file bib.bib
+Warning--entry type for "windows" isn't style-file defined
+--line 239 of file bib.bib
+Warning--entry type for "winsock" isn't style-file defined
+--line 247 of file bib.bib
+Warning--entry type for "pthread" isn't style-file defined
+--line 255 of file bib.bib
 Warning--empty booktitle in sdsi
-You've used 18 entries,
+Warning--empty publisher in c
+You've used 32 entries,
             1876 wiz_defined-function locations,
-            578 strings with 5980 characters,
-and the built_in function-call counts, 3375 in all, are:
-= -- 322
-> -- 133
+            635 strings with 7270 characters,
+and the built_in function-call counts, 5325 in all, are:
+= -- 518
+> -- 193
 < -- 0
-+ -- 53
-- -- 35
-* -- 197
-:= -- 504
-add.period$ -- 26
-call.type$ -- 18
-change.case$ -- 16
++ -- 82
+- -- 50
+* -- 270
+:= -- 789
+add.period$ -- 54
+call.type$ -- 32
+change.case$ -- 27
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 163
-empty$ -- 375
-format.name$ -- 35
-if$ -- 831
+cite$ -- 34
+duplicate$ -- 234
+empty$ -- 632
+format.name$ -- 50
+if$ -- 1332
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 15
-newline$ -- 65
-num.names$ -- 18
-pop$ -- 84
+int.to.str$ -- 32
+missing$ -- 21
+newline$ -- 121
+num.names$ -- 32
+pop$ -- 169
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 85
+skip$ -- 122
 stack$ -- 0
 substring$ -- 103
-swap$ -- 37
+swap$ -- 40
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 1
-while$ -- 29
-width$ -- 20
-write$ -- 172
-(There were 7 warnings)
+warning$ -- 2
+while$ -- 43
+width$ -- 34
+write$ -- 308
+(There were 19 warnings)

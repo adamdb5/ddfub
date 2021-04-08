@@ -16,22 +16,33 @@
 \contentsline {section}{\numberline {3.5}Firewalls and Firewall Rules}{12}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Fault Tolerance}{13}{section.3.6}%
 \contentsline {section}{\numberline {3.7}Computer Networks}{14}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Inter-Process Communication (IPC)}{15}{section.3.8}%
-\contentsline {chapter}{\numberline {4}Design}{16}{chapter.4}%
-\contentsline {section}{\numberline {4.1}System Architecture}{16}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Data Structures}{16}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Firewall Rule}{17}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Firewall Block}{17}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Message Structures}{17}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Network}{17}{subsection.4.3.1}%
-\contentsline {subsubsection}{Advertisement Messages}{18}{section*.4}%
-\contentsline {subsubsection}{Consensus Messages}{18}{section*.5}%
-\contentsline {subsubsection}{Rule Messages}{19}{section*.6}%
-\contentsline {subsection}{\numberline {4.3.2}IPC}{19}{subsection.4.3.2}%
-\contentsline {section}{\numberline {4.4}Protocol}{19}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Implementation}{20}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Testing}{21}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Evaluation}{22}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Conclusion}{23}{chapter.8}%
-\contentsline {chapter}{Glossary}{24}{section*.7}%
-\contentsline {chapter}{Acronyms}{25}{section*.9}%
+\contentsline {section}{\numberline {3.8}Inter-Process Communication (IPC)}{14}{section.3.8}%
+\contentsline {chapter}{\numberline {4}Design}{15}{chapter.4}%
+\contentsline {section}{\numberline {4.1}System Architecture}{15}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Data Structures}{15}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Firewall Rule}{16}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Firewall Block}{16}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Message Structures}{16}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Network}{16}{subsection.4.3.1}%
+\contentsline {subsubsection}{Advertisement Messages}{17}{section*.4}%
+\contentsline {subsubsection}{Consensus Messages}{17}{section*.5}%
+\contentsline {subsubsection}{Rule Messages}{18}{section*.6}%
+\contentsline {subsection}{\numberline {4.3.2}IPC}{18}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}ACR Protocol}{18}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Advertisement}{18}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Consensus-Rule}{19}{subsection.4.4.2}%
+\contentsline {chapter}{\numberline {5}Implementation}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Language}{21}{section.5.1}%
+\contentsline {section}{\numberline {5.2}IPC}{21}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}POSIX}{22}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Windows}{22}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Sockets}{23}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Network}{23}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Multithreading}{24}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Blockchain}{24}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Fault Tolerance}{24}{section.5.7}%
+\contentsline {chapter}{\numberline {6}Testing}{25}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Evaluation}{26}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Conclusion}{27}{chapter.8}%
+\contentsline {chapter}{Glossary}{28}{section*.7}%
+\contentsline {chapter}{Acronyms}{29}{section*.9}%

@@ -8,10 +8,12 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces An example of a \gls {blockchain} \cite {blockchain}}}{11}{figure.3.3}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Message format for the SDSI Model \cite {sdsi}}}{12}{figure.3.4}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Using a firewall to create a \acrshort {DMZ}}}{13}{figure.3.5}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Primary backup technique \cite {faulttol}}}{14}{figure.3.6}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Mesh Topology}}{15}{figure.3.7}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Primary backup technique \cite {faulttol}}}{13}{figure.3.6}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Mesh Topology}}{14}{figure.3.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces System Component Diagram}}{16}{figure.4.1}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces System Component Diagram}}{15}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Advertisement Sequence Diagram}}{19}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Successful Consensus-Rule Sequence Diagram}}{20}{figure.4.3}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -83,4 +83,71 @@ A.~S. Tanenbaum and A.~S. Woodhull, {\em Operating systems: design and
   \url{https://wiki.openssl.org/index.php/Libcrypto_API}, 2014.
 \newblock Accessed: 07/04/2020.
 
+\bibitem{java}
+Oracle, ``Java | oracle.'' \url{https://www.java.com}, 2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{python}
+{Python Software Foundation}, ``Welcome to python.org.''
+  \url{https://www.python.org/}, 2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{jvm}
+Oracle, ``Java virtual machine technology overview.''
+  \url{https://docs.oracle.com/en/java/javase/16/vm/java-virtual-machine-technology-overview.html},
+  2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{rust}
+{Rust Team}, ``Rust programming language.'' \url{https://www.rust-lang.org/},
+  2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{c}
+B.~W. Kernighan and D.~M. Ritchie, {\em The C programming language}.
+\newblock 1988.
+
+\bibitem{cpp}
+B.~Stroustrup, {\em The C++ programming language}.
+\newblock Pearson Education India, 2000.
+
+\bibitem{linux}
+L.~Torvalds, ``Github - torvalds/linux: Linux kernel source tree.''
+  \url{https://github.com/torvalds/linux}, 2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{netbsd}
+{NetBSD Foundation}, ``The {NetBSD} project.''
+  \url{https://http://netbsd.org/}, 2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{freebsd}
+{FreeBSD Foundation}, ``The {FreeBSD} project.''
+  \url{https://www.freebsd.org/}, 2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{windows}
+Microsoft, ``Explore windows 10 os, computers, apps \& more | microsoft.''
+  \url{https://www.microsoft.com/en-gb/windows}, 2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{jmq}
+A.~D. Bruce, ``Jmq -{ Java POSIX Message Queue interface}.''
+  \url{https://gitlab.com/adamdb/jmq}, 2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{windowsprog}
+J.~M. Hart, {\em Windows system programming}.
+\newblock Pearson Education, 2010.
+
+\bibitem{winsock}
+Microsoft, ``Windows sockets 2 - win32 apps | microsoft docs.''
+  \url{https://docs.microsoft.com/en-us/windows/win32/winsock}, 2021.
+\newblock Accessed: 08/04/2021.
+
+\bibitem{pthread}
+R.~P. Johnson, ``{POSIX} threads for windows / wiki \ home.''
+  \url{https://sourceforge.net/p/pthreads4w/wiki/Home/}, 2021.
+\newblock Accessed: 08/04/2021.
+
 \end{thebibliography}
