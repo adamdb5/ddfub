@@ -37,9 +37,11 @@
 \BOOKMARK [1][-]{section.5.4}{Network}{chapter.5}% 37
 \BOOKMARK [1][-]{section.5.5}{Multithreading}{chapter.5}% 38
 \BOOKMARK [1][-]{section.5.6}{Blockchain}{chapter.5}% 39
-\BOOKMARK [1][-]{section.5.7}{Fault Tolerance}{chapter.5}% 40
-\BOOKMARK [0][-]{chapter.6}{Testing}{}% 41
-\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 42
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 43
-\BOOKMARK [0][-]{section*.7}{Glossary}{}% 44
-\BOOKMARK [0][-]{section*.9}{Acronyms}{}% 45
+\BOOKMARK [2][-]{subsection.5.6.1}{Hash Algorithms}{section.5.6}% 40
+\BOOKMARK [2][-]{subsection.5.6.2}{Hash Implementation}{section.5.6}% 41
+\BOOKMARK [1][-]{section.5.7}{Fault Tolerance}{chapter.5}% 42
+\BOOKMARK [0][-]{chapter.6}{Testing}{}% 43
+\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 44
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 45
+\BOOKMARK [0][-]{section*.7}{Glossary}{}% 46
+\BOOKMARK [0][-]{section*.9}{Acronyms}{}% 47

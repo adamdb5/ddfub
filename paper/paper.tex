@@ -5,10 +5,12 @@
 \usepackage{dirtytalk}
 \usepackage{xcolor}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage{appendix}
 \usepackage{float}
+\usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage[acronym,toc]{glossaries}
 
@@ -308,7 +310,7 @@ action & FirewallAction & 1 \\
 
 This structure supports the standard model for firewall policies, supporting categorisation by the source address, source port, destination address and destination port. Each rule is then given an associated action.
 
-\subsection{Firewall Block}
+\subsection{Firewall Block} \label{firewallblock}
 Firewall blocks are used to create the chain of firewall rules within the system. These are comprised of the following fields:
 
 \begin{table}[H]
@@ -526,10 +528,73 @@ int poll_message(void *buffer, size_t length);
 \end{lstlisting}
 
 \section{Multithreading}
-In order for the \gls{stub} to be capable of consecutively send and receive messages over both the network, and via \acrshort{IPC}, the framework had to be multithreaded. Unsurprisingly, \acrshort{POSIX} and Windows use different thread models, which means there is no common threading interface. Thankfully, the \acrshort{POSIX} thread model has been ported to Windows in the form of the POSIX Threads for Windows project\cite{pthread}. This allows the source code to be written identically for all operating systems, the only difference being that Windows will be linked with the necessary dll.
+In order for the \gls{stub} to be capable of consecutively send and receive messages over both the network, and via \acrshort{IPC}, the framework had to be multithreaded. Unsurprisingly, \acrshort{POSIX} and Windows use different thread models, which means there is no common threading interface. Thankfully, the \acrshort{POSIX} thread model has been ported to Windows in the form of the \acrshort{POSIX} Threads for Windows project\cite{pthread}. This allows the source code to be written identically for all operating systems, the only difference being that Windows will be linked with the necessary Dynamic-Link Library (DLL).
 
 \section{Blockchain}
-Once the previous \acrshort{API}s had been created, the  
+Once the previous \acrshort{API}s had been created, the \gls{blockchain} aspect of the project could be implemented. As the structure of these blocks have already been discussed in section \ref{firewallblock}, this section will focus on how the functionality of this was implemented, primarily the hashing of blocks.
+
+\subsection{Hash Algorithms} 
+The first decision that had to be made was which hash algorithm to implement. A wide range of hash algorithms are available, however the most popular three are Secure Hash Algorithm (SHA), MD5 and BLAKE. The SHA hash suite boasts a number of algorithms which are classed into four generations: SHA-0, SHA-1, SHA-2 and SHA-3. The SHA-0 and SHA-1 algorithms are the least secure, and are now deemed insecure as collisions been found, which would enable a malicious block to contain the hash of a valid block. At the time of writing this, there are no known collisions for the SHA-2 or SHA-3 families. The MD5 hash algorithm is also insecure for the same reason as SHA-1 and is hence not appropriate for this project. The final algorithm family is BLAKE, which consists of three families: BLAKE, BLAKE2 and BLAKE3. There are no known collisions within any of the BLAKE hash families, however the BLAKE algorithm has not been tested for \gls{blockchain} applications, whereas the SHA family has. For this reason, this project will utilise the same hash algorithm as Bitcoin \cite{bitcoin}, SHA-256.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c|c| } 
+\hline
+\multicolumn{2}{|c|}{Hash Algorithm} & Output Size & Collisions found? & Used By \\
+\hline
+\multicolumn{2}{|c|}{MD5} & 128 & Yes & None \\
+\hline
+\multicolumn{2}{|c|}{SHA-0} & 160 & Yes & None \\
+\hline
+\multicolumn{2}{|c|}{SHA-1} & 160 & Yes & None \\
+\hline
+\multirow{6}*{SHA-2} & SHA-224 & 224 & No & None \\
+& SHA-256 & 256 & No & Bitcoin\cite{bitcoin}, Bitcoin Cash \\
+& SHA-384 & 384 & No & None \\
+& SHA-512 & 512 & No & None \\
+& SHA-512/224 & 224 & No & None \\
+& SHA-512/256 & 256 & No & None \\
+\hline
+\multirow{4}*{SHA-3} & SHA3-224 & 224 & No & None \\
+& SHA3-256 & 256 & No & None \\
+& SHA3-384 & 384 & No & None \\
+& SHA3-512 & 512 & No & None \\
+\hline
+\multirow{4}*{BLAKE} & BLAKE-224 & 224 & No & None \\
+& BLAKE-256 & 256 & No & None \\
+& BLAKE-384 & 384 & No & None \\
+& BLAKE-512 & 512 & No & None \\
+\hline
+\multirow{2}*{BLAKE2} & BLAKE2s & 256 & No & Nano\cite{nano} \\
+& BLAKE2b & 512 & No & None \\
+\hline
+\multicolumn{2}{|c|}{BLAKE3} & Variable & No & None \\
+\hline
+\end{tabular}
+\caption{Comparison of Hash Algorithms}
+\label{tab:hashalgo}
+\end{table}
+
+\subsection{Hash Implementation}
+When implementing the desired hash algorithm, there were to primary options, to implement the algorithm from scratch, or to use an existing library. If the algorithm was to be implemented from scratch, then the resulting application would requires less dependencies and would overall result in a more self-contained binary. Using a library would result in one additional dependency, however the vast number of algorithms provided by most libraries would allow the entire \gls{blockchain} and protocol to be easily updated should a more secure algorithm be preferable. Furthermore, most libraries are thoroughly tested and well engineered to guarantee the most efficient operation and make sure the algorithms can handle every edge case. For this it was decided that an external library would be implemented, and a breakdown of the considered libraries is provided below \cite{hashlibcomp}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c|c| } 
+\hline
+Cryptography Library & Algorithm Families & Language & Compatible OSs & First Created\\
+\hline
+OpenSSL (libcrypto)\cite{libcrypto} & 9 & C & 28 & 1998\\
+wolfSSL (wolfCrypt)\cite{wolfCrypt} & 6 & C & 26 & 2006\\
+cryptlib\cite{cryptlib} & 6 & C & 37 & 1995\\
+GPG (Libgcrypt)\cite{libgcrypt} & 11 & C & Unknown & 1999\\
+\hline
+\end{tabular}
+\caption{Comparison of Cryptographic Libraries}
+\label{tab:cryptolib}
+\end{table}
+
+From the previous table, it is apparent that libgcrypt supports the most algorithms from the comparison given in \cite{hashlibcomp}, however for cross compatibility, cryptlib boasts 37 supported operating systems. OpenSSL's libcrypto sits in the middle of the two, supporting nine hash algorithm families and 28 different operating systems. Additionally, libcrypto is has been the default cryptography library distributed with most Linux, BSD and Windows operating systems, meaning it has received a large amount of support, and faced tight scrutiny by the likes of Microsoft. This made libcrypto the optimum library for use in this project. 
 
 \section{Fault Tolerance}
 

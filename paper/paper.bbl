@@ -150,4 +150,29 @@ R.~P. Johnson, ``{POSIX} threads for windows / wiki \ home.''
   \url{https://sourceforge.net/p/pthreads4w/wiki/Home/}, 2021.
 \newblock Accessed: 08/04/2021.
 
+\bibitem{nano}
+C.~LeMahieu, ``Nano: A feeless distributed cryptocurrency network.''
+  \url{https://content.nano.org/whitepaper/Nano_Whitepaper_en.pdf}, 2015.
+
+\bibitem{hashlibcomp}
+``Comparison of cryptography libraries - wikipedia.''
+  \url{https://en.wikipedia.org/wiki/Comparison_of_cryptography_libraries},
+  2021.
+\newblock Accessed: 09/04/2020.
+
+\bibitem{wolfCrypt}
+{wolfSSL inc.}, ``{wolfCrypt Embedded Cryptography Engine | wolfSSL
+  Products}.'' \url{https://www.wolfssl.com/products/wolfcrypt-2/}, 2020.
+\newblock Accessed: 09/04/2020.
+
+\bibitem{cryptlib}
+cryptlib, ``{Cryptlib - Encryption Security Software Development Toolkit}.''
+  \url{https://www.cryptlib.com/}, 2015.
+\newblock Accessed: 09/04/2020.
+
+\bibitem{libgcrypt}
+{The GnuPG Project}, ``{The GNU Privacy Guard}.''
+  \url{https://www.gnupg.org/software/libgcrypt/index.html}, 2020.
+\newblock Accessed: 09/04/2020.
+
 \end{thebibliography}
