@@ -6,4 +6,4 @@ client:	../ipc.c client.c
 	$(CC) ../ipc.c client.c -o client $(CFLAGS) $(LIBS)
 
 clean:
-	rm com
+	rm client

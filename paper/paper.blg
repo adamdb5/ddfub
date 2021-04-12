@@ -47,38 +47,40 @@ Warning--entry type for "libgcrypt" isn't style-file defined
 --line 287 of file bib.bib
 Warning--entry type for "hashlibcomp" isn't style-file defined
 --line 295 of file bib.bib
+Warning--entry type for "cmocka" isn't style-file defined
+--line 303 of file bib.bib
 Warning--empty booktitle in sdsi
 Warning--empty publisher in c
-You've used 37 entries,
+You've used 38 entries,
             1876 wiz_defined-function locations,
-            655 strings with 7903 characters,
-and the built_in function-call counts, 5974 in all, are:
-= -- 584
-> -- 210
+            659 strings with 7990 characters,
+and the built_in function-call counts, 6090 in all, are:
+= -- 597
+> -- 211
 < -- 0
-+ -- 91
++ -- 92
 - -- 54
-* -- 294
-:= -- 879
-add.period$ -- 63
-call.type$ -- 37
-change.case$ -- 32
+* -- 298
+:= -- 891
+add.period$ -- 65
+call.type$ -- 38
+change.case$ -- 33
 chr.to.int$ -- 0
-cite$ -- 39
-duplicate$ -- 254
-empty$ -- 722
+cite$ -- 40
+duplicate$ -- 258
+empty$ -- 740
 format.name$ -- 54
-if$ -- 1502
+if$ -- 1535
 int.to.chr$ -- 0
-int.to.str$ -- 37
+int.to.str$ -- 38
 missing$ -- 21
-newline$ -- 140
+newline$ -- 144
 num.names$ -- 36
-pop$ -- 200
+pop$ -- 207
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 138
+skip$ -- 141
 stack$ -- 0
 substring$ -- 103
 swap$ -- 40
@@ -88,6 +90,6 @@ top$ -- 0
 type$ -- 0
 warning$ -- 2
 while$ -- 47
-width$ -- 39
-write$ -- 355
-(There were 24 warnings)
+width$ -- 40
+write$ -- 364
+(There were 25 warnings)

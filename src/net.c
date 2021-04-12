@@ -7,6 +7,7 @@
 
 #include "net.h"
 #include "blockchain.h"
+#include "timer.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -252,11 +253,13 @@ int load_hosts_from_file(const char *fname)
 
       if((char)c == '\n')
 	{
+	  buffer[pos] = '\0';
 	  add_host(buffer);
 	  memset(buffer, '\0', INET_ADDRSTRLEN + 10);
 	  pos = 0;
 	  continue;
 	}
+
       buffer[pos++] = (char)c;
     }
 
@@ -457,7 +460,7 @@ int send_advertisement_message(AdvertisementMessage *message)
   buffer[0] = message->type;
   buffer[1] = message->hops;
   buffer[2] = message->advertisement_type;
-
+  printf("sending with hops: %d\n", message->hops);
   status = inet_pton(AF_INET, message->source_addr, &addr);
   if(status == 0)
     {
@@ -546,10 +549,11 @@ int recv_advertisement_broadcast(AdvertisementMessage *message)
     }
 
   /* If under max hop count, forward to all hosts */
-  if(message->hops < MAX_ADVERTISEMENT_HOPS)
+  if(message->hops < MAX_HOPS)
     {
       memcpy(&new_message, message, sizeof(AdvertisementMessage));
       new_message.hops++;
+      printf("sending with %d hops!\n", new_message.hops);
       send_to_all_advertisement_message(&new_message);
     }
   
@@ -558,7 +562,7 @@ int recv_advertisement_broadcast(AdvertisementMessage *message)
 
 int recv_advertisement_ack(AdvertisementMessage* message)
 {
-  HostList *host;
+  AdvertisementMessage new_message;
 
   if(!message)
     {
@@ -573,17 +577,12 @@ int recv_advertisement_ack(AdvertisementMessage* message)
     }
   else
     {
-      if(message->hops < MAX_ADVERTISEMENT_HOPS)
+      if(message->hops < MAX_HOPS)
 	{
-	  host = host_list;
-	  message->hops++;
-
-	  while(host)
-	    {
-	      strncpy(message->next_addr, host->addr, INET_ADDRSTRLEN);
-	      send_advertisement_message(message);
-	      host = host->next;
-	    }
+	  memcpy(&new_message, message, sizeof(AdvertisementMessage));
+	  new_message.hops++;
+	  printf("forwarding ack with %d hops\n", new_message.hops);
+	  send_to_all_advertisement_message(&new_message);
 	}
     }
   
@@ -600,7 +599,9 @@ int send_consensus_message(ConsensusMessage *message)
   buffer[0] = message->type;
   buffer[1] = message->hops;
   buffer[2] = message->consensus_type;
- 
+
+timer("send consensus ack");
+
   status = inet_pton(AF_INET, message->source_addr, &addr);
   if(status == 0)
     {
@@ -673,6 +674,8 @@ int recv_consensus_broadcast(ConsensusMessage *message)
   unsigned char last_hash[SHA256_DIGEST_LENGTH];
   char hash_string[SHA256_STRING_LENGTH + 1];
   
+timer("received consensus broadcast");
+
   if(!message)
     {
       return 1;
@@ -714,7 +717,7 @@ int recv_consensus_broadcast(ConsensusMessage *message)
     }
 
   /* If under max hop count, forward to all hosts */
-  if(message->hops < MAX_CONSENSUS_HOPS)
+  if(message->hops < MAX_HOPS)
     {
 	  message->hops++;
 	  send_to_all_consensus_message(message);
@@ -739,7 +742,7 @@ int recv_consensus_ack(ConsensusMessage *message)
     }
   else
     {
-      if(message->hops < MAX_CONSENSUS_HOPS)
+      if(message->hops < MAX_HOPS)
 	{
 	  host = host_list;
 	  message->hops++;
@@ -820,6 +823,8 @@ int recv_rule_message(void *buffer)
   char *char_buffer;
   struct sockaddr_in target, source, fw_source, fw_dest;
 
+timer("received rule");
+
   memset(&message, '\0', sizeof(RuleMessage));
   char_buffer = (char*)buffer;
   message.type = char_buffer[0];
@@ -878,7 +883,7 @@ int recv_rule_broadcast(RuleMessage *message)
     }
 
   /* If under max hop count, forward to all hosts */
-  if(message->hops < MAX_CONSENSUS_HOPS)
+  if(message->hops < MAX_HOPS)
     {
       message->hops++;
       send_to_all_rule_message(message);

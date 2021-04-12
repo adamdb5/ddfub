@@ -132,7 +132,7 @@ The following objectives provide an outline for what this project hopes to achie
     \item Evaluate the effectiveness of existing distributed security mechanisms.
     \item Investigate methods of establishing connections and synchronising computers within distributed systems.
     \item Understand the structure of \gls{blockchain}s and adapt them for firewall transactions.
-    \item Implement and rest relevant resilience, fault tolerance and security mechanisms.
+    \item Implement and test relevant resilience, fault tolerance and security mechanisms.
     \item Compare the use of decentralised security mechanisms.
 \end{enumerate}
 
@@ -597,8 +597,97 @@ GPG (Libgcrypt)\cite{libgcrypt} & 11 & C & Unknown & 1999\\
 From the previous table, it is apparent that libgcrypt supports the most algorithms from the comparison given in \cite{hashlibcomp}, however for cross compatibility, cryptlib boasts 37 supported operating systems. OpenSSL's libcrypto sits in the middle of the two, supporting nine hash algorithm families and 28 different operating systems. Additionally, libcrypto is has been the default cryptography library distributed with most Linux, BSD and Windows operating systems, meaning it has received a large amount of support, and faced tight scrutiny by the likes of Microsoft. This made libcrypto the optimum library for use in this project. 
 
 \section{Fault Tolerance}
+In regards to fault tolerance, this project was extremely limited, as it ran as a high-level application on general operating systems, meaning the operating systems themselves provided no guarantees of  performance or reliability. With regards to fault tolerance during operation, the only reasonable measure was to ensure no malformed data could be propagated throughout the system. Such malicious data could cause the local \gls{stub}, or even worse, remote \gls{stub}s to crash, rendering the entire system non-functional whilst the malicious data is removed from each system. This measure was achieved by using the fail-early principle in all functions within the system. When each function is executed, specific checks take place, such as ensuring buffers are large enough to store specified data, and that the data provided is valid, and of the required type. Many of these checks are provided by the standard library within the C language, such as verifying the string representation of an \acrshort{IP} address is  correctly formatted when parsing to a binary representation of the network address. The vast majority of these functions return an integer to represent the whether the function exited normally, or if it exited with an error, which was replicated in many of the functions provided by this application. Returning the exit status enables any calling functions to know that the function did not exit normally, which means the output of that function will contain incorrect data, and so the path of execution can no longer follow the normal path, but must instead fail early, and return to the top-level calling function.
+
+In addition to the fail-early principle, the each node maintains a log of all complete transactions that have taken place on that node. Once a node receives a either an advertisement, or a new rule, it is logged immediately. This means that should the operating system fail, or the system suffers from an unrecoverable fault, the operating system can immediately restart the system (which can run as a daemon) which will then load all known hosts into memory, and rebuild the chain from the transaction log.
 
 \chapter{Testing}
+Testing the system required tests to be categorised into two types: local and network. Local tests consist of any functions which take place on the local node, such as hashing of blocks and controlling network sockets. These local tests could be easily tested using unit tests. Network tests consist of protocol tests that can only be tested over a physical network. Network tests are much harder to strategically test, which means unit tests would require careful synchronisation, such that when one node was testing it's send feature, another node would need to be ready to accept a message, for this reason, networks tests did not use unit tests.
+
+\section{Local Testing}
+As previously mentioned, local tests were carried out with unit tests. There are a number of uni test frameworks for C, which all offer very similar functionality, and for this reason the decision process will not be discussed here, however in the end the cmocka\cite{cmocka} framework was identified as the best framework for this project. All tests were carried out on six different devices, which contained different architectures, hardware, operating systems and distributions. Furthermore, four out of the five devices tested were low-power single board computers including Raspberry Pi's and Orange Pi's, two of which only had 512MB of memory, providing an additional an test to check how demanding the system would be. A summary of these devices is given below.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c|c| } 
+\hline
+Architecture & Network Hardware & Operating System & Distribution\\
+\hline
+Intel x86 & Intel & Linux 5.11.12 & Artix\\
+Intel x86 & Realtek & Windows 10 & Home\\
+ARMv7 & Allwinner & Linux 5.3.5 & Ubuntu\\
+ARMv7 & Allwinner & Linux 5.10.12 & Armbian\\
+ARMv7 & Broadcom & NetBSD 8.0 & N/A\\
+ARMv8 & Broadcom & FreeBSD 13 & N/A\\
+\hline
+\end{tabular}
+\caption{Devices used for Testing}
+\label{tab:testdevices}
+\end{table}
+
+A summary of the tests used is provided below.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c|c| } 
+\hline
+Cryptography Library & Algorithm Families & Language & Compatible OSs & First Created\\
+\hline
+OpenSSL (libcrypto)\cite{libcrypto} & 9 & C & 28 & 1998\\
+wolfSSL (wolfCrypt)\cite{wolfCrypt} & 6 & C & 26 & 2006\\
+cryptlib\cite{cryptlib} & 6 & C & 37 & 1995\\
+GPG (Libgcrypt)\cite{libgcrypt} & 11 & C & Unknown & 1999\\
+\hline
+\end{tabular}
+\caption{Unit Test Results}
+\label{tab:unittests}
+\end{table}
+
+As can be seen, all unit tests passed on all tested operating systems.
+
+\section{Network Testing}
+In order to test the operation over the network, a physical network was created using a switch and all of the devices described in table \ref{tab:testdevices}. A diagram of this topology is pictured below.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{networkmap}
+\caption{The network layout used for testing} 
+\label{fig:networkmap}
+\end{figure}
+
+A summary of the tests user is provided below.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c|c| } 
+\hline
+Cryptography Library & Algorithm Families & Language & Compatible OSs & First Created\\
+\hline
+OpenSSL (libcrypto)\cite{libcrypto} & 9 & C & 28 & 1998\\
+wolfSSL (wolfCrypt)\cite{wolfCrypt} & 6 & C & 26 & 2006\\
+cryptlib\cite{cryptlib} & 6 & C & 37 & 1995\\
+GPG (Libgcrypt)\cite{libgcrypt} & 11 & C & Unknown & 1999\\
+\hline
+\end{tabular}
+\caption{Network Test Results}
+\label{tab:network}
+\end{table}
+
+\section{Attack Simulation and Performance Testing}
+Following successful unit and network tests, an attack was simulated on the system to measure how long it took for a rule to be created, advertised, consensus gained and then transmit to all other nodes. The attack would be reported to the \gls{stub} of one node, and once each node had received a message, timestamps would be printed locally on each node, allowing times to be recorded and compared. These results are presented in the table below.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ |c|c|c|c|c| } 
+\hline
+Node & Consensus Received & Consensus Sent & Rule Received & IPC Message Sent\\
+
+\end{tabular}
+\caption{Attack Simulation Results}
+\label{tab:attack}
+\end{table}
+
+valgrind
 
 \chapter{Evaluation}
 

@@ -1,5 +1,5 @@
 CC=clang
-OBJECTS=main.o socket.o net.o ipc.o blockchain.o firewall.o
+OBJECTS=main.o socket.o net.o ipc.o blockchain.o firewall.o timer.o
 CFLAGS=-Wall -pedantic --std=c99 -O3 -c
 INCLUDE=-I"c:\Program Files\OpenSSL-Win64\include" -I"win32\include"
 LIBS=-L"c:\Program Files\OpenSSL-Win64\lib" -L"win32\lib" \

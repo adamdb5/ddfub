@@ -6,6 +6,8 @@
  */
 
 #include "blockchain.h"
+#include "timer.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -124,6 +126,8 @@ int add_block_to_chain(FirewallBlock *block)
   memcpy(fw_chain->next, block, sizeof(FirewallBlock));
   printf("[ BLOC ] Added new block with hash %s...%s\n",
 	 hash_string, hash_string + (SHA256_STRING_LENGTH - 10));
+
+timer("added new block");
 
   save_blocks_to_file("chain.txt");
   return 0;

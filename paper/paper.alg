@@ -1,7 +1,7 @@
 This is makeindex, version 2.15 [TeX Live 2020] (kpathsea + Thai support).
 Scanning style file ./paper.ist.............................done (29 attributes redefined, 0 ignored).
-Scanning input file paper.acn....done (94 entries accepted, 0 rejected).
-Sorting entries....done (641 comparisons).
-Generating output file paper.acr....done (52 lines written, 0 warnings).
+Scanning input file paper.acn....done (95 entries accepted, 0 rejected).
+Sorting entries....done (703 comparisons).
+Generating output file paper.acr....done (53 lines written, 0 warnings).
 Output written in paper.acr.
 Transcript written in paper.alg.

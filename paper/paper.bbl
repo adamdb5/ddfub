@@ -175,4 +175,8 @@ cryptlib, ``{Cryptlib - Encryption Security Software Development Toolkit}.''
   \url{https://www.gnupg.org/software/libgcrypt/index.html}, 2020.
 \newblock Accessed: 09/04/2020.
 
+\bibitem{cmocka}
+``cmocka - uni testing framework for c.'' \url{https://cmocka.org/}, 2020.
+\newblock Accessed: 12/04/2020.
+
 \end{thebibliography}

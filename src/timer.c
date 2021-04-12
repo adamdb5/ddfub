@@ -8,17 +8,17 @@
 #include "timer.h"
 
 #ifdef _WIN32
-void timer(void)
+void timer(const char* msg)
 {
         SYSTEMTIME st;
         GetSystemTime(&st);
-        printf("%lu.%lu\n", st.wSecond, st.wMilliseconds);
+        printf("%s: %lu.%lu\n", msg, st.wSecond, st.wMilliseconds);
 }
 #else
-void timer(void)
+void timer(const char* msg)
 {
 	struct timeval current_time;
 	gettimeofday(&current_time, NULL);
-	printf("%lu.%lu\n", current_time.tv_sec, current_time.tv_usec);
+	printf("%s: %lu.%lu\n", msg, current_time.tv_sec, current_time.tv_usec);
 }
 #endif

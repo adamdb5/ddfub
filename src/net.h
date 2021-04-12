@@ -33,14 +33,9 @@
 #define PORT_SEND 8071
 
 /**
- * @brief The maximum number of network advertisement hops. 
+ * @brief The maximum number of network hops. 
  */
-#define MAX_ADVERTISEMENT_HOPS 5
-
-/**
- * @brief The maximum number of hops before a message is destroyed.
- */
-#define MAX_CONSENSUS_HOPS 5
+#define MAX_HOPS 5
 
 /**
  * @brief The local IP address.

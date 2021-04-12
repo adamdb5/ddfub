@@ -1,6 +1,6 @@
 CC=clang
-OBJECTS=main.o socket.o net.o ipc.o blockchain.o firewall.o
-CFLAGS=-Wall -pedantic --std=c89 -O3
+OBJECTS=main.o socket.o net.o ipc.o blockchain.o firewall.o timer.o
+CFLAGS=-Wall -pedantic -c -O3 -std=c89
 INCLUDE=-I/usr/pkg/include
 LIBS=-L/usr/pkg/lib -lrt -lcrypto
 
