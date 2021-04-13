@@ -44,7 +44,8 @@
 \BOOKMARK [1][-]{section.6.1}{Local Testing}{chapter.6}% 44
 \BOOKMARK [1][-]{section.6.2}{Network Testing}{chapter.6}% 45
 \BOOKMARK [1][-]{section.6.3}{Attack Simulation and Performance Testing}{chapter.6}% 46
-\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 47
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 48
-\BOOKMARK [0][-]{section*.7}{Glossary}{}% 49
-\BOOKMARK [0][-]{section*.9}{Acronyms}{}% 50
+\BOOKMARK [1][-]{section.6.4}{Checking Memory Leaks}{chapter.6}% 47
+\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 48
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 49
+\BOOKMARK [0][-]{section*.7}{Glossary}{}% 50
+\BOOKMARK [0][-]{section*.9}{Acronyms}{}% 51

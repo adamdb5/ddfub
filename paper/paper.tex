@@ -674,19 +674,28 @@ GPG (Libgcrypt)\cite{libgcrypt} & 11 & C & Unknown & 1999\\
 \end{table}
 
 \section{Attack Simulation and Performance Testing}
-Following successful unit and network tests, an attack was simulated on the system to measure how long it took for a rule to be created, advertised, consensus gained and then transmit to all other nodes. The attack would be reported to the \gls{stub} of one node, and once each node had received a message, timestamps would be printed locally on each node, allowing times to be recorded and compared. These results are presented in the table below.
+Following successful unit and network tests, an attack was simulated on the system to measure how long it took for a rule to be created, advertised, consensus gained and then transmit to all other nodes. The attack would be reported to the \gls{stub} of one node, and the local timestamp would be recorded at each step of the process. Ideally, timestamps would be collected at all nodes, however due to variations in clocks, synchronisations and architectures, the resulting data was inaccurate, and hence it was decided that timestamps would only be taken from the local node.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{ |c|c|c|c|c| } 
 \hline
-Node & Consensus Received & Consensus Sent & Rule Received & IPC Message Sent\\
-
+Stage & Time (s)\\
+\hline
+Received firewall rule via IPC & 1618330473.99529\\
+Sent all consensus broadcasts & 1618330473.99558\\
+Received all consensus acks & 1618330474.49588\\
+Sent new firewall rule to all nodes & 1618330474.49599\\
+New block added to chain & 1618330474.49631\\
+\hline
 \end{tabular}
 \caption{Attack Simulation Results}
 \label{tab:attack}
 \end{table}
 
+The times provided in the above table are given in seconds since the epoch. Running on a standard operating system, not designed for real-time, the entire transaction took place in 501.02 ms, and out of that duration, 500 ms is a hard-coded delay to wait for acknowledgements for the consensus. This indicates that with regards to processing time, only 1.02 ms is required to carry out the required calculations, hashing and assembling the chain.
+
+\section{Checking Memory Leaks}
 valgrind
 
 \chapter{Evaluation}

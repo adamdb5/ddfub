@@ -47,6 +47,7 @@
 \contentsline {section}{\numberline {6.1}Local Testing}{27}{section.6.1}%
 \contentsline {section}{\numberline {6.2}Network Testing}{28}{section.6.2}%
 \contentsline {section}{\numberline {6.3}Attack Simulation and Performance Testing}{28}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Checking Memory Leaks}{29}{section.6.4}%
 \contentsline {chapter}{\numberline {7}Evaluation}{30}{chapter.7}%
 \contentsline {chapter}{\numberline {8}Conclusion}{31}{chapter.8}%
 \contentsline {chapter}{Glossary}{32}{section*.7}%
