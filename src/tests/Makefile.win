@@ -1,0 +1,15 @@
+CC=clang
+CFLAGS=-Wall -pedantic
+INCLUDE=-I"c:\Program Files\OpenSSL-Win64\include" -I"c:\cmocka-1.1.0\include"  
+LIBS=-L"c:\Program Files\OpenSSL-Win64\lib" -L"c:\cmocka-1.1.0\lib" -llibcrypto -lcmocka -lws2_32 -liphlpapi
+
+all:    blockchain_test dll
+
+blockchain_test:        blockchain_test.c ../blockchain.c 
+	$(CC) $(CFLAGS) $(INCLUDE) blockchain_test.c ../blockchain.c $(LIBS) -o blockchain_test.exe
+
+dll:
+	copy ..\win32\dll\cmocka.dll .
+
+clean:
+	del blockchain_test.exe

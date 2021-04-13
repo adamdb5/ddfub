@@ -13,17 +13,16 @@
 #include <string.h>
 #include <stdio.h>
 
-#ifndef _WIN32
+#ifdef _WIN32
+#undef INET_ADDRSTRLEN
+#define INET_ADDRSTRLEN 16
+#else
 #include <unistd.h>
 #endif
 
 #include <openssl/sha.h>
 
-#include "timer.h"
-
 #define TIMEOUT 500
-
-static char local_address[INET_ADDRSTRLEN];
 
 int recv_new_rule(FirewallRule *rule)
 {
@@ -39,8 +38,6 @@ int send_new_rule(FirewallRule *rule)
   RuleMessage rule_msg;
   FirewallBlock block;
 
-timer("Received IPC");
-
   get_local_address(local_address);
   consensus_msg.type = CONSENSUS;
   consensus_msg.hops = 0;
@@ -52,7 +49,6 @@ timer("Received IPC");
   printf("[ CONS ] Sent consensus message to %d known host(s)\n",
 	 get_host_count());
 
-timer("Sent Consensus");
 #ifdef _WIN32
   Sleep(TIMEOUT);
 #else
@@ -62,14 +58,13 @@ timer("Sent Consensus");
   /* At least half known hosts have consensus */
   if(get_acks() < (get_host_count() + 1) / 2)
     {
-      printf("[ CONS ] Consensus not achieved (%d/%d hosts)\n", get_acks(),
-	     get_host_count());
+      printf("[ CONS ] Consensus not achieved (%d/%d required hosts)\n",
+	     get_acks(), get_host_count());
       reset_acks();
       return 1;
     }
 
-timer("ACKS Received");
-  printf("[ CONS ] Consensus achieved (%d/%d hosts)\n", get_acks(),
+  printf("[ CONS ] Consensus achieved (%d/%d required hosts)\n", get_acks(),
 	 (get_host_count() + 1) / 2);
   reset_acks();
 
@@ -80,14 +75,15 @@ timer("ACKS Received");
   strncpy(rule_msg.target_addr, local_address, INET_ADDRSTRLEN);
   memcpy(&rule_msg.rule, rule, sizeof(FirewallRule));
   send_to_all_rule_message(&rule_msg);
+
   printf("[ RULE ] Sent new rule message to %d known hosts(s)\n",
 	 get_host_count());
-timer("RULE sent");
+
   memset(&block, 0, sizeof(FirewallBlock));
   get_last_hash(block.last_hash);
   strncpy(block.author, local_address, INET_ADDRSTRLEN);
   memcpy(&block.rule, rule, sizeof(FirewallRule));
   add_block_to_chain(&block);
-timer("Block added to chain");
+
   return 0;
 }

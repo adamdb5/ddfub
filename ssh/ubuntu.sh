@@ -1,2 +1,2 @@
 #!/bin/sh
-sshpass -p orangepi ssh root@192.168.2.127
+sshpass -p orangepi ssh root@192.168.2.126

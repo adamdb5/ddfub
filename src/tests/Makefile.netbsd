@@ -1,0 +1,14 @@
+CC=clang
+CFLAGS=-Wall -pedantic
+INCLUDE=-I/usr/pkg/include
+LIBS=-L/usr/pkg/lib -lcmocka
+
+all:	blockchain_test 
+	
+
+blockchain_test:	blockchain_test.c ../blockchain.c	
+	$(CC) $(CFLAGS) $(INCLUDE) $(LIBS) -lcrypto blockchain_test.c ../blockchain.c -o blockchain_test
+
+clean:
+	rm blockchain_test
+

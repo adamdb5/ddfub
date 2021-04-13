@@ -6,7 +6,6 @@
  */
 
 #include "blockchain.h"
-#include "timer.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -16,10 +15,13 @@
 
 #ifdef _WIN32
 #include <ws2tcpip.h>
+#undef INET_ADDRSTRLEN
+#define INET_ADDRSTRLEN 16
 #else
 #include <arpa/inet.h>
 #endif
 
+#define INET_OFFSET 16
 #define PENDING_RULES_BUF_LEN 10
 static char pending_rules[PENDING_RULES_BUF_LEN][INET_ADDRSTRLEN];
 
@@ -34,20 +36,20 @@ int get_block_hash(unsigned char *buffer, FirewallBlock *block,
       return 1;
     }
 
-  memcpy(data_to_hash, block->author, INET_ADDRSTRLEN);
-  memcpy(data_to_hash + INET_ADDRSTRLEN,
-	 (void*)&block->rule.source_addr, INET_ADDRSTRLEN);
-  memcpy(data_to_hash + INET_ADDRSTRLEN * 2,
-	 (void*)&block->rule.dest_addr, INET_ADDRSTRLEN);
-  memcpy(data_to_hash + INET_ADDRSTRLEN * 3,
+  memcpy(data_to_hash, block->author, INET_OFFSET);
+  memcpy(data_to_hash + INET_OFFSET, block->rule.source_addr,
+	 INET_OFFSET);
+  memcpy(data_to_hash + INET_OFFSET * 2, block->rule.dest_addr,
+	 INET_OFFSET);
+  memcpy(data_to_hash + INET_OFFSET * 3,
 	 (void*)&block->rule.source_port, 2);
-  memcpy(data_to_hash + (INET_ADDRSTRLEN * 3) + 2,
+  memcpy(data_to_hash + (INET_OFFSET * 3) + 2,
 	 (void*)&block->rule.dest_port, 2);
-  memcpy(data_to_hash + (INET_ADDRSTRLEN * 3) + 4,
+  memcpy(data_to_hash + (INET_OFFSET * 3) + 4,
 	 (void*)&block->rule.action, 4);
-  
+
   SHA256_Init(&sha256);
-  SHA256_Update(&sha256, data_to_hash, (INET_ADDRSTRLEN * 3) + 4 + 4);
+  SHA256_Update(&sha256, data_to_hash, (INET_OFFSET * 3) + 4 + 4);
   SHA256_Final(buffer, &sha256);
  
   return 0;
@@ -126,8 +128,6 @@ int add_block_to_chain(FirewallBlock *block)
   memcpy(fw_chain->next, block, sizeof(FirewallBlock));
   printf("[ BLOC ] Added new block with hash %s...%s\n",
 	 hash_string, hash_string + (SHA256_STRING_LENGTH - 10));
-
-timer("added new block");
 
   save_blocks_to_file("chain.txt");
   return 0;
@@ -225,7 +225,7 @@ int load_blocks_from_file(const char *fname)
   file = fopen(fname, "r");
   if(!file)
     {
-      printf("[ BLOC ] No block file found\n");
+      printf("[ BLOC ] No chain file found\n");
       return 1;
     }
 

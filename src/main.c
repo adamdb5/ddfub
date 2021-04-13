@@ -16,6 +16,8 @@
 
 #ifdef _WIN32
 #define HAVE_STRUCT_TIMESPEC /* Prevent pthread from redefining timespec */
+#undef INET_ADDRSTRLEN
+#define INET_ADDRSTRLEN 16
 #else
 #include <unistd.h>
 #endif
@@ -120,7 +122,6 @@ int main(int argc, char** argv)
     { 
       memset(&ipc_msg, 0, sizeof(IPCMessage));
       recv_ipc_message(&ipc_msg);
-
        switch(ipc_msg.message_type)
 	{
 	case I_SHUTDOWN:
