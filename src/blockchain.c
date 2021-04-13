@@ -36,10 +36,10 @@ int get_block_hash(unsigned char *buffer, FirewallBlock *block,
     }
 
   memcpy(data_to_hash, block->author, INET_ADDRSTRLEN);
-  memcpy(data_to_hash + INET_ADDSTRLEN, block->rule.source_addr,
-	 INET_OFFSET);
+  memcpy(data_to_hash + INET_ADDRSTRLEN, block->rule.source_addr,
+	 INET_ADDRSTRLEN);
   memcpy(data_to_hash + INET_ADDRSTRLEN * 2, block->rule.dest_addr,
-	 INET_OFFSET);
+	 INET_ADDRSTRLEN);
   memcpy(data_to_hash + INET_ADDRSTRLEN * 3,
 	 (void*)&block->rule.source_port, 2);
   memcpy(data_to_hash + (INET_ADDRSTRLEN * 3) + 2,
