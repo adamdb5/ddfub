@@ -26,7 +26,8 @@ typedef enum
     I_RULE,         /**< New rule                      */
     I_ENABLE,       /**< Enable network communication  */
     I_DISABLE,      /**< Disable network communication */
-    I_SHUTDOWN      /**< Shutdown the framework        */
+    I_SHUTDOWN,     /**< Shutdown the framework        */
+    O_RULE          /**< New rule from another node    */
   } IPCMessageType; 
 
 /**

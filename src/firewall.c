@@ -27,7 +27,7 @@
 int recv_new_rule(FirewallRule *rule)
 {
   IPCMessage msg;
-  msg.message_type = I_RULE;
+  msg.message_type = O_RULE;
   memcpy(&msg.rule, rule, sizeof(FirewallRule));
   return send_ipc_message(&msg);
 }

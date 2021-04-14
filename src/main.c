@@ -140,6 +140,8 @@ int main(int argc, char** argv)
 	  printf("[ IPC  ] Received IPC Message: New Firewall Rule\n");
 	  send_new_rule(&ipc_msg.rule);
   	  break;
+	case O_RULE:
+	  break;
 	default:
 	  printf("[ ERR  ] Recieved Unknown IPC Message Type\n");
 	}
