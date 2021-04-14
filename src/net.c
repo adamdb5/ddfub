@@ -670,6 +670,7 @@ int recv_consensus_broadcast(ConsensusMessage *message)
   ConsensusMessage new_message;
   unsigned char last_hash[SHA256_DIGEST_LENGTH];
   char hash_string[SHA256_STRING_LENGTH + 1];
+  FirewallBlock *last_block;
   
 
   if(!message)
@@ -708,7 +709,12 @@ int recv_consensus_broadcast(ConsensusMessage *message)
     }
   else
     {
-      printf("[ CONS ] Received consensus message with mismatched hash\n");
+      last_block = NULL;
+      get_last_block(last_block);
+      if(last_block != NULL && memcmp(message->last_block_hash, last_block->last_hash, SHA256_DIGEST_LENGTH) != 0)
+	{
+	  printf("[ CONS ] Received consensus message with mismatched hash\n");
+	}
     }
 
   /* If under max hop count, forward to all hosts */

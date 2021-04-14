@@ -193,6 +193,26 @@ int remove_pending_rule(char *addr)
   return 0;
 }
 
+int get_last_block(FirewallBlock *block)
+{
+  FirewallBlock *fw_block;
+
+  if(!chain)
+    {
+      block = NULL;
+      return 1;
+    }
+
+  fw_block = chain;
+  while(fw_block && fw_block->next)
+    {
+      fw_block = fw_block->next;
+    }
+
+  block = fw_block;
+  return 0;
+}
+
 int get_last_hash(unsigned char *buffer)
 {
   FirewallBlock *fw_chain;

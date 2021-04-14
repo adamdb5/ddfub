@@ -137,14 +137,24 @@ int is_pending(char *addr);
 int remove_pending_rule(char *addr);
 
 /**
+ * @brief Returns a pointer to the last firewall block.
+ *
+ * Returns a pointer to the last firewall block in the chain.
+ * @param block pointer to point to the last block.
+ * @return whether the last block was successfully found. If an error has
+ * occurred, the return value will be 1, otherwise the return value will be 0.
+ */
+int get_last_block(FirewallBlock *block);
+
+/**
  * @brief Returns the hash of the last firewall block in the chain.
  *
  * Gets the SHA256 hash of the last firewall block in the chain. If the chain
  * is empty, the buffer will be empty.
  * @param buffer the buffer that the hash value will be copied into. This 
  * buffer should be at least SHA256_DIGEST_LENGTH bytes in size.
- * @return whether the hash value was copied successfully, If an error has
- * occurred, the return value will be 1, otherwuse the return value will be 0.
+ * @return whether the hash value was copied successfully. If an error has
+ * occurred, the return value will be 1, otherwise the return value will be 0.
  */
 int get_last_hash(unsigned char *buffer);
 
