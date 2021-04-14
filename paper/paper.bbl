@@ -131,11 +131,6 @@ Microsoft, ``Explore windows 10 os, computers, apps \& more | microsoft.''
   \url{https://www.microsoft.com/en-gb/windows}, 2021.
 \newblock Accessed: 08/04/2021.
 
-\bibitem{jmq}
-A.~D. Bruce, ``Jmq -{ Java POSIX Message Queue interface}.''
-  \url{https://gitlab.com/adamdb/jmq}, 2021.
-\newblock Accessed: 08/04/2021.
-
 \bibitem{windowsprog}
 J.~M. Hart, {\em Windows system programming}.
 \newblock Pearson Education, 2010.
@@ -178,5 +173,14 @@ cryptlib, ``{Cryptlib - Encryption Security Software Development Toolkit}.''
 \bibitem{cmocka}
 ``cmocka - uni testing framework for c.'' \url{https://cmocka.org/}, 2020.
 \newblock Accessed: 12/04/2020.
+
+\bibitem{valgrind}
+``Valgrind home.'' \url{https://www.valgrind.org/}, 2021.
+\newblock Accessed: 14/04/2020.
+
+\bibitem{jpmq}
+A.~D. Bruce, ``Jpmq - {POSIX Message Queues for Java}.''
+  \url{https://adambruce.net/jpmq}, 2021.
+\newblock Accessed: 08/04/2021.
 
 \end{thebibliography}

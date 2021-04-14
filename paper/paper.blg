@@ -15,7 +15,7 @@ Warning--entry type for "ethereum" isn't style-file defined
 --line 71 of file bib.bib
 Warning--entry type for "libcrypto" isn't style-file defined
 --line 140 of file bib.bib
-Warning--entry type for "jmq" isn't style-file defined
+Warning--entry type for "jpmq" isn't style-file defined
 --line 162 of file bib.bib
 Warning--entry type for "java" isn't style-file defined
 --line 170 of file bib.bib
@@ -49,38 +49,40 @@ Warning--entry type for "hashlibcomp" isn't style-file defined
 --line 295 of file bib.bib
 Warning--entry type for "cmocka" isn't style-file defined
 --line 303 of file bib.bib
+Warning--entry type for "valgrind" isn't style-file defined
+--line 311 of file bib.bib
 Warning--empty booktitle in sdsi
 Warning--empty publisher in c
-You've used 38 entries,
+You've used 39 entries,
             1876 wiz_defined-function locations,
-            659 strings with 7990 characters,
-and the built_in function-call counts, 6090 in all, are:
-= -- 597
-> -- 211
+            663 strings with 8056 characters,
+and the built_in function-call counts, 6206 in all, are:
+= -- 610
+> -- 212
 < -- 0
-+ -- 92
++ -- 93
 - -- 54
-* -- 298
-:= -- 891
-add.period$ -- 65
-call.type$ -- 38
-change.case$ -- 33
+* -- 302
+:= -- 903
+add.period$ -- 67
+call.type$ -- 39
+change.case$ -- 34
 chr.to.int$ -- 0
-cite$ -- 40
-duplicate$ -- 258
-empty$ -- 740
+cite$ -- 41
+duplicate$ -- 262
+empty$ -- 758
 format.name$ -- 54
-if$ -- 1535
+if$ -- 1568
 int.to.chr$ -- 0
-int.to.str$ -- 38
+int.to.str$ -- 39
 missing$ -- 21
-newline$ -- 144
+newline$ -- 148
 num.names$ -- 36
-pop$ -- 207
+pop$ -- 214
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 141
+skip$ -- 144
 stack$ -- 0
 substring$ -- 103
 swap$ -- 40
@@ -90,6 +92,6 @@ top$ -- 0
 type$ -- 0
 warning$ -- 2
 while$ -- 47
-width$ -- 40
-write$ -- 364
-(There were 25 warnings)
+width$ -- 41
+write$ -- 373
+(There were 26 warnings)

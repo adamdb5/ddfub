@@ -6,7 +6,7 @@ LIBS=-lrt -lcrypto -lpthread
 
 dfw:	$(OBJECTS)
 	$(CC) -o dfw $(OBJECTS) $(LIBS)
-#	strip dfw
+	strip dfw
 
 %.o:	%.c 
 	$(CC) $(CFLAGS) $(INCLUDE) $< -o $@ 

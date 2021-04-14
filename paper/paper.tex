@@ -461,14 +461,6 @@ int recv_ipc_message(IPCMessage *message);
 mqueue = mq_open("/dfw", O_CREAT | O_RDWR, 0644, &attr);
 \end{lstlisting}
 
-Whilst testing this application it was discovered that nobody had yet created an interface for \acrshort{POSIX} message queues in Java, so a secondary project was created, called Jmq \cite{jmq} which provides an interface for \acrshort{POSIX} message queues in Java using the Java Native Interface (JNI). This enables a \gls{stub} to be created in Java by passing messages using the following syntax:\\
-
-\begin{lstlisting}[language=java,style=java,caption=Example of Jmq]
-Jmq_attr attrs = new Jmq_attr(0, 2, 1, 0);
-Jmq my_queue = new Jmq("/dfw", Jmq.O_CREAT | Jmq.O_RDWR, 0644, attrs);
-my_queue.unlink();
-\end{lstlisting}
-
 \subsection{Windows}
 Windows\cite{windows} offers three methods of \acrshort{IPC}: Anonymous Pipes, Named Pipes and sockets. Anonymous pipes allow half-duplex communication, which is not ideal for this project, as it is necessary for the client / firewall to send instructions to the \gls{stub}, and for the \gls{stub} to send messages back to the client. Furthermore, Hart\cite{windowsprog} explains the fundamental issue with anonymous pipes: they have no identifier associated with them, which creates a new problem of communicating the pipe handle to any clients wishing to connect. Named pipes are full-duplex, message oriented pipes than can operate locally or over a network. The difference between anonymous and named pipes is that a named pipe can be identified using a string which represents a file path, this enables both client and \gls{stub} to connect directly to the pipe. The final method is via sockets which act similarly to UNIX sockets, and hence have the same pitfalls as UNIX sockets mentioned in section \ref{posixipc}.\\
 
@@ -673,7 +665,7 @@ GPG (Libgcrypt)\cite{libgcrypt} & 11 & C & Unknown & 1999\\
 \label{tab:network}
 \end{table}
 
-\section{Attack Simulation and Performance Testing}
+\section{Attack Simulation and Performance Testing} \label{simu}
 Following successful unit and network tests, an attack was simulated on the system to measure how long it took for a rule to be created, advertised, consensus gained and then transmit to all other nodes. The attack would be reported to the \gls{stub} of one node, and the local timestamp would be recorded at each step of the process. Ideally, timestamps would be collected at all nodes, however due to variations in clocks, synchronisations and architectures, the resulting data was inaccurate, and hence it was decided that timestamps would only be taken from the local node.
 
 \begin{table}[H]
@@ -695,12 +687,57 @@ New block added to chain & 1618330474.49631\\
 
 The times provided in the above table are given in seconds since the epoch. Running on a standard operating system, not designed for real-time, the entire transaction took place in 501.02 ms, and out of that duration, 500 ms is a hard-coded delay to wait for acknowledgements for the consensus. This indicates that with regards to processing time, only 1.02 ms is required to carry out the required calculations, hashing and assembling the chain.
 
-\section{Checking Memory Leaks}
-valgrind
+\section{Checking for Memory Leaks}
+Not only is it essential that the system is functionally and logically correct, but it must also correctly utilise system resources. The most important of these resources is memory, in particular, the heap where numerous dynamic allocations are made throughout the lifetime of the \gls{stub}. As the system is designed to function for extended periods of time, it is essential that any memory allocated is correct freed back to the operating system otherwise the system would slowly begin consuming all memory on the system, leading to a crash.
+The chosen way to test for memory leaks was to use the tool Valgrind \cite{valgrind}. Valgrind provides an extensive range of memory and thread checking tools along with profiling tools. For this test, the memory leak test was run with the \texttt{--leak-check=full} option enabled to provide a thorough check. In order to provide a fair test, a number of hosts on the network first advertised, and then several firewall transactions took place from different nodes. 
+
+The test was carried out by connecting five different nodes to the system, followed by two firewall rule transactions. The image below shows the output of Valgrind, indicating that there were a total of 43 heap allocations throughout the lifetime of the program, and that there were no allocated bytes still in use at the point of program termination. Additionally, Valgrind provides a convenient summary stating that \say{All heap blocks were freed - no leaks are possible}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{valgrind}
+\caption{The output of Valgrind} 
+\label{fig:valgrind}
+\end{figure}
 
 \chapter{Evaluation}
 
+\section{Project Results}
+
+\subsection{Decentralised Distributed System Model}
+The first output of this project is a new model for creating decentralised distributed systems. As discussed at the start of this publication, distributed systems are traditionally centralised systems, and those that are decentralised usually require a large amount of overhead to ensure consistency across the system. This project has produced a much more lightweight protocol, called the ACR (Advertisement, Consensus, Rule) protocol which enables quick transactions to be propagated throughout any network, with no requirements for specific hardware or network topology. The ACR protocol was designed as a high level abstraction for the underlying transaction stages, and acts as a very high level interface for additional implementations. This allows a huge amount of variation, for example any combination of advertisement, consensus and rule transaction methods can be used, which can then be further customised, for example by using different hash algorithms, or adding additional fields to the blocks.
+
+The primary advantage of this model is speed, simplicity and redundancy. Encasing an entire protocol into just three message types vastly reduces the amount of control available, which means that this model currently does not have a method for nodes to catch up to a chain, instead it must simply start a new chain and is unable not obtain any previous knowledge within the system. There are however a number of issues with the proposed implementation, the first of which is the propagation mechanism. Currently, each time a node receives a message from any other node, if that node is node the message's destination, it is forwarded to all known hosts. This creates an extremely high number of redundant packets on the network, which is exponential with regards to the number of hops permitted for each message. When the simulation in section \ref{simu} was analysed, over 16,000 messages were sent across the network for only five advertisements and two consensus-rule transactions. For smaller networks, this can be avoided by reducing the hop count to the minimum required to reach all nodes, however the problem only gets worse when applying this protocol to larger networks.
+
+Security is another major flaw within the proposed implementation. While the ACR protocol does permit security, it is not discussed in this publication due to the difficulty of reliably securing transactions over \acrshort{UDP}. To implement security would require some form of key negotiation at the advertisement stage, however if a malicious node has gained access to the network, then it can easily intercept the negotiation, allowing it to decrypt any message involving that node. This would also introduce a large overhead in regards to computation, as each node would be required to store the keys of every other node, and as seen by the inefficiency of the message system, each node would be required to carry out a large volume of decryption and encryption.
+
+\subsection{Firewall Blockchains}
+The second output of this project is a new application of \gls{blockchain} to firewall rules. \Gls{blockchain} is a prominent technology used within decentralised cryptography for validating cryptocurrency transactions, but is yet to see many uses in cybersecurity. This project has explored one of many potential uses, by enabling nodes to share information about attacks in the form of firewall rules, which allow other nodes to quickly configure their security to protect against the coming attacks. To accommodate these new transactions, a new form of consensus mechanism had to be created in order to provide near real-time decisions across a vast network.
+
+The proposed consensus mechanism, although it is some form of consensus, is not necessarily a secure nor trustworthy method. Traditionally, in \gls{blockchain}, transactions are not validated in real-time, and instead the hash is solved via a process called mining. Only once this hash has been mined, a processes achieved by a number of high power GPUs, is the transaction deemed as valid and appended onto the \gls{blockchain}. This consensus mechanism ensures the legitimacy of the block, whereas the proposed consensus method does not necessarily validate this property. Instead, the current consensus mechanism simply determines whether the sending node is up-to-date with the reset of the system, whereby if it's last block is the same as the majority of other nodes, the new block is deemed as valid, as the hashes will correctly match. The technique does mitigate the risks of a malicious node joining the network and immediately sending malicious firewall rules, however such a mechanism can easily be defeated by intercepting a genuine rule mechanism, and using its hash to then validate its own block.
+
+Similarly to the model mentioned above, the firewall \gls{blockchain} is also designed with flexibility. The examples shown in this project demonstrate how the chain is used to store traditional stateless rules, which either allow or block transactions based entirely off the \acrshort{IP} information of each packet. These rules could be easily modified to contain rules which are evaluated depending on the contents of each packet, or other control mechanisms such as access control lists (ACL), which can be integrated into organisational security mechanisms.
+
+\subsection{Proof of Concept}
+The final output of this project is a proof of concept implementation of the system. This proof of concept is provided in the form of a C program which is written in such a way to be cross-compatible with the majority of UNIX and Windows operating systems. Measured on the primary development computer, this C program which acts as a \gls{stub} in the distributed system is 22.9 KB in size, which makes the system extremely portable (you could store 62 copies on a single floppy disk). This proof of concept is designed to run in the background (as a daemon) and receives communications via \acrshort{IPC} and over the network, and works extremely effectively thanks to the tests carried out. For sending messages to the system via \acrshort{IPC}, a small driver program was written in C, which was used to construct messages and then send then to the \gls{stub} in the relevant format.
+
+In addition to communicating via \acrshort{IPC}, as the chosen communication channel is message queues and named pipes, interfaces can easily be built in other programming languages to relay messages to the \gls{stub}. Whilst it was established that this was possible early in the project, it wasn't until the end that a driver program was implemented in a different language. It was then decided that a Java wrapper would be created as Java is a widely used language, and also presents an additional challenge of sending messages out of the JVM and through the native \acrshort{IPC} mechanism. Whilst developing this it was discovered that nobody had yet created a library for passing messages from Java to a POSIX message queue, and hence a secondary project was created, called JPMQ \cite{jpmq}. Although the details will not be discussed here, JPMQ provides a method of interfacing with \acrshort{POSIX} message queues. The development of this Java based program reinforces the advantages previously mentioned of developing the program in C, as it allows nearly all higher languages to communicate via relevant wrappers and \acrshort{API}s.
+
+
+\section{Evaluating the Project}
+
+
 \chapter{Conclusion}
+
+\section{Original Aims and Objectives}
+
+\section{What Went Well}
+
+\section{Future Improvements}
+
+\section{What's been Learned}
+
+\section{Future Work}
 
 \printglossaries
 

@@ -79,11 +79,9 @@
 \glossaryentry{IPC?\glossentry{IPC}|setentrycounter[]{page}\glsnumberformat}{22}
 \glossaryentry{IPC?\glossentry{IPC}|setentrycounter[]{page}\glsnumberformat}{22}
 \glossaryentry{NIC?\glossentry{NIC}|setentrycounter[]{page}\glsnumberformat}{22}
-\glossaryentry{POSIX?\glossentry{POSIX}|setentrycounter[]{page}\glsnumberformat}{22}
-\glossaryentry{POSIX?\glossentry{POSIX}|setentrycounter[]{page}\glsnumberformat}{22}
 \glossaryentry{IPC?\glossentry{IPC}|setentrycounter[]{page}\glsnumberformat}{22}
-\glossaryentry{IPC?\glossentry{IPC}|setentrycounter[]{page}\glsnumberformat}{23}
-\glossaryentry{POSIX?\glossentry{POSIX}|setentrycounter[]{page}\glsnumberformat}{23}
+\glossaryentry{IPC?\glossentry{IPC}|setentrycounter[]{page}\glsnumberformat}{22}
+\glossaryentry{POSIX?\glossentry{POSIX}|setentrycounter[]{page}\glsnumberformat}{22}
 \glossaryentry{POSIX?\glossentry{POSIX}|setentrycounter[]{page}\glsnumberformat}{23}
 \glossaryentry{OS?\glossentry{OS}|setentrycounter[]{page}\glsnumberformat}{23}
 \glossaryentry{NIC?\glossentry{NIC}|setentrycounter[]{page}\glsnumberformat}{23}
@@ -93,3 +91,11 @@
 \glossaryentry{POSIX?\glossentry{POSIX}|setentrycounter[]{page}\glsnumberformat}{24}
 \glossaryentry{API?\glossentry{API}|setentrycounter[]{page}\glsnumberformat}{24}
 \glossaryentry{IP?\glossentry{IP}|setentrycounter[]{page}\glsnumberformat}{26}
+\glossaryentry{UDP?\glossentry{UDP}|setentrycounter[]{page}\glsnumberformat}{31}
+\glossaryentry{IP?\glossentry{IP}|setentrycounter[]{page}\glsnumberformat}{32}
+\glossaryentry{IPC?\glossentry{IPC}|setentrycounter[]{page}\glsnumberformat}{32}
+\glossaryentry{IPC?\glossentry{IPC}|setentrycounter[]{page}\glsnumberformat}{32}
+\glossaryentry{IPC?\glossentry{IPC}|setentrycounter[]{page}\glsnumberformat}{32}
+\glossaryentry{IPC?\glossentry{IPC}|setentrycounter[]{page}\glsnumberformat}{32}
+\glossaryentry{POSIX?\glossentry{POSIX}|setentrycounter[]{page}\glsnumberformat}{32}
+\glossaryentry{API?\glossentry{API}|setentrycounter[]{page}\glsnumberformat}{32}
