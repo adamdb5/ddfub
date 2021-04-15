@@ -59,7 +59,8 @@
 %%%%%%%%%%%%%%%%%%
 \title{\Huge{\textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}}}
 \date{April 2021}
-\author{\Large{Adam David Bruce} \\ \texttt{\href{mailto:a.bruce3@newcastle.ac.uk}{a.bruce3@newcastle.ac.uk}}}
+\author{
+\Large{Adam David Bruce} \\ \texttt{\href{mailto:a.bruce3@newcastle.ac.uk}{a.bruce3@newcastle.ac.uk}}}
 \begin{document}
 \maketitle
 
@@ -67,7 +68,7 @@
 % ABSTRACT
 %%%%%%%%%%%%%%%%%%
 \begin{abstract}
-//TODO
+Network security has, and always will be one of the greatest concerns for universities and other educational institutions. The 2020 cyberattacks throughout the COVID-19 pandemic highlighted both the importance of cybersecurity in UK universities, but also the lack of modern security infrastructure deployed across campuses. This literature aims to provide a method for universities to share information on potential, or ongoing cyberattacks to other universities via a trustworthy channel, capable of operating independently from other security measures. This is achieved by creating middleware capable of running on existing devices on each campus that uses blockchain to establish a decentralised trust mechanism. We explore a number of methods to achieve this including examining existing technologies as well as designing and implementing our own. A thorough analysis of the provided implementation is provided and we conclude by suggesting a number of future improvements that could be made to improve both the efficiency and effectiveness of such a system.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%
@@ -536,7 +537,7 @@ The first decision that had to be made was which hash algorithm to implement. A 
 \hline
 \multicolumn{2}{|c|}{MD5} & 128 & Yes & None \\
 \hline
-\multicolumn{2}{|c|}{SHA-0} & 160 & Yes & None \\
+\multicolumn{2}{|c|}{SHA-0} & 160 & Yes & Nonimprovee \\
 \hline
 \multicolumn{2}{|c|}{SHA-1} & 160 & Yes & None \\
 \hline
@@ -593,11 +594,11 @@ In regards to fault tolerance, this project was extremely limited, as it ran as 
 
 In addition to the fail-early principle, the each node maintains a log of all complete transactions that have taken place on that node. Once a node receives a either an advertisement, or a new rule, it is logged immediately. This means that should the operating system fail, or the system suffers from an unrecoverable fault, the operating system can immediately restart the system (which can run as a daemon) which will then load all known hosts into memory, and rebuild the chain from the transaction log.
 
-\chapter{Testing}
+\chapter{Testing} \label{test}
 Testing the system required tests to be categorised into two types: local and network. Local tests consist of any functions which take place on the local node, such as hashing of blocks and controlling network sockets. These local tests could be easily tested using unit tests. Network tests consist of protocol tests that can only be tested over a physical network. Network tests are much harder to strategically test, which means unit tests would require careful synchronisation, such that when one node was testing it's send feature, another node would need to be ready to accept a message, for this reason, networks tests did not use unit tests.
 
-\section{Local Testing}
-As previously mentioned, local tests were carried out with unit tests. There are a number of uni test frameworks for C, which all offer very similar functionality, and for this reason the decision process will not be discussed here, however in the end the cmocka\cite{cmocka} framework was identified as the best framework for this project. All tests were carried out on six different devices, which contained different architectures, hardware, operating systems and distributions. Furthermore, four out of the five devices tested were low-power single board computers including Raspberry Pi's and Orange Pi's, two of which only had 512MB of memory, providing an additional an test to check how demanding the system would be. A summary of these devices is given below.
+\section{Local Testing} \label{loctest}
+As previously mentioned, local tests were carried out with unit tests. There are a number of unit test frameworks for C, which all offer very similar functionality, and for this reason the decision process will not be discussed here, however in the end the cmocka\cite{cmocka} framework was identified as the best framework for this project. All tests were carried out on six different devices, which contained different architectures, hardware, operating systems and distributions. Furthermore, four out of the five devices tested were low-power single board computers including Raspberry Pi's and Orange Pi's, two of which only had 512MB of memory, providing an additional an test to check how demanding the system would be. The operating systems were chosen as they all have strong market shares in networking components and technologies, in addition to being freely available and supporting a wide range of hardware. A summary of these devices is given below.
 
 \begin{table}[H]
 \centering
@@ -617,28 +618,46 @@ ARMv8 & Broadcom & FreeBSD 13 & N/A\\
 \label{tab:testdevices}
 \end{table}
 
+\iffalse
 A summary of the tests used is provided below.
 
 \begin{table}[H]
 \centering
 \begin{tabular}{ |c|c|c|c|c| } 
 \hline
-Cryptography Library & Algorithm Families & Language & Compatible OSs & First Created\\
+Name\\
 \hline
-OpenSSL (libcrypto)\cite{libcrypto} & 9 & C & 28 & 1998\\
-wolfSSL (wolfCrypt)\cite{wolfCrypt} & 6 & C & 26 & 2006\\
-cryptlib\cite{cryptlib} & 6 & C & 37 & 1995\\
-GPG (Libgcrypt)\cite{libgcrypt} & 11 & C & Unknown & 1999\\
+Get block hash (invalid, buffer is null)\\
+Get block hash (invalid, buffer too small)\\
+Get block hash (invalid, block is null)\\
+Get block hash (valid)\\
+Get hash string (invalid, hash is null)\\
+Get hash string (invalid, buffer too small)\\
+Get hash string (invalid, buffer is null)\\
+Get hash string (valid)\\
+Initialise network stack (valid)\\
+Clean up network stack (valid)\\
+Send and receive message (valid)\\
+Get Local IP Address (valid)\\
+Load hosts from file (valid)\\
+Add host (valid)\\
+Initialise socket API (valid)\\
+Clean up socket API (valid)\\
+Create socket (valid)\\
+Bind sending socket (valid)\\
+Bind receiving socket (valid)\\
+Bind socket (invalid, null socket)\\
+Bind socket (invalid, port already in use)\\
+Send and receive over socket (valid)\\
 \hline
 \end{tabular}
-\caption{Unit Test Results}
+\caption{Unit Tests}
 \label{tab:unittests}
 \end{table}
-
-As can be seen, all unit tests passed on all tested operating systems.
+\fi
 
 \section{Network Testing}
-In order to test the operation over the network, a physical network was created using a switch and all of the devices described in table \ref{tab:testdevices}. A diagram of this topology is pictured below.
+In order to test the operation over the network, a physical network was created using a switch and all of the devices described in table \ref{tab:testdevices}. A diagram of this topology is pictured below. Due to the nature of this project, these network tests were carried out at various stages throughout the development processes. There was no formal agenda to these tests, instead a large number of scenarios were created using the pictured network. All of the tested scenarios were handled correctly, which included testing advertisements, both valid and invalid consensus messages and verifying if rules were successfully communicated between nodes.
 
 \begin{figure}[H]
 \centering
@@ -647,23 +666,6 @@ In order to test the operation over the network, a physical network was created 
 \label{fig:networkmap}
 \end{figure}
 
-A summary of the tests user is provided below.
-
-\begin{table}[H]
-\centering
-\begin{tabular}{ |c|c|c|c|c| } 
-\hline
-Cryptography Library & Algorithm Families & Language & Compatible OSs & First Created\\
-\hline
-OpenSSL (libcrypto)\cite{libcrypto} & 9 & C & 28 & 1998\\
-wolfSSL (wolfCrypt)\cite{wolfCrypt} & 6 & C & 26 & 2006\\
-cryptlib\cite{cryptlib} & 6 & C & 37 & 1995\\
-GPG (Libgcrypt)\cite{libgcrypt} & 11 & C & Unknown & 1999\\
-\hline
-\end{tabular}
-\caption{Network Test Results}
-\label{tab:network}
-\end{table}
 
 \section{Attack Simulation and Performance Testing} \label{simu}
 Following successful unit and network tests, an attack was simulated on the system to measure how long it took for a rule to be created, advertised, consensus gained and then transmit to all other nodes. The attack would be reported to the \gls{stub} of one node, and the local timestamp would be recorded at each step of the process. Ideally, timestamps would be collected at all nodes, however due to variations in clocks, synchronisations and architectures, the resulting data was inaccurate, and hence it was decided that timestamps would only be taken from the local node.
@@ -691,15 +693,7 @@ The times provided in the above table are given in seconds since the epoch. Runn
 Not only is it essential that the system is functionally and logically correct, but it must also correctly utilise system resources. The most important of these resources is memory, in particular, the heap where numerous dynamic allocations are made throughout the lifetime of the \gls{stub}. As the system is designed to function for extended periods of time, it is essential that any memory allocated is correct freed back to the operating system otherwise the system would slowly begin consuming all memory on the system, leading to a crash.
 The chosen way to test for memory leaks was to use the tool Valgrind \cite{valgrind}. Valgrind provides an extensive range of memory and thread checking tools along with profiling tools. For this test, the memory leak test was run with the \texttt{--leak-check=full} option enabled to provide a thorough check. In order to provide a fair test, a number of hosts on the network first advertised, and then several firewall transactions took place from different nodes. 
 
-The test was carried out by connecting five different nodes to the system, followed by two firewall rule transactions. The image below shows the output of Valgrind, indicating that there were a total of 43 heap allocations throughout the lifetime of the program, and that there were no allocated bytes still in use at the point of program termination. Additionally, Valgrind provides a convenient summary stating that \say{All heap blocks were freed - no leaks are possible}.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth,keepaspectratio]{valgrind}
-\caption{The output of Valgrind} 
-\label{fig:valgrind}
-\end{figure}
-
+The test was carried out by connecting five different nodes to the system, followed by two firewall rule transactions. 
 \chapter{Evaluation}
 
 \section{Project Results}
@@ -723,21 +717,92 @@ The final output of this project is a proof of concept implementation of the sys
 
 In addition to communicating via \acrshort{IPC}, as the chosen communication channel is message queues and named pipes, interfaces can easily be built in other programming languages to relay messages to the \gls{stub}. Whilst it was established that this was possible early in the project, it wasn't until the end that a driver program was implemented in a different language. It was then decided that a Java wrapper would be created as Java is a widely used language, and also presents an additional challenge of sending messages out of the JVM and through the native \acrshort{IPC} mechanism. Whilst developing this it was discovered that nobody had yet created a library for passing messages from Java to a POSIX message queue, and hence a secondary project was created, called JPMQ \cite{jpmq}. Although the details will not be discussed here, JPMQ provides a method of interfacing with \acrshort{POSIX} message queues. The development of this Java based program reinforces the advantages previously mentioned of developing the program in C, as it allows nearly all higher languages to communicate via relevant wrappers and \acrshort{API}s.
 
+\section{Evaluating the Development Process}
+In regards to software engineering, this project has created a working, reliable piece of software which is cross compatible and has been extensively tested. With regards to the development methodology used, the waterfall method seemed like the most appropriate method, as the project was developed by a single person, and there would be no input from clients so there would be no substantial changes along the way. Using a method such as agile would vastly overcomplicate the development process, as if a particular element of the project was delayed, the rest of development would need to be restructured which would add unnecessary overhead to the project administration. This method worked very well for this project as at the start of the project there were a lot of new technologies and a number of hurdles to overcome, and using the waterfall method allowed each technology to be implemented one step at a time without concern for the other aspects of the project.
 
-\section{Evaluating the Project}
+The original designs for the system were intentionally vague due to the project using unfamiliar technologies. Unfortunately this did lead to a number of oversights throughout the project, for instance although the rough outline of the protocol was designed upfront, there were a number of issues such as how routing would be carried out, and how exactly consensus would be negotiated. Ultimately however, the original timetable permitted sufficient time for researching and working on these additional issues, but they could have been avoided with more careful designing.
 
+With regards to implementation, this project used a loose implementation of the Test Driven Development (TDD) methodology. The term 'loose' is used here as it was implemented alongside the previously mentioned waterfall method. TDD was used to help keep the project on track, as if tests were not created up front, there was a large risk of feature creep, and the addition of unnecessary features into a system which is designed to be reliable is not a good idea. Unlike traditional TDD, this project did not define all tests upfront, but instead tests were created prior to each stage / component of the system. The reason for this was due to the unfamiliarity with the libraries used, and so it seemed logical to create the tests once a strong understanding was grasped of that particular technology. This system worked well and ensured that tests were suitable and tailored to both the problem and the technologies used.
+
+\section{Test Results}
+The methodology for testing was described in detail in section \ref{test}, however this section provides a more detailed analysis of those results. 
+
+The local tests all passed for the tested operating systems and architectures. The local tests confirmed that all of the tested hardware and operating systems supported the software, and that the software could correctly interact with other components on the \acrshort{OS}. It would be bewildering to show all test outputs here, so the tests for one particular operating system are provided below.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=200px,keepaspectratio]{blockchain_test}
+\caption{The output of the blockchain unit tests} 
+\label{fig:blockchaintest}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=200px,keepaspectratio]{net_test}
+\caption{The output of the network unit tests} 
+\label{fig:nettest}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=200px,keepaspectratio]{socket_test}
+\caption{The output of the socket unit tests} 
+\label{fig:nettest}
+\end{figure}
+
+Unfortunately the number of tests that could be carried out locally was constricted by the networked nature of the system. Although these tests are limited, they did provide valuable information and guidance when implementing these functions, however their effectiveness began to decline as the system became more complex. As can be seen from the tables in \ref{loctest}, there were a large number of additional functions implemented but not tested, and this is where using both waterfall and TDD began to lose effectiveness. Before starting development on a particular component, the tests were written up, however it became increasingly difficult to maintain both the tests and the functional code, which resulted in TDD becoming a lower priority and functions were instead tested as they were implemented, which is why there is a lack of tests in the unit tests.
+
+Additionally, as mentioned previously, the software underwent testing for memory leaks to ensure it was capable of operating without hogging system resources. The image below shows the output of Valgrind, indicating that there were a total of 43 heap allocations throughout the lifetime of the program, and that there were no allocated bytes still in use at the point of program termination. Additionally, Valgrind provides a convenient summary stating that \say{All heap blocks were freed - no leaks are possible}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth,keepaspectratio]{valgrind}
+\caption{The output of Valgrind} 
+\label{fig:valgrind}
+\end{figure}
+
+Valgrind is an effective tool and is well recognised for its accuracy and detailed output when a leak is found. It can therefore be trusted that the output pictured above is accurate, and that the software does not contain any memory leaks.
 
 \chapter{Conclusion}
 
+    %\item Evaluate the effectiveness of existing distributed security mechanisms.
+    %\item Investigate methods of establishing connections and synchronising computers within distributed systems.
+    %\item Understand the structure of \gls{blockchain}s and adapt them for firewall transactions.
+    %\item Implement and test relevant resilience, fault tolerance and security mechanisms.
+    %\item Compare the use of decentralised security mechanisms.
+
 \section{Original Aims and Objectives}
+This project satisfied the original aim, creating a security model which comprises of protocols and data structures that utilises blockchain in order to create a decentralised security mechanism that can be operated over a distributed system. However, it has not succeeded in meeting all of the proposed objectives.\\
 
-\section{What Went Well}
 
-\section{Future Improvements}
+\textbf{Objective 1} was partially met as initial research did provide background information with regards to existing distributed security mechanisms and their uses, however this literature has not drawn any evaluation in regard to their effectiveness. Unfortunately this objective was not met due a lack of publicly accessible information on these systems and due to time constraints.\\
 
-\section{What's been Learned}
+\textbf{Objective 2} was met as initial research and existing knowledge allowed a number of possible methods of both connection establishment and synchronisation techniques to be investigated. As detailed it was decided that the best method of establishing connections was actually not to use any connection oriented protocols at all, and \acrshort{UDP} which is a connectionless protocol was identified as the best protocol for this project. As for synchronisation, this aspect became largely irrelevant as the implementation of blockchain provided a mechanism for keeping all nodes up-to-date with the correct information.\\
+
+\textbf{Objective 3} was met as a structure for encapsulating firewall transactions within blockchain was designed and successfully implemented into the system.\\
+
+\textbf{Objective 4} was partially met as additional research indicated that a number of fault tolerance mechanisms would not be suitable for this project. As the project runs on an underlying operating system, the amount of control the software has is not sufficient for traditional fault tolerance mechanisms. Instead, the software utilises a fail early design, such that should a situation arise that is unrecoverable, the system will simply ignore the malicious data, or if needed, terminate the program. Additionally, backups are created whenever a transaction takes place enabling the system to load its previous state should it crash or terminate.\\
+
+\textbf{Objective 5} was not met as despite thorough research, no existing decentralised security mechanisms were found, which implies that this project could be the first publicly available implementation of such a system.
+
+\section{Personal Development}
+Throughout this project I have developed a number of skills and vastly expanded my knowledge of certain areas of computing. One of the most important skills I have developed is my research ability as before undertaking this project I had never carried out such thorough research nor analysed the literature I was reading in such depth. These skills will allow be to continue to both learn and scrutinise research in the future, and should I be the author of any research I feel much more confident in writing clear documents, with reputable references.
+
+Developing this project in a low level language such as C has taught me a number of practises for developing reliable and correct software. At the beginning of the development, my enjoyment of writing C quickly became a chore as I was bombarded with segmentation faults and core dumps and not understanding why the software was behaving in particular ways. After hours spent debugging, I slowly learnt how making assumptions about how a computer may act is crucial mistake, and quickly began ensuring all data was formatted to the exact specifications of the C language. After correcting my mistakes, I could now see how my code had let to unpredictable behaviour and now know how to avoid it.
+
+In regards to technical knowledge, this project has required me to gain a thorough understanding of operating systems, distributed systems and blockchain. I had some prior knowledge of operating systems however I was required to learn about entirely new aspects including \acrshort{IPC}, sockets and networking in general. Additionally, I learnt a number of lessons with regard to cross compatibility and learnt a number of quirks in regards to different operating systems and how they behave. I also only had a limited amount of knowledge regarding distributed systems, and throughout this project I have gained a thorough understanding of how they use \gls{stub}s to collaboratively establish middleware, which permits transactions to exchange information across a network. Finally, I dseeveloped my understanding of blockchain, and unlike before this project, blockchain is no longer just a buzzword. I have learnt that blockchain is not only useful in cryptocurrency, but has a number of additional uses including those discussed in this literature.
 
 \section{Future Work}
+There are a number of changes and most importantly improvements that can be made to this project. There are a wide range of minor changes which could include the structure of the blocks in the chain, or simply the hashing algorithms used, however there are also some less trivial changes which are listed below:
+
+\begin{itemize}
+\item \textbf{Security} - Currently there is no security regarding encapsulating the protocol, and furthermore, the protocol itself does contain known vulnerabilities which are not desirable. Ideal future work would include securing the packets sent across the network, which could be achieved by using some kind of shared key across the entire network, however this would only prevent outside devices from snooping, and would still allow bad actors within the network to snoop. Alternatively, \acrshort{UDP} could be replace with \acrshort{TCP} which would allow common security protocols such as TLS to be utilised, however this would add a large amount of overhead, hence reducing the speed at which messages can propagate.
+
+\item \textbf{Message Efficiency} - Currently the protocol is hugely inefficient in regards to the number of messages transmitted across the network. The use of hops and the fact that each host relays any message it receives to all of its known hosts creates an exponential amount of messages on the network, which means that should the number of hosts reach a high enough level, the network essential becomes on big Distributed Denial-of-Service (DDOS) attack, potentially causing devices to spend too much time processing messages instead of processing genuine traffic. The efficiency of messages could be vastly improved by integrating a more effective mechanism for providing redundancy.
+
+\item \textbf{Programming Language} - The implementation provided in this project is written in C, however there are a number of alternatives that could offer much more resilience and tolerance to error. A number of these were considered but dismissed due to their immaturity. Whilst this is still true, upon reflection I have learnt that benefits such as Go's efficiency and Rust's memory safety could provide a great more safety and resiliency. Furthermore, these languages are both compiled which means they would be no less efficient that the C implementation, and could be much easily developed for, with less quirks than C. The only current barrier is that these languages do not currently support all of the operating system interfaces that C currently does, but this project could easily use different \acrshort{IPC} methods or networking interfaces to ensure compatibility.
+
+\end{itemize}
 
 \printglossaries
 

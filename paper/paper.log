@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.4.6)  14 APR 2021 16:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.4.6)  15 APR 2021 17:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -605,23 +605,27 @@ Package glossaries Info: Writing glossary file paper.acn on input line 23.
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count337
 \l__pdf_internal_box=\box105
-) (./paper.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
+) (./paper.aux
+
+LaTeX Warning: Label `fig:nettest' multiply defined.
+
+)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -688,7 +692,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-Package hyperref Info: Link coloring OFF on input line 63.
+Package hyperref Info: Link coloring OFF on input line 64.
 
 (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -701,9 +705,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count345
 )
-LaTeX Info: Redefining \ref on input line 63.
-LaTeX Info: Redefining \pageref on input line 63.
-LaTeX Info: Redefining \nameref on input line 63.
+LaTeX Info: Redefining \ref on input line 64.
+LaTeX Info: Redefining \pageref on input line 64.
+LaTeX Info: Redefining \nameref on input line 64.
 
 (./paper.out) (./paper.out)
 \@outlinefile=\write6
@@ -714,7 +718,7 @@ ination with the same identifier (name{page.1}) has been already used, duplicat
 e ignored
 <to be read again> 
                    \relax 
-l.71 \end{abstract}
+l.72 \end{abstract}
                     [1] (./paper.tocpdfTeX warning (ext4): destination with the
  same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
@@ -738,17 +742,17 @@ Chapter 1.
 [5
 
 ]
-<./images//TanenbaumDistributed.png, id=456, 1104.125pt x 456.70625pt>
+<./images//TanenbaumDistributed.png, id=453, 1104.125pt x 456.70625pt>
 File: ./images//TanenbaumDistributed.png Graphic file (type png)
 <use ./images//TanenbaumDistributed.png>
 Package pdftex.def Info: ./images//TanenbaumDistributed.png  used on input line
- 103.
+ 104.
 (pdftex.def)             Requested size: 452.9679pt x 187.36226pt.
  [6 <./images//TanenbaumDistributed.png>]
-<./images//NoferBlock.png, id=479, 3368.585pt x 600.2425pt>
+<./images//NoferBlock.png, id=476, 3368.585pt x 600.2425pt>
 File: ./images//NoferBlock.png Graphic file (type png)
 <use ./images//NoferBlock.png>
-Package pdftex.def Info: ./images//NoferBlock.png  used on input line 114.
+Package pdftex.def Info: ./images//NoferBlock.png  used on input line 115.
 (pdftex.def)             Requested size: 452.9679pt x 80.70866pt.
  [7 <./images//NoferBlock.png>]
 Chapter 2.
@@ -756,81 +760,81 @@ Chapter 2.
 
 ]
 Chapter 3.
-<./images//appl_layer_proto.png, id=509, 876.27374pt x 439.6425pt>
+<./images//appl_layer_proto.png, id=506, 876.27374pt x 439.6425pt>
 File: ./images//appl_layer_proto.png Graphic file (type png)
 <use ./images//appl_layer_proto.png>
-Package pdftex.def Info: ./images//appl_layer_proto.png  used on input line 152
+Package pdftex.def Info: ./images//appl_layer_proto.png  used on input line 153
 .
 (pdftex.def)             Requested size: 283.5421pt x 142.26378pt.
 [9
 
  <./images//appl_layer_proto.png>]
-<./images//rpc.png, id=536, 1073.00874pt x 510.90875pt>
+<./images//rpc.png, id=533, 1073.00874pt x 510.90875pt>
 File: ./images//rpc.png Graphic file (type png)
 <use ./images//rpc.png>
-Package pdftex.def Info: ./images//rpc.png  used on input line 177.
+Package pdftex.def Info: ./images//rpc.png  used on input line 178.
 (pdftex.def)             Requested size: 452.9679pt x 215.67941pt.
  [10 <./images//rpc.png>]
 File: ./images//NoferBlock.png Graphic file (type png)
 <use ./images//NoferBlock.png>
-Package pdftex.def Info: ./images//NoferBlock.png  used on input line 200.
+Package pdftex.def Info: ./images//NoferBlock.png  used on input line 201.
 (pdftex.def)             Requested size: 452.9679pt x 80.70866pt.
-<./images//distmsg.png, id=566, 828.09375pt x 196.735pt>
+<./images//distmsg.png, id=563, 828.09375pt x 196.735pt>
 File: ./images//distmsg.png Graphic file (type png)
 <use ./images//distmsg.png>
-Package pdftex.def Info: ./images//distmsg.png  used on input line 211.
+Package pdftex.def Info: ./images//distmsg.png  used on input line 212.
 (pdftex.def)             Requested size: 239.52188pt x 56.9055pt.
  [11]
-<./images//DMZ.png, id=582, 702.625pt x 579.16376pt>
+<./images//DMZ.png, id=579, 702.625pt x 579.16376pt>
 File: ./images//DMZ.png Graphic file (type png)
 <use ./images//DMZ.png>
-Package pdftex.def Info: ./images//DMZ.png  used on input line 241.
+Package pdftex.def Info: ./images//DMZ.png  used on input line 242.
 (pdftex.def)             Requested size: 345.17911pt x 284.52756pt.
  [12 <./images//distmsg.png>]
-<./images//primback.png, id=596, 996.72375pt x 363.3575pt>
+<./images//primback.png, id=593, 996.72375pt x 363.3575pt>
 File: ./images//primback.png Graphic file (type png)
 <use ./images//primback.png>
-Package pdftex.def Info: ./images//primback.png  used on input line 253.
+Package pdftex.def Info: ./images//primback.png  used on input line 254.
 (pdftex.def)             Requested size: 390.24158pt x 142.26378pt.
  [13 <./images//DMZ.png> <./images//primback.png>]
-<./images//mesh.png, id=615, 442.65375pt x 274.02374pt>
+<./images//mesh.png, id=612, 442.65375pt x 274.02374pt>
 File: ./images//mesh.png Graphic file (type png)
 <use ./images//mesh.png>
-Package pdftex.def Info: ./images//mesh.png  used on input line 267.
+Package pdftex.def Info: ./images//mesh.png  used on input line 268.
 (pdftex.def)             Requested size: 229.81653pt x 142.26378pt.
  [14 <./images/Mesh.png>]
 Chapter 4.
-<./images//componentdiagram.png, id=640, 673.51625pt x 402.50375pt>
+<./images//componentdiagram.png, id=637, 673.51625pt x 402.50375pt>
 File: ./images//componentdiagram.png Graphic file (type png)
 <use ./images//componentdiagram.png>
-Package pdftex.def Info: ./images//componentdiagram.png  used on input line 282
+Package pdftex.def Info: ./images//componentdiagram.png  used on input line 283
 .
 (pdftex.def)             Requested size: 380.87653pt x 227.62204pt.
 [15
 
  <./images//componentdiagram.png>] [16] [17] [18]
-<./images//advertisement_seq.png, id=679, 714.67pt x 375.4025pt>
+<./images//advertisement_seq.png, id=676, 714.67pt x 375.4025pt>
 File: ./images//advertisement_seq.png Graphic file (type png)
 <use ./images//advertisement_seq.png>
 Package pdftex.def Info: ./images//advertisement_seq.png  used on input line 42
-1.
+2.
 (pdftex.def)             Requested size: 452.9679pt x 237.93686pt.
-<./images//consensus_rule_seq.png, id=683, 714.67pt x 475.7775pt>
+<./images//consensus_rule_seq.png, id=680, 714.67pt x 475.7775pt>
 File: ./images//consensus_rule_seq.png Graphic file (type png)
 <use ./images//consensus_rule_seq.png>
 Package pdftex.def Info: ./images//consensus_rule_seq.png  used on input line 4
-31.
+32.
 (pdftex.def)             Requested size: 452.9679pt x 301.55634pt.
  [19 <./images//advertisement_seq.png>] [20 <./images//consensus_rule_seq.png>]
 
 Chapter 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 446--447
+Underfull \hbox (badness 10000) in paragraph at lines 447--448
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 446--447
+Underfull \hbox (badness 10000) in paragraph at lines 447--448
 
  []
 
@@ -842,53 +846,87 @@ File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 ) [21
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 465--466
+Underfull \hbox (badness 10000) in paragraph at lines 466--467
 
  []
 
 [22] [23] [24]
-Overfull \hbox (4.27443pt too wide) in paragraph at lines 575--585
+Overfull \hbox (4.27443pt too wide) in paragraph at lines 576--586
  [][] 
  []
 
 [25] [26]
 Chapter 6.
-
-Overfull \hbox (4.27443pt too wide) in paragraph at lines 624--634
- [][] 
- []
-
 [27
 
 ]
-<./images//networkmap.png, id=876, 1077.02374pt x 533.995pt>
+<./images//networkmap.png, id=869, 1077.02374pt x 533.995pt>
 File: ./images//networkmap.png Graphic file (type png)
 <use ./images//networkmap.png>
-Package pdftex.def Info: ./images//networkmap.png  used on input line 645.
+Package pdftex.def Info: ./images//networkmap.png  used on input line 664.
 (pdftex.def)             Requested size: 452.9679pt x 224.586pt.
+ [28 <./images//networkmap.png>] [29]
+Chapter 7.
+[30
 
-Overfull \hbox (4.27443pt too wide) in paragraph at lines 654--664
- [][] 
- []
+] [31]
+<./images//blockchain_test.png, id=914, 865.2325pt x 768.8725pt>
+File: ./images//blockchain_test.png Graphic file (type png)
+<use ./images//blockchain_test.png>
+Package pdftex.def Info: ./images//blockchain_test.png  used on input line 734.
 
-[28 <./images//networkmap.png>]
-<./images//valgrind.png, id=889, 1446.40375pt x 1597.97pt>
+(pdftex.def)             Requested size: 200.75073pt x 178.38557pt.
+ [32]
+<./images//net_test.png, id=919, 747.79375pt x 686.565pt>
+File: ./images//net_test.png Graphic file (type png)
+<use ./images//net_test.png>
+Package pdftex.def Info: ./images//net_test.png  used on input line 741.
+(pdftex.def)             Requested size: 200.75073pt x 184.30646pt.
+<./images//socket_test.png, id=920, 695.59875pt x 758.835pt>
+File: ./images//socket_test.png Graphic file (type png)
+<use ./images//socket_test.png>
+Package pdftex.def Info: ./images//socket_test.png  used on input line 748.
+(pdftex.def)             Requested size: 200.75073pt x 218.99126pt.
+ [33 <./images//blockchain_test.png> <./images//net_test.png>]
+<./images//valgrind.png, id=926, 1446.40375pt x 1597.97pt>
 File: ./images//valgrind.png Graphic file (type png)
 <use ./images//valgrind.png>
-Package pdftex.def Info: ./images//valgrind.png  used on input line 698.
+Package pdftex.def Info: ./images//valgrind.png  used on input line 759.
 (pdftex.def)             Requested size: 452.9679pt x 500.43726pt.
- [29] [30 <./images//valgrind.png>]
-Chapter 7.
-[31
 
-] [32] [33]
+[34 <./images//socket_test.png>] [35 <./images//valgrind.png>]
 Chapter 8.
-(./paper.gls [34
 
-]) (./paper.acr [35
+Underfull \hbox (badness 10000) in paragraph at lines 775--776
+
+ []
 
 
-]) (./paper.bbl [36
+Underfull \hbox (badness 10000) in paragraph at lines 778--779
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 780--781
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 782--783
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 784--785
+
+ []
+
+[36
+
+] [37] (./paper.gls [38]) (./paper.acr [39
+
+
+]) (./paper.bbl [40
 
 
 ]
@@ -902,7 +940,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--25
  / / www . ncsc . gov . uk / files /
  []
 
-[37
+[41
 
 ]
 Underfull \hbox (badness 1983) in paragraph at lines 82--85
@@ -911,26 +949,30 @@ iki.'' []$\OT1/cmtt/m/n/10.95 https : / / wiki .
  []
 
 
-Underfull \hbox (badness 1331) in paragraph at lines 139--142
+Underfull \hbox (badness 1331) in paragraph at lines 138--141
 []\OT1/cmr/m/n/10.95 Microsoft, ``Win-dows sock-ets 2 - win32 apps | mi-crosoft
  docs.'' []$\OT1/cmtt/m/n/10.95 https : / / docs .
  []
 
 
-Underfull \hbox (badness 1082) in paragraph at lines 174--176
+Underfull \hbox (badness 1082) in paragraph at lines 173--175
 []\OT1/cmr/m/n/10.95 ``cmocka - uni test-ing frame-work for c.'' []$\OT1/cmtt/m
 /n/10.95 https : / / cmocka . org/$[]\OT1/cmr/m/n/10.95 , 2020.  Ac-cessed:
  []
 
-[38]) [39] (./paper.aux)
+[42]) [43] (./paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: D2744B961FCAE64BADD1D84EA6F4493F;3796.
+(rerunfilecheck)             Checksum: A63A2ECD62F71D16854F7DD1C8FBDF81;3741.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
  ) 
 Here is how much of TeX's memory you used:
- 14747 strings out of 479383
- 217994 string characters out of 5875831
- 1012423 words of memory out of 5000000
- 31306 multiletter control sequences out of 15000+600000
+ 14773 strings out of 479383
+ 218559 string characters out of 5875831
+ 1012573 words of memory out of 5000000
+ 31328 multiletter control sequences out of 15000+600000
  413266 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  93i,10n,97p,1674b,2026s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -944,10 +986,10 @@ t/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmtt9.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
 
-Output written on paper.pdf (41 pages, 1033613 bytes).
+Output written on paper.pdf (45 pages, 1369279 bytes).
 PDF statistics:
- 1164 PDF objects out of 1200 (max. 8388607)
- 1081 compressed objects within 11 object streams
- 262 named destinations out of 1000 (max. 500000)
- 554 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1190 PDF objects out of 1200 (max. 8388607)
+ 1100 compressed objects within 11 object streams
+ 266 named destinations out of 1000 (max. 500000)
+ 561 words of extra memory for PDF output out of 10000 (max. 10000000)
 

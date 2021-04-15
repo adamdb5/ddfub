@@ -55,7 +55,7 @@ Warning--empty booktitle in sdsi
 Warning--empty publisher in c
 You've used 39 entries,
             1876 wiz_defined-function locations,
-            663 strings with 8056 characters,
+            663 strings with 8049 characters,
 and the built_in function-call counts, 6206 in all, are:
 = -- 610
 > -- 212
