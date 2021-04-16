@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.4.6)  15 APR 2021 17:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Arch Linux) (preloaded format=pdflatex 2021.4.6)  16 APR 2021 16:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -742,14 +742,14 @@ Chapter 1.
 [5
 
 ]
-<./images//TanenbaumDistributed.png, id=453, 1104.125pt x 456.70625pt>
+<./images//TanenbaumDistributed.png, id=468, 1104.125pt x 456.70625pt>
 File: ./images//TanenbaumDistributed.png Graphic file (type png)
 <use ./images//TanenbaumDistributed.png>
 Package pdftex.def Info: ./images//TanenbaumDistributed.png  used on input line
- 104.
+ 101.
 (pdftex.def)             Requested size: 452.9679pt x 187.36226pt.
  [6 <./images//TanenbaumDistributed.png>]
-<./images//NoferBlock.png, id=476, 3368.585pt x 600.2425pt>
+<./images//NoferBlock.png, id=493, 3368.585pt x 600.2425pt>
 File: ./images//NoferBlock.png Graphic file (type png)
 <use ./images//NoferBlock.png>
 Package pdftex.def Info: ./images//NoferBlock.png  used on input line 115.
@@ -760,7 +760,7 @@ Chapter 2.
 
 ]
 Chapter 3.
-<./images//appl_layer_proto.png, id=506, 876.27374pt x 439.6425pt>
+<./images//appl_layer_proto.png, id=523, 876.27374pt x 439.6425pt>
 File: ./images//appl_layer_proto.png Graphic file (type png)
 <use ./images//appl_layer_proto.png>
 Package pdftex.def Info: ./images//appl_layer_proto.png  used on input line 153
@@ -769,7 +769,7 @@ Package pdftex.def Info: ./images//appl_layer_proto.png  used on input line 153
 [9
 
  <./images//appl_layer_proto.png>]
-<./images//rpc.png, id=533, 1073.00874pt x 510.90875pt>
+<./images//rpc.png, id=550, 1073.00874pt x 510.90875pt>
 File: ./images//rpc.png Graphic file (type png)
 <use ./images//rpc.png>
 Package pdftex.def Info: ./images//rpc.png  used on input line 178.
@@ -779,32 +779,32 @@ File: ./images//NoferBlock.png Graphic file (type png)
 <use ./images//NoferBlock.png>
 Package pdftex.def Info: ./images//NoferBlock.png  used on input line 201.
 (pdftex.def)             Requested size: 452.9679pt x 80.70866pt.
-<./images//distmsg.png, id=563, 828.09375pt x 196.735pt>
+<./images//distmsg.png, id=582, 828.09375pt x 196.735pt>
 File: ./images//distmsg.png Graphic file (type png)
 <use ./images//distmsg.png>
 Package pdftex.def Info: ./images//distmsg.png  used on input line 212.
 (pdftex.def)             Requested size: 239.52188pt x 56.9055pt.
  [11]
-<./images//DMZ.png, id=579, 702.625pt x 579.16376pt>
+<./images//DMZ.png, id=598, 702.625pt x 579.16376pt>
 File: ./images//DMZ.png Graphic file (type png)
 <use ./images//DMZ.png>
 Package pdftex.def Info: ./images//DMZ.png  used on input line 242.
 (pdftex.def)             Requested size: 345.17911pt x 284.52756pt.
  [12 <./images//distmsg.png>]
-<./images//primback.png, id=593, 996.72375pt x 363.3575pt>
+<./images//primback.png, id=612, 996.72375pt x 363.3575pt>
 File: ./images//primback.png Graphic file (type png)
 <use ./images//primback.png>
 Package pdftex.def Info: ./images//primback.png  used on input line 254.
 (pdftex.def)             Requested size: 390.24158pt x 142.26378pt.
  [13 <./images//DMZ.png> <./images//primback.png>]
-<./images//mesh.png, id=612, 442.65375pt x 274.02374pt>
+<./images//mesh.png, id=630, 442.65375pt x 274.02374pt>
 File: ./images//mesh.png Graphic file (type png)
 <use ./images//mesh.png>
 Package pdftex.def Info: ./images//mesh.png  used on input line 268.
 (pdftex.def)             Requested size: 229.81653pt x 142.26378pt.
  [14 <./images/Mesh.png>]
 Chapter 4.
-<./images//componentdiagram.png, id=637, 673.51625pt x 402.50375pt>
+<./images//componentdiagram.png, id=655, 673.51625pt x 402.50375pt>
 File: ./images//componentdiagram.png Graphic file (type png)
 <use ./images//componentdiagram.png>
 Package pdftex.def Info: ./images//componentdiagram.png  used on input line 283
@@ -813,13 +813,13 @@ Package pdftex.def Info: ./images//componentdiagram.png  used on input line 283
 [15
 
  <./images//componentdiagram.png>] [16] [17] [18]
-<./images//advertisement_seq.png, id=676, 714.67pt x 375.4025pt>
+<./images//advertisement_seq.png, id=694, 714.67pt x 375.4025pt>
 File: ./images//advertisement_seq.png Graphic file (type png)
 <use ./images//advertisement_seq.png>
 Package pdftex.def Info: ./images//advertisement_seq.png  used on input line 42
 2.
 (pdftex.def)             Requested size: 452.9679pt x 237.93686pt.
-<./images//consensus_rule_seq.png, id=680, 714.67pt x 475.7775pt>
+<./images//consensus_rule_seq.png, id=698, 714.67pt x 475.7775pt>
 File: ./images//consensus_rule_seq.png Graphic file (type png)
 <use ./images//consensus_rule_seq.png>
 Package pdftex.def Info: ./images//consensus_rule_seq.png  used on input line 4
@@ -860,7 +860,7 @@ Chapter 6.
 [27
 
 ]
-<./images//networkmap.png, id=869, 1077.02374pt x 533.995pt>
+<./images//networkmap.png, id=889, 1077.02374pt x 533.995pt>
 File: ./images//networkmap.png Graphic file (type png)
 <use ./images//networkmap.png>
 Package pdftex.def Info: ./images//networkmap.png  used on input line 664.
@@ -870,25 +870,25 @@ Chapter 7.
 [30
 
 ] [31]
-<./images//blockchain_test.png, id=914, 865.2325pt x 768.8725pt>
+<./images//blockchain_test.png, id=945, 865.2325pt x 768.8725pt>
 File: ./images//blockchain_test.png Graphic file (type png)
 <use ./images//blockchain_test.png>
 Package pdftex.def Info: ./images//blockchain_test.png  used on input line 734.
 
 (pdftex.def)             Requested size: 200.75073pt x 178.38557pt.
  [32]
-<./images//net_test.png, id=919, 747.79375pt x 686.565pt>
+<./images//net_test.png, id=952, 747.79375pt x 686.565pt>
 File: ./images//net_test.png Graphic file (type png)
 <use ./images//net_test.png>
 Package pdftex.def Info: ./images//net_test.png  used on input line 741.
 (pdftex.def)             Requested size: 200.75073pt x 184.30646pt.
-<./images//socket_test.png, id=920, 695.59875pt x 758.835pt>
+<./images//socket_test.png, id=953, 695.59875pt x 758.835pt>
 File: ./images//socket_test.png Graphic file (type png)
 <use ./images//socket_test.png>
 Package pdftex.def Info: ./images//socket_test.png  used on input line 748.
 (pdftex.def)             Requested size: 200.75073pt x 218.99126pt.
  [33 <./images//blockchain_test.png> <./images//net_test.png>]
-<./images//valgrind.png, id=926, 1446.40375pt x 1597.97pt>
+<./images//valgrind.png, id=961, 1446.40375pt x 1597.97pt>
 File: ./images//valgrind.png Graphic file (type png)
 <use ./images//valgrind.png>
 Package pdftex.def Info: ./images//valgrind.png  used on input line 759.
@@ -923,7 +923,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 784--785
 
 [36
 
-] [37] (./paper.gls [38]) (./paper.acr [39
+]
+Overfull \hbox (5.86389pt too wide) in paragraph at lines 795--796
+[]\OT1/cmr/m/n/10.95 Finally, I de-vel-oped my un-der-stand-ing of [][]blockcha
+in[], and un-like be-fore this project, [][]blockchain[]
+ []
+
+[37] (./paper.gls [38]) (./paper.acr [39
 
 
 ]) (./paper.bbl [40
@@ -960,36 +966,1612 @@ Underfull \hbox (badness 1082) in paragraph at lines 173--175
 /n/10.95 https : / / cmocka . org/$[]\OT1/cmr/m/n/10.95 , 2020.  Ac-cessed:
  []
 
-[42]) [43] (./paper.aux)
-Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: A63A2ECD62F71D16854F7DD1C8FBDF81;3741.
+[42]) [43]
+Appendix A.
+(../src/main.c [44
 
+] [45]) (../src/blockchain.h [46]
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
+42.
+
+(/usr/share/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [47] [48])
+(../src/blockchain.c [49] [50] [51] [52] [53]) (../src/firewall.h [54])
+(../src/firewall.c [55]) (../src/ipc.h [56] [57]) (../src/ipc.c [58] [59])
+(../src/net.h [60] [61] [62] [63] [64] [65]) (../src/net.c [66] [67] [68]
+[69] [70] [71] [72] [73] [74] [75] [76] [77] [78]) (../src/socket.h [79])
+(../src/socket.c [80] [81]) [82]
+Appendix B.
+(../src/example_client/client.c [83
+
+]) [84]
+Appendix C.
+<../docs/latex/refman.pdf, id=4200, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf>
+Package pdftex.def Info: ../docs/latex/refman.pdf  used on input line 835.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf>
+Package pdftex.def Info: ../docs/latex/refman.pdf  used on input line 835.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+<../docs/latex/refman.pdf, id=4203, page=1, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 1>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page1 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 1>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page1 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+[85
+
+]
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 1>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page1 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 1>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page1 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 1>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page1 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [86 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4218, page=2, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 2>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page2 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 2>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page2 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 2>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page2 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [87 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4223, page=3, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 3>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page3 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 3>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page3 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 3>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page3 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [88 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4233, page=4, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 4>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page4 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 4>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page4 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 4>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page4 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [89 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4239, page=5, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 5>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page5 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 5>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page5 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 5>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page5 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [90 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4244, page=6, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 6>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page6 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 6>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page6 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 6>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page6 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [91 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4249, page=7, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 7>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page7 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 7>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page7 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 7>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page7 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [92 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4254, page=8, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 8>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page8 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 8>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page8 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 8>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page8 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [93 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4259, page=9, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 9>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page9 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 9>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page9 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 9>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page9 used on input line 83
+5.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [94 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4269, page=10, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 10>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page10 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 10>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page10 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 10>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page10 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [95 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4276, page=11, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 11>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page11 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 11>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page11 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 11>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page11 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [96 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4281, page=12, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 12>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page12 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 12>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page12 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 12>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page12 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [97 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4286, page=13, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 13>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page13 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 13>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page13 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 13>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page13 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[98 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4301, page=14, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 14>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page14 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 14>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page14 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 14>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page14 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [99 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4306, page=15, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 15>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page15 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 15>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page15 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 15>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page15 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [100 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4311, page=16, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 16>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page16 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 16>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page16 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 16>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page16 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [101 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4322, page=17, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 17>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page17 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 17>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page17 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 17>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page17 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [102 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4327, page=18, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 18>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page18 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 18>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page18 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 18>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page18 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [103 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4332, page=19, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 19>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page19 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 19>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page19 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 19>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page19 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [104 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4342, page=20, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 20>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page20 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 20>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page20 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 20>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page20 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [105 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4347, page=21, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 21>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page21 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 21>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page21 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 21>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page21 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [106 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4352, page=22, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 22>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page22 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 22>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page22 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 22>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page22 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [107 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4358, page=23, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 23>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page23 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 23>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page23 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 23>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page23 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [108 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4368, page=24, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 24>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page24 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 24>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page24 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 24>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page24 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [109 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4378, page=25, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 25>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page25 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 25>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page25 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 25>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page25 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[110 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4383, page=26, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 26>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page26 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 26>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page26 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 26>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page26 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [111 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4388, page=27, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 27>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page27 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 27>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page27 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 27>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page27 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [112 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4393, page=28, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 28>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page28 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 28>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page28 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 28>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page28 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [113 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4399, page=29, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 29>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page29 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 29>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page29 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 29>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page29 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [114 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4404, page=30, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 30>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page30 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 30>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page30 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 30>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page30 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [115 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4409, page=31, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 31>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page31 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 31>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page31 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 31>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page31 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [116 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4414, page=32, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 32>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page32 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 32>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page32 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 32>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page32 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[117 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4419, page=33, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 33>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page33 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 33>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page33 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 33>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page33 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [118 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4424, page=34, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 34>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page34 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 34>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page34 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 34>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page34 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [119 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4430, page=35, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 35>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page35 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 35>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page35 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 35>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page35 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [120 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4435, page=36, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 36>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page36 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 36>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page36 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 36>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page36 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [121 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4440, page=37, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 37>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page37 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 37>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page37 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 37>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page37 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [122 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4445, page=38, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 38>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page38 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 38>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page38 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 38>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page38 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [123 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4451, page=39, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 39>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page39 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 39>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page39 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 39>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page39 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[124 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4456, page=40, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 40>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page40 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 40>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page40 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 40>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page40 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [125 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4462, page=41, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 41>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page41 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 41>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page41 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 41>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page41 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [126 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4467, page=42, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 42>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page42 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 42>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page42 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 42>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page42 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [127 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4472, page=43, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 43>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page43 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 43>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page43 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 43>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page43 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [128 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4477, page=44, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 44>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page44 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 44>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page44 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 44>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page44 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [129 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4482, page=45, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 45>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page45 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 45>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page45 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 45>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page45 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [130 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4492, page=46, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 46>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page46 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 46>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page46 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 46>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page46 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[131 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4498, page=47, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 47>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page47 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 47>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page47 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 47>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page47 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [132 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4503, page=48, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 48>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page48 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 48>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page48 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 48>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page48 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [133 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4508, page=49, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 49>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page49 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 49>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page49 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 49>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page49 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [134 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4513, page=50, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 50>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page50 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 50>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page50 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 50>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page50 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [135 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4518, page=51, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 51>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page51 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 51>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page51 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 51>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page51 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [136 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4523, page=52, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 52>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page52 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 52>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page52 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 52>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page52 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [137 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4529, page=53, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 53>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page53 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 53>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page53 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 53>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page53 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[138 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4534, page=54, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 54>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page54 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 54>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page54 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 54>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page54 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [139 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4549, page=55, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 55>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page55 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 55>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page55 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 55>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page55 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [140 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4554, page=56, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 56>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page56 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 56>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page56 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 56>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page56 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [141 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4559, page=57, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 57>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page57 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 57>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page57 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 57>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page57 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [142 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4564, page=58, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 58>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page58 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 58>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page58 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 58>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page58 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [143 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4570, page=59, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 59>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page59 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 59>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page59 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 59>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page59 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [144 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4575, page=60, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 60>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page60 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 60>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page60 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 60>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page60 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[145 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4580, page=61, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 61>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page61 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 61>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page61 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 61>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page61 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [146 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4585, page=62, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 62>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page62 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 62>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page62 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 62>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page62 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [147 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4590, page=63, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 63>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page63 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 63>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page63 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 63>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page63 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [148 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4595, page=64, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 64>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page64 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 64>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page64 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 64>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page64 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [149 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4601, page=65, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 65>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page65 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 65>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page65 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 65>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page65 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [150 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4606, page=66, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 66>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page66 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 66>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page66 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 66>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page66 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [151 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4611, page=67, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 67>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page67 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 67>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page67 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 67>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page67 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[152 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4616, page=68, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 68>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page68 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 68>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page68 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 68>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page68 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [153 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4622, page=69, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 69>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page69 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 69>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page69 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 69>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page69 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [154 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4627, page=70, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 70>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page70 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 70>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page70 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 70>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page70 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [155 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4633, page=71, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 71>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page71 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 71>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page71 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 71>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page71 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [156 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4638, page=72, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 72>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page72 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 72>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page72 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 72>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page72 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [157 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4643, page=73, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 73>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page73 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 73>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page73 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 73>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page73 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [158 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4648, page=74, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 74>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page74 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 74>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page74 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 74>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page74 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[159 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4653, page=75, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 75>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page75 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 75>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page75 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 75>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page75 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [160 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4658, page=76, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 76>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page76 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 76>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page76 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 76>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page76 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [161 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4664, page=77, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 77>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page77 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 77>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page77 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 77>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page77 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [162 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4669, page=78, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 78>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page78 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 78>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page78 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 78>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page78 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [163 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4674, page=79, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 79>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page79 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 79>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page79 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 79>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page79 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [164 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4679, page=80, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 80>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page80 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 80>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page80 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 80>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page80 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [165 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4684, page=81, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 81>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page81 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 81>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page81 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 81>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page81 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[166 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4689, page=82, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 82>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page82 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 82>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page82 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 82>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page82 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [167 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4695, page=83, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 83>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page83 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 83>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page83 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 83>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page83 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [168 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4700, page=84, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 84>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page84 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 84>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page84 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 84>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page84 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [169 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4705, page=85, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 85>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page85 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 85>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page85 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 85>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page85 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [170 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4710, page=86, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 86>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page86 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 86>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page86 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 86>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page86 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [171 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4715, page=87, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 87>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page87 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 87>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page87 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 87>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page87 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [172 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4720, page=88, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 88>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page88 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 88>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page88 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 88>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page88 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+
+[173 <../docs/latex/refman.pdf>]
+<../docs/latex/refman.pdf, id=4726, page=89, 597.50829pt x 845.0471pt>
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 89>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page89 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 89>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page89 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+File: ../docs/latex/refman.pdf Graphic file (type pdf)
+<use ../docs/latex/refman.pdf, page 89>
+Package pdftex.def Info: ../docs/latex/refman.pdf , page89 used on input line 8
+35.
+(pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
+ [174 <../docs/latex/refman.pdf>] (./paper.aux)
+Package rerunfilecheck Info: File `paper.out' has not changed.
+(rerunfilecheck)             Checksum: 8D6175717D8C7F597A79FE51806ED9A6;3931.
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 14773 strings out of 479383
- 218559 string characters out of 5875831
- 1012573 words of memory out of 5000000
- 31328 multiletter control sequences out of 15000+600000
- 413266 words of font info for 62 fonts, out of 8000000 for 9000
+ 18780 strings out of 479383
+ 288971 string characters out of 5875831
+ 1367445 words of memory out of 5000000
+ 32312 multiletter control sequences out of 15000+600000
+ 413731 words of font info for 64 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 93i,10n,97p,1674b,2026s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 93i,17n,97p,1670b,2181s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmtt9.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-
-Output written on paper.pdf (45 pages, 1369279 bytes).
+c/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
+/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><
+/usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
+2.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texmf-dist/f
+onts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf-dist/fonts/type1/publ
+ic/cm-super/sftt0800.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr8a.
+pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texm
+f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/u
+rw/helvetic/uhvb8ac.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.
+pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on paper.pdf (176 pages, 1842588 bytes).
 PDF statistics:
- 1190 PDF objects out of 1200 (max. 8388607)
- 1100 compressed objects within 11 object streams
- 266 named destinations out of 1000 (max. 500000)
- 561 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 5454 PDF objects out of 6186 (max. 8388607)
+ 5085 compressed objects within 51 object streams
+ 3246 named destinations out of 3580 (max. 500000)
+ 1045 words of extra memory for PDF output out of 10000 (max. 10000000)
 
