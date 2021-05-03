@@ -38,27 +38,11 @@
 	tabsize=2,
 }
 
-\lstdefinestyle{java}{
-	commentstyle=\color{comment},
-	stringstyle=\color{string},
-	keywordstyle=\color{keyword},
-	basicstyle=\footnotesize\ttfamily,
-	numbers=left,
-	numberstyle=\tiny,
-	numbersep=5pt,
-	frame=lines,
-	breaklines=true,
-	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-	showstringspaces=false,
-	upquote=true,
-	tabsize=2,
-}
-
 %%%%%%%%%%%%%%%%%%
 % TITLE
 %%%%%%%%%%%%%%%%%%
 \title{\Huge{\textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}}}
-\date{April 2021}
+\date{May 2021}
 \author{
 \Large{Adam David Bruce} \\ \texttt{\href{mailto:a.bruce3@newcastle.ac.uk}{a.bruce3@newcastle.ac.uk}}}
 \begin{document}
@@ -121,12 +105,9 @@ Nofer et al. define \gls{blockchain}s as \say{data sets which are composed of a 
 %%%%%%%%%%%%%%%%%%
 % AIMS AND OBJECTIVES
 %%%%%%%%%%%%%%%%%%
-\chapter{Project Aims and Objectives}
+\section{Aims and Objectives} \label{aim}
+The original aim for this project was to design and create a decentralised firewall that could communicate knowledge of cyberattacks aimed at universities in real-time, allowing other universities to protect themselves from the same attacks. This system would be distributed, and hence must conform to the previous description of a distributed system in section \ref{distributed}. Following an extensive amount of background reading, there appeared to be no existing implementation or design of such a system which inspired the alteration of the aim to instead focus on designing a protocol and implementing a \gls{stub} to demonstrate the protocol's effectiveness. This project will therefore not be implementing a firewall, but instead a system to coordinate firewalls. Further research determined that \gls{blockchain} was the best choice for the underlying structure for such a protocol, and so this final change shaped the current aim for this project: \textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}.\\\\
 
-\section{Aim} \label{aim}
-The original aim for this project was to design and create a decentralised firewall that could communicate knowledge of cyberattacks aimed at universities in real-time, allowing other universities to protect themselves from the same attacks. This system would be distributed, and hence must conform to the previous description of a distributed system in section \ref{distributed}. Following an extensive amount of background reading, there appeared to be no existing implementation or design of such a system which inspired the alteration of the aim to instead focus on designing a protocol and implementing a \gls{stub} to demonstrate the protocol's effectiveness. This project will therefore not be implementing a firewall, but instead a system to coordinate firewalls. Further research determined that \gls{blockchain} was the best choice for the underlying structure for such a protocol, and so this final change shaped the current aim for this project: \textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}.
-
-\section{Objectives}
 The following objectives provide an outline for what this project hopes to achieve:
 
 \begin{enumerate}
@@ -137,10 +118,14 @@ The following objectives provide an outline for what this project hopes to achie
     \item Compare the use of decentralised security mechanisms.
 \end{enumerate}
 
+\section{This Document}
+The following chapter will explain the background research conducted before starting this project. Once the necessary research has been documented, the design, implementation and testing of this project will be detailed. Finally, at the end of this document, an evaluation will be conducted followed by a conclusion to identify the success of this project and outline future work.
+
 %%%%%%%%%%%%%%%%%%
 % BACKGROUND
 %%%%%%%%%%%%%%%%%%
 \chapter{Background}
+This section details the essential background research for this project. It looks at distributed systems, remote procedure calls, decentralised systems, blockchain, security, firewalls, fault tolerance, computer networks and inter-process communication.
 
 \section{Distributed Systems} \label{dist}
 The primary reference used for distributed systems was Tanenbaum and van Steen's \say{Distributed Systems: Principles and Paradigms}\cite{tanenbaumdist}, who's literature provides an in-depth explanation from the fundamental theory of distributed systems to the design and implementation of such systems. Key details that were taken from this publication are detailed below. In general, this book covered the essential components of creating a distributed system, however much of the detail with regards to client-server interactions was not applicable to this project due to it's decentralised nature. Furthermore, a large portion of the book was not of interest to this project as it focuses on distributed processing, which only comprises a small element of this project, hence a large volume of information regarding implementation of processing was not useful.
@@ -271,9 +256,13 @@ With regards to network topologies, Lammle details seven approaches: bus, star, 
 \end{figure}
 
 \section{Inter-Process Communication (IPC)}
-Tanenbaum and Woodhull provide an extremely detailed breakdown of their UNIX based operating system in \say{Operating systems: Design and Implementation} \cite{operatingsystems}. This book covers all aspects of an \acrshort{OS}, providing insightful explanations of the decisions made at every step in the design process. As this project is designed to run as an application, many of the details covered in this publication are irrelevant, however Tanenbaum and Woodhull cover one essential aspect of this project: \acrfull{IPC}. \acrshort{IPC} is a function within many \acrlong{OS}s which enables multiple processes to communicate by passing messages to each other. \acrshort{IPC} will be the technique used to interact with the distributed system, as a client process will use \acrshort{IPC} to issue commands to the \gls{stub}. 
+Tanenbaum and Woodhull provide an extremely detailed breakdown of their UNIX based operating system in \say{Operating systems: Design and Implementation} \cite{operatingsystems}. This book covers all aspects of an \acrshort{OS}, providing insightful explanations of the decisions made at every step in the design process. As this project is designed to run as an application, many of the details covered in this publication are irrelevant, however Tanenbaum and Woodhull cover one essential aspect of this project: \acrfull{IPC}. \acrshort{IPC} is a function within many \acrlong{OS}s which enables multiple processes to communicate by passing messages to each other. \acrshort{IPC} will be the technique used to interact with the distributed system, as a client process will use \acrshort{IPC} to issue commands to the \gls{stub}. \\\\
+
+The background research has identified how this project can utilise all of the mentioned technologies, along with a brief analysis regarding the relevance of each technology to this project.
 
 \chapter{Design}
+
+This section will look at how the project was designed from the ground up to include the relevant features to meet the aim and objectives. The section covers the logical design of the system, protocols and structures used within the system.
 
 \section{System Architecture}
 The system will be compiled into one single executable binary, but will interface with a number of external libraries and the \acrshort{OS} via system calls. The stub will primarily communicate with the \acrshort{OS} in order to establish sockets and bind them to the desired ports, the framework will then communicate with the \acrfull{NIC} to obtain it's assigned \acrfull{IP} address. Whenever a new block is created or received, OpenSSL's libcrypto library \cite{libcrypto} will be used to generate or validate the block's hash. This interaction is visualised in the following component diagram.
@@ -430,11 +419,15 @@ The consensus and rule messages are sent when a client or firewall sends an \acr
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth,keepaspectratio]{consensus_rule_seq}
-\caption{Successful Consensus-Rule Sequence Diagram} 
+\caption{Successful Consensus-Rule Sequence Diagram}
 \label{fig:consruleseq}
 \end{figure}
 
+This section has provided the foundations for the software and protocol allowing an proof of concept to be implemented in the next chapter.
+
 \chapter{Implementation}
+
+This section will discuss the different technologies used within the system and how they were incorporated into this project. A detailed analysis is provided whenever a decision was made in regards to using different technologies, tools or languages. 
 
 \section{Language}
 The logic within this project could be achieved using a range of programming languages, however such a system needs to be reliable and fast, which narrows down the applicable languages. As cross compatibility is desirable, Java\cite{java} or Python\cite{python} may seem like the best options as Java executes entirely within the Java Virtual Machine (JVM)\cite{jvm} and Python is executed using an interpreter. Each of these technologies provide a suitable abstraction such that if the \acrshort{VM} or interpreter is supported by an \acrshort{OS}, it should work. The drawbacks associated with this are that a \acrshort{VM} or interpreter introduce a large memory overhead, something that is not desirable given this framework is intended to be implemented into edge devices, additionally, with such abstractions we lose both speed and control. Rust\cite{rust} is a modern language focused on performance and reliability, however its immaturity leaves a number of features missing or poorly implemented as it currently relies heavily on community submitted modules. One advantage of Rust however is its low memory footprint, and memory management, which enables small binary executables to be built, ideal for this project. 
@@ -592,7 +585,9 @@ From the previous table, it is apparent that libgcrypt supports the most algorit
 \section{Fault Tolerance}
 In regards to fault tolerance, this project was extremely limited, as it ran as a high-level application on general operating systems, meaning the operating systems themselves provided no guarantees of  performance or reliability. With regards to fault tolerance during operation, the only reasonable measure was to ensure no malformed data could be propagated throughout the system. Such malicious data could cause the local \gls{stub}, or even worse, remote \gls{stub}s to crash, rendering the entire system non-functional whilst the malicious data is removed from each system. This measure was achieved by using the fail-early principle in all functions within the system. When each function is executed, specific checks take place, such as ensuring buffers are large enough to store specified data, and that the data provided is valid, and of the required type. Many of these checks are provided by the standard library within the C language, such as verifying the string representation of an \acrshort{IP} address is  correctly formatted when parsing to a binary representation of the network address. The vast majority of these functions return an integer to represent whether the function exited normally, or if it exited with an error, which was replicated in many of the functions provided by this application. Returning the exit status enables any calling functions to know that the function did not exit normally, which means the output of that function will contain incorrect data, and so the path of execution can no longer follow the normal path, but must instead fail early, and return to the top-level calling function.
 
-In addition to the fail-early principle, each node maintains a log of all complete transactions that have taken place on that node. Once a node receives either an advertisement, or a new rule, it is logged immediately. This means that should the operating system fail, or the system suffers from an unrecoverable fault, the operating system can immediately restart the system (which can run as a daemon) which will then load all known hosts into memory, and rebuild the chain from the transaction log.
+In addition to the fail-early principle, each node maintains a log of all complete transactions that have taken place on that node. Once a node receives either an advertisement, or a new rule, it is logged immediately. This means that should the operating system fail, or the system suffers from an unrecoverable fault, the operating system can immediately restart the system (which can run as a daemon) which will then load all known hosts into memory, and rebuild the chain from the transaction log.\\\\
+
+This section has provided a high-level explanation of how this project was implemented, along with the reasons particular technologies were used. Now a functional implementation has been created, the system can be tested.
 
 \chapter{Testing} \label{test}
 Testing the system required tests to be categorised into two types: local and network. Local tests consist of any functions which take place on the local node, such as \gls{hashing} of blocks and controlling network sockets. These local tests can be easily tested using unit tests. Network tests consist of protocol tests that can only be tested over a physical network. Network tests are much harder to strategically test an attempts to test these using unit tests would require careful synchronisation, such that when one node was testing it's send feature, another node would need to be ready to accept a message, for this reason networks tests did not use unit tests.
@@ -693,8 +688,13 @@ The times provided in the above table are given in seconds since the epoch. Runn
 Not only is it essential that the system is functionally and logically correct, but it must also correctly utilise system resources. The most important of these resources is memory, in particular, the heap where numerous dynamic allocations are made throughout the lifetime of the \gls{stub}. As the system is designed to function for extended periods of time, it is essential that any memory allocated is correct freed back to the operating system otherwise the system would slowly begin consuming all memory on the system, leading to a crash.
 The chosen way to test for memory leaks was to use the tool Valgrind \cite{valgrind}. Valgrind provides an extensive range of memory and thread checking tools along with profiling tools. For this test, the memory leak test was run with the \texttt{--leak-check=full} option enabled to provide a thorough check. In order to provide a fair and realistic test, a number of hosts on the network first advertised, and then several firewall transactions took place from different nodes. 
 
-The test was carried out by connecting all six nodes to the system, followed by two firewall rule transactions. 
+The test was carried out by connecting all six nodes to the system, followed by two firewall rule transactions. \\\\
+
+This chapter has provided an overview of how the system will be tested. The next chapter will detail the results of these testing methods, along with a general evaluation of the success of the project
+
 \chapter{Evaluation}
+
+This chapter will detail the successful aspects of the project in addition to identifying where the project could have been improved. Additionally, the results from the previously detailed tests will be used to evaluate the effectiveness of the provided system and implementation.
 
 \section{Project Results}
 
@@ -761,10 +761,13 @@ Additionally, as mentioned previously, the software underwent testing for memory
 \label{fig:valgrind}
 \end{figure}
 
-Valgrind is an effective tool and is well recognised for its accuracy and detailed output when a leak is found. It can therefore be trusted that the output pictured above is accurate, and that the software does not contain any memory leaks.
+Valgrind is an effective tool and is well recognised for its accuracy and detailed output when a leak is found. It can therefore be trusted that the output pictured above is accurate, and that the software does not contain any memory leaks.\\\\
+
+Now the system has been evaluated and the results of the testing process have been collected it is clear that the system operates correctly and a successful and functional proof of concept has been created.
 
 \chapter{Conclusion}
 
+This section will conclude the project by identifying whether the original aims and objectives were met, and suggesting future work to improve the proposed system.
     %\item Evaluate the effectiveness of existing distributed security mechanisms.
     %\item Investigate methods of establishing connections and synchronising computers within distributed systems.
     %\item Understand the structure of \gls{blockchain}s and adapt them for firewall transactions.
@@ -826,12 +829,14 @@ There are a number of changes and most importantly improvements that can be made
 \lstinputlisting[language=c,style=c,caption=net.c,basicstyle=\ttfamily\scriptsize]{../src/net.c}
 \lstinputlisting[language=c,style=c,caption=socket.h,basicstyle=\ttfamily\scriptsize]{../src/socket.h}
 \lstinputlisting[language=c,style=c,caption=socket.c,basicstyle=\ttfamily\scriptsize]{../src/socket.c}
-%\fi
+
 
 \chapter{Client Program Source Code}
 \lstinputlisting[language=c,style=c,caption=client.c,basicstyle=\ttfamily\scriptsize]{"../src/example\string_client/client.c"}
 
 \chapter{Code and Framework Documentation}
 \includepdf[pages=-]{../docs/latex/refman.pdf}
+
+%\fi
 
 \end{document}

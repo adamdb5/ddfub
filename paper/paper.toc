@@ -3,62 +3,61 @@
 \contentsline {section}{\numberline {1.2}Distributed Systems}{5}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Decentralised Systems}{6}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Blockchain}{6}{section.1.4}%
-\contentsline {chapter}{\numberline {2}Project Aims and Objectives}{8}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Aim}{8}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Objectives}{8}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Background}{9}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Distributed Systems}{9}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Architecture}{9}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Remote Procedure Calls (RPC)}{10}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Decentralised Systems}{10}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Blockchain}{11}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Distributed Security}{11}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Firewalls and Firewall Rules}{12}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Fault Tolerance}{13}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Computer Networks}{14}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Inter-Process Communication (IPC)}{14}{section.3.8}%
-\contentsline {chapter}{\numberline {4}Design}{15}{chapter.4}%
-\contentsline {section}{\numberline {4.1}System Architecture}{15}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Data Structures}{15}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Firewall Rule}{16}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Firewall Block}{16}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Message Structures}{16}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Network}{16}{subsection.4.3.1}%
+\contentsline {section}{\numberline {1.5}Aims and Objectives}{7}{section.1.5}%
+\contentsline {section}{\numberline {1.6}This Document}{7}{section.1.6}%
+\contentsline {chapter}{\numberline {2}Background}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Distributed Systems}{8}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Architecture}{8}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Remote Procedure Calls (RPC)}{9}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Decentralised Systems}{10}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Blockchain}{10}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Distributed Security}{11}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Firewalls and Firewall Rules}{11}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Fault Tolerance}{13}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Computer Networks}{13}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Inter-Process Communication (IPC)}{14}{section.2.8}%
+\contentsline {chapter}{\numberline {3}Design}{15}{chapter.3}%
+\contentsline {section}{\numberline {3.1}System Architecture}{15}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Data Structures}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Firewall Rule}{16}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Firewall Block}{16}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Message Structures}{16}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Network}{16}{subsection.3.3.1}%
 \contentsline {subsubsection}{Advertisement Messages}{17}{section*.4}%
 \contentsline {subsubsection}{Consensus Messages}{17}{section*.5}%
 \contentsline {subsubsection}{Rule Messages}{18}{section*.6}%
-\contentsline {subsection}{\numberline {4.3.2}IPC}{18}{subsection.4.3.2}%
-\contentsline {section}{\numberline {4.4}ACR Protocol}{18}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Advertisement}{18}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Consensus-Rule}{19}{subsection.4.4.2}%
-\contentsline {chapter}{\numberline {5}Implementation}{21}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Language}{21}{section.5.1}%
-\contentsline {section}{\numberline {5.2}IPC}{21}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}POSIX}{22}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Windows}{22}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Sockets}{22}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Network}{23}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Multithreading}{24}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Blockchain}{24}{section.5.6}%
-\contentsline {subsection}{\numberline {5.6.1}Hash Algorithms}{24}{subsection.5.6.1}%
-\contentsline {subsection}{\numberline {5.6.2}Hash Implementation}{25}{subsection.5.6.2}%
-\contentsline {section}{\numberline {5.7}Fault Tolerance}{26}{section.5.7}%
-\contentsline {chapter}{\numberline {6}Testing}{27}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Local Testing}{27}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Network Testing}{27}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Attack Simulation and Performance Testing}{28}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Checking for Memory Leaks}{29}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Evaluation}{30}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Project Results}{30}{section.7.1}%
-\contentsline {subsection}{\numberline {7.1.1}Decentralised Distributed System Model}{30}{subsection.7.1.1}%
-\contentsline {subsection}{\numberline {7.1.2}Firewall Blockchains}{31}{subsection.7.1.2}%
-\contentsline {subsection}{\numberline {7.1.3}Proof of Concept}{31}{subsection.7.1.3}%
-\contentsline {section}{\numberline {7.2}Evaluating the Development Process}{32}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Test Results}{32}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Conclusion}{36}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Original Aims and Objectives}{36}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Personal Development}{37}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Future Work}{37}{section.8.3}%
+\contentsline {subsection}{\numberline {3.3.2}IPC}{18}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}ACR Protocol}{18}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Advertisement}{18}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Consensus-Rule}{19}{subsection.3.4.2}%
+\contentsline {chapter}{\numberline {4}Implementation}{21}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Language}{21}{section.4.1}%
+\contentsline {section}{\numberline {4.2}IPC}{21}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}POSIX}{22}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Windows}{22}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Sockets}{23}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Network}{23}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Multithreading}{24}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Blockchain}{24}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Hash Algorithms}{24}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Hash Implementation}{25}{subsection.4.6.2}%
+\contentsline {section}{\numberline {4.7}Fault Tolerance}{26}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Testing}{27}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Local Testing}{27}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Network Testing}{27}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Attack Simulation and Performance Testing}{28}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Checking for Memory Leaks}{29}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Evaluation}{30}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Project Results}{30}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Decentralised Distributed System Model}{30}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Firewall Blockchains}{31}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6.1.3}Proof of Concept}{31}{subsection.6.1.3}%
+\contentsline {section}{\numberline {6.2}Evaluating the Development Process}{32}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Test Results}{32}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Conclusion}{36}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Original Aims and Objectives}{36}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Personal Development}{37}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Future Work}{37}{section.7.3}%
 \contentsline {chapter}{Glossary}{39}{section*.7}%
 \contentsline {chapter}{Acronyms}{40}{section*.9}%
 \contentsline {chapter}{\numberline {A}Framework Source Code}{44}{appendix.A}%

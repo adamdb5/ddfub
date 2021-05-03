@@ -2,26 +2,25 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces A Distributed System visualised as \gls {middleware} \cite {tanenbaumdist}}}{6}{figure.1.1}%
 \contentsline {figure}{\numberline {1.2}{\ignorespaces An example of a \gls {blockchain} \cite {blockchain}}}{7}{figure.1.2}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Application layer protocol running over \gls {middleware} \cite {tanenbaumdist}}}{9}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces A breakdown of a \acrshort {RPC} \cite {tanenbaumdist}}}{10}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces An example of a \gls {blockchain} \cite {blockchain}}}{11}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Message format for the SDSI Model \cite {sdsi}}}{11}{figure.2.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Using a firewall to create a \acrshort {DMZ}}}{12}{figure.2.5}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Primary backup technique \cite {faulttol}}}{13}{figure.2.6}%
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Mesh Topology}}{14}{figure.2.7}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Application layer protocol running over \gls {middleware} \cite {tanenbaumdist}}}{9}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces A breakdown of a \acrshort {RPC} \cite {tanenbaumdist}}}{10}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces An example of a \gls {blockchain} \cite {blockchain}}}{11}{figure.3.3}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Message format for the SDSI Model \cite {sdsi}}}{12}{figure.3.4}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Using a firewall to create a \acrshort {DMZ}}}{13}{figure.3.5}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Primary backup technique \cite {faulttol}}}{13}{figure.3.6}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Mesh Topology}}{14}{figure.3.7}%
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces System Component Diagram}}{15}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Advertisement Sequence Diagram}}{19}{figure.4.2}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Successful Consensus-Rule Sequence Diagram}}{20}{figure.4.3}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces System Component Diagram}}{15}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Advertisement Sequence Diagram}}{19}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Successful Consensus-Rule Sequence Diagram}}{20}{figure.3.3}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces The network layout used for testing}}{28}{figure.6.1}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces The network layout used for testing}}{28}{figure.5.1}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces The output of the blockchain unit tests}}{33}{figure.7.1}%
-\contentsline {figure}{\numberline {7.2}{\ignorespaces The output of the network unit tests}}{33}{figure.7.2}%
-\contentsline {figure}{\numberline {7.3}{\ignorespaces The output of the socket unit tests}}{34}{figure.7.3}%
-\contentsline {figure}{\numberline {7.4}{\ignorespaces The output of Valgrind}}{35}{figure.7.4}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces The output of the blockchain unit tests}}{33}{figure.6.1}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces The output of the network unit tests}}{33}{figure.6.2}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces The output of the socket unit tests}}{34}{figure.6.3}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces The output of Valgrind}}{35}{figure.6.4}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

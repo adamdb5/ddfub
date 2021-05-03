@@ -3,61 +3,60 @@
 \BOOKMARK [1][-]{section.1.2}{Distributed Systems}{chapter.1}% 3
 \BOOKMARK [1][-]{section.1.3}{Decentralised Systems}{chapter.1}% 4
 \BOOKMARK [1][-]{section.1.4}{Blockchain}{chapter.1}% 5
-\BOOKMARK [0][-]{chapter.2}{Project Aims and Objectives}{}% 6
-\BOOKMARK [1][-]{section.2.1}{Aim}{chapter.2}% 7
-\BOOKMARK [1][-]{section.2.2}{Objectives}{chapter.2}% 8
-\BOOKMARK [0][-]{chapter.3}{Background}{}% 9
-\BOOKMARK [1][-]{section.3.1}{Distributed Systems}{chapter.3}% 10
-\BOOKMARK [2][-]{subsection.3.1.1}{Architecture}{section.3.1}% 11
-\BOOKMARK [2][-]{subsection.3.1.2}{Remote Procedure Calls \(RPC\)}{section.3.1}% 12
-\BOOKMARK [1][-]{section.3.2}{Decentralised Systems}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.3}{Blockchain}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.4}{Distributed Security}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.5}{Firewalls and Firewall Rules}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.6}{Fault Tolerance}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.7}{Computer Networks}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.8}{Inter-Process Communication \(IPC\)}{chapter.3}% 19
-\BOOKMARK [0][-]{chapter.4}{Design}{}% 20
-\BOOKMARK [1][-]{section.4.1}{System Architecture}{chapter.4}% 21
-\BOOKMARK [1][-]{section.4.2}{Data Structures}{chapter.4}% 22
-\BOOKMARK [2][-]{subsection.4.2.1}{Firewall Rule}{section.4.2}% 23
-\BOOKMARK [2][-]{subsection.4.2.2}{Firewall Block}{section.4.2}% 24
-\BOOKMARK [1][-]{section.4.3}{Message Structures}{chapter.4}% 25
-\BOOKMARK [2][-]{subsection.4.3.1}{Network}{section.4.3}% 26
-\BOOKMARK [2][-]{subsection.4.3.2}{IPC}{section.4.3}% 27
-\BOOKMARK [1][-]{section.4.4}{ACR Protocol}{chapter.4}% 28
-\BOOKMARK [2][-]{subsection.4.4.1}{Advertisement}{section.4.4}% 29
-\BOOKMARK [2][-]{subsection.4.4.2}{Consensus-Rule}{section.4.4}% 30
-\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 31
-\BOOKMARK [1][-]{section.5.1}{Language}{chapter.5}% 32
-\BOOKMARK [1][-]{section.5.2}{IPC}{chapter.5}% 33
-\BOOKMARK [2][-]{subsection.5.2.1}{POSIX}{section.5.2}% 34
-\BOOKMARK [2][-]{subsection.5.2.2}{Windows}{section.5.2}% 35
-\BOOKMARK [1][-]{section.5.3}{Sockets}{chapter.5}% 36
-\BOOKMARK [1][-]{section.5.4}{Network}{chapter.5}% 37
-\BOOKMARK [1][-]{section.5.5}{Multithreading}{chapter.5}% 38
-\BOOKMARK [1][-]{section.5.6}{Blockchain}{chapter.5}% 39
-\BOOKMARK [2][-]{subsection.5.6.1}{Hash Algorithms}{section.5.6}% 40
-\BOOKMARK [2][-]{subsection.5.6.2}{Hash Implementation}{section.5.6}% 41
-\BOOKMARK [1][-]{section.5.7}{Fault Tolerance}{chapter.5}% 42
-\BOOKMARK [0][-]{chapter.6}{Testing}{}% 43
-\BOOKMARK [1][-]{section.6.1}{Local Testing}{chapter.6}% 44
-\BOOKMARK [1][-]{section.6.2}{Network Testing}{chapter.6}% 45
-\BOOKMARK [1][-]{section.6.3}{Attack Simulation and Performance Testing}{chapter.6}% 46
-\BOOKMARK [1][-]{section.6.4}{Checking for Memory Leaks}{chapter.6}% 47
-\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 48
-\BOOKMARK [1][-]{section.7.1}{Project Results}{chapter.7}% 49
-\BOOKMARK [2][-]{subsection.7.1.1}{Decentralised Distributed System Model}{section.7.1}% 50
-\BOOKMARK [2][-]{subsection.7.1.2}{Firewall Blockchains}{section.7.1}% 51
-\BOOKMARK [2][-]{subsection.7.1.3}{Proof of Concept}{section.7.1}% 52
-\BOOKMARK [1][-]{section.7.2}{Evaluating the Development Process}{chapter.7}% 53
-\BOOKMARK [1][-]{section.7.3}{Test Results}{chapter.7}% 54
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 55
-\BOOKMARK [1][-]{section.8.1}{Original Aims and Objectives}{chapter.8}% 56
-\BOOKMARK [1][-]{section.8.2}{Personal Development}{chapter.8}% 57
-\BOOKMARK [1][-]{section.8.3}{Future Work}{chapter.8}% 58
-\BOOKMARK [0][-]{section*.7}{Glossary}{}% 59
-\BOOKMARK [0][-]{section*.9}{Acronyms}{}% 60
-\BOOKMARK [0][-]{appendix.A}{Framework Source Code}{}% 61
-\BOOKMARK [0][-]{appendix.B}{Client Program Source Code}{}% 62
-\BOOKMARK [0][-]{appendix.C}{Code and Framework Documentation}{}% 63
+\BOOKMARK [1][-]{section.1.5}{Aims and Objectives}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.6}{This Document}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Distributed Systems}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.1.1}{Architecture}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.2}{Remote Procedure Calls \(RPC\)}{section.2.1}% 11
+\BOOKMARK [1][-]{section.2.2}{Decentralised Systems}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.3}{Blockchain}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.4}{Distributed Security}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.5}{Firewalls and Firewall Rules}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.6}{Fault Tolerance}{chapter.2}% 16
+\BOOKMARK [1][-]{section.2.7}{Computer Networks}{chapter.2}% 17
+\BOOKMARK [1][-]{section.2.8}{Inter-Process Communication \(IPC\)}{chapter.2}% 18
+\BOOKMARK [0][-]{chapter.3}{Design}{}% 19
+\BOOKMARK [1][-]{section.3.1}{System Architecture}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.2}{Data Structures}{chapter.3}% 21
+\BOOKMARK [2][-]{subsection.3.2.1}{Firewall Rule}{section.3.2}% 22
+\BOOKMARK [2][-]{subsection.3.2.2}{Firewall Block}{section.3.2}% 23
+\BOOKMARK [1][-]{section.3.3}{Message Structures}{chapter.3}% 24
+\BOOKMARK [2][-]{subsection.3.3.1}{Network}{section.3.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.2}{IPC}{section.3.3}% 26
+\BOOKMARK [1][-]{section.3.4}{ACR Protocol}{chapter.3}% 27
+\BOOKMARK [2][-]{subsection.3.4.1}{Advertisement}{section.3.4}% 28
+\BOOKMARK [2][-]{subsection.3.4.2}{Consensus-Rule}{section.3.4}% 29
+\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 30
+\BOOKMARK [1][-]{section.4.1}{Language}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.2}{IPC}{chapter.4}% 32
+\BOOKMARK [2][-]{subsection.4.2.1}{POSIX}{section.4.2}% 33
+\BOOKMARK [2][-]{subsection.4.2.2}{Windows}{section.4.2}% 34
+\BOOKMARK [1][-]{section.4.3}{Sockets}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.4}{Network}{chapter.4}% 36
+\BOOKMARK [1][-]{section.4.5}{Multithreading}{chapter.4}% 37
+\BOOKMARK [1][-]{section.4.6}{Blockchain}{chapter.4}% 38
+\BOOKMARK [2][-]{subsection.4.6.1}{Hash Algorithms}{section.4.6}% 39
+\BOOKMARK [2][-]{subsection.4.6.2}{Hash Implementation}{section.4.6}% 40
+\BOOKMARK [1][-]{section.4.7}{Fault Tolerance}{chapter.4}% 41
+\BOOKMARK [0][-]{chapter.5}{Testing}{}% 42
+\BOOKMARK [1][-]{section.5.1}{Local Testing}{chapter.5}% 43
+\BOOKMARK [1][-]{section.5.2}{Network Testing}{chapter.5}% 44
+\BOOKMARK [1][-]{section.5.3}{Attack Simulation and Performance Testing}{chapter.5}% 45
+\BOOKMARK [1][-]{section.5.4}{Checking for Memory Leaks}{chapter.5}% 46
+\BOOKMARK [0][-]{chapter.6}{Evaluation}{}% 47
+\BOOKMARK [1][-]{section.6.1}{Project Results}{chapter.6}% 48
+\BOOKMARK [2][-]{subsection.6.1.1}{Decentralised Distributed System Model}{section.6.1}% 49
+\BOOKMARK [2][-]{subsection.6.1.2}{Firewall Blockchains}{section.6.1}% 50
+\BOOKMARK [2][-]{subsection.6.1.3}{Proof of Concept}{section.6.1}% 51
+\BOOKMARK [1][-]{section.6.2}{Evaluating the Development Process}{chapter.6}% 52
+\BOOKMARK [1][-]{section.6.3}{Test Results}{chapter.6}% 53
+\BOOKMARK [0][-]{chapter.7}{Conclusion}{}% 54
+\BOOKMARK [1][-]{section.7.1}{Original Aims and Objectives}{chapter.7}% 55
+\BOOKMARK [1][-]{section.7.2}{Personal Development}{chapter.7}% 56
+\BOOKMARK [1][-]{section.7.3}{Future Work}{chapter.7}% 57
+\BOOKMARK [0][-]{section*.7}{Glossary}{}% 58
+\BOOKMARK [0][-]{section*.9}{Acronyms}{}% 59
+\BOOKMARK [0][-]{appendix.A}{Framework Source Code}{}% 60
+\BOOKMARK [0][-]{appendix.B}{Client Program Source Code}{}% 61
+\BOOKMARK [0][-]{appendix.C}{Code and Framework Documentation}{}% 62
