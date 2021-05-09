@@ -2,6 +2,6 @@ This is makeindex, version 2.15 [TeX Live 2020] (kpathsea + Thai support).
 Scanning style file ./paper.ist.............................done (29 attributes redefined, 0 ignored).
 Scanning input file paper.glo....done (87 entries accepted, 0 rejected).
 Sorting entries....done (587 comparisons).
-Generating output file paper.gls....done (49 lines written, 0 warnings).
+Generating output file paper.gls....done (50 lines written, 0 warnings).
 Output written in paper.gls.
 Transcript written in paper.glg.

@@ -41,12 +41,38 @@
 %%%%%%%%%%%%%%%%%%
 % TITLE
 %%%%%%%%%%%%%%%%%%
-\title{\Huge{\textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}}}
+\iffalse
+\title{\Huge{{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}}}
 \date{May 2021}
 \author{
 \Large{Adam David Bruce} \\ \texttt{\href{mailto:a.bruce3@newcastle.ac.uk}{a.bruce3@newcastle.ac.uk}}}
 \begin{document}
 \maketitle
+\fi
+
+\begin{document}
+
+\begin{center}
+\thispagestyle{empty}
+\Huge{{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}} \\
+\vspace{1.0cm}
+\LARGE{Adam David Bruce} \\ 
+\vspace{1.0cm}
+\LARGE{May 2021} \\
+\vspace{13.0cm}
+\LARGE{Computer Science (Security and Resilience)} \\
+\vspace{1.0cm}
+\LARGE{Supervisor: Dr John Mace} \\
+\vspace{1.0cm}
+\LARGE{{Word count: 14,993}}
+\end{center}
+
+\newpage
+\section*{Declaration}
+\say{I declare that this dissertation represents my own work except where otherwise stated.}
+
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%
 % ABSTRACT
@@ -613,7 +639,6 @@ ARMv8 & Broadcom & FreeBSD 13 & N/A\\
 \label{tab:testdevices}
 \end{table}
 
-\iffalse
 A summary of the tests used is provided below.
 
 \begin{table}[H]
@@ -649,7 +674,6 @@ Send and receive over socket (valid)\\
 \caption{Unit Tests}
 \label{tab:unittests}
 \end{table}
-\fi
 
 \section{Network Testing}
 In order to test the operation over the network, a physical network was created using a switch and all of the devices described in table \ref{tab:testdevices}. A diagram of this topology is pictured below. Due to the nature of this project, these network tests were carried out at various stages throughout the development processes. There was no formal agenda to these tests, instead a large number of scenarios were created using the pictured network. All of the tested scenarios were handled correctly, which included testing advertisements, both valid and invalid consensus messages and verifying if rules were successfully communicated between nodes.
@@ -803,7 +827,7 @@ There are a number of changes and most importantly improvements that can be made
 \begin{itemize}
 \item \textbf{Security} - Currently there is no security regarding encapsulating the protocol, and furthermore, the protocol itself does contain known vulnerabilities which are not desirable. Ideal future work would include securing the packets sent across the network, which could be achieved by using some kind of shared key across the entire network, however this would only prevent outside devices from snooping, and would still allow bad actors within the network to snoop. Alternatively, \acrshort{UDP} could be replaced with \acrshort{TCP} which would allow common security protocols such as Transport Layer Security (TLS) to be utilised, however this would add a large amount of overhead, hence reducing the speed at which messages can propagate.
 
-\item \textbf{Message Efficiency} - Currently the protocol is hugely inefficient in regards to the number of messages transmitted across the network. The use of hops and the fact that each host relays any message it receives to all of its known hosts creates an exponential amount of messages on the network, which means that should the number of hosts reach a high enough level, the network essentially becomes on big Distributed Denial-of-Service (DDOS) attack, potentially causing devices to spend too much time processing messages instead of processing genuine traffic. The efficiency of messages could be vastly improved by integrating a more effective mechanism for providing redundancy.
+\item \textbf{Message Efficiency} - Currently the protocol is hugely inefficient in regards to the number of messages transmitted across the network. The use of hops and the fact that each host relays any message it receives to all of its known hosts creates an exponential amount of messages on the network, which means that should the number of hosts reach a high enough level, the network essentially creates a Distributed Denial-of-Service (DDOS) attack, potentially causing devices to spend too much time processing messages instead of processing genuine traffic. The efficiency of messages could be vastly improved by integrating a more effective mechanism for providing redundancy.
 
 \item \textbf{Programming Language} - The implementation provided in this project is written in C, however there are a number of alternatives that could offer much more resilience and tolerance to error. A number of these were considered but dismissed due to their immaturity. Whilst this is still true, upon reflection I have learnt that benefits such as Go's efficiency and Rust's memory safety could provide a much more safety and resiliency. Furthermore, these languages are both compiled which means they would be no less efficient that the C implementation, and could be much easily developed for, with less quirks than C. The only current barrier is that these languages do not currently support all of the operating system interfaces that C currently does, but an implementation could easily use different \acrshort{IPC} methods or networking interfaces to ensure compatibility.
 
@@ -837,6 +861,6 @@ There are a number of changes and most importantly improvements that can be made
 \chapter{Code and Framework Documentation}
 \includepdf[pages=-]{../docs/latex/refman.pdf}
 
-%\fi
+
 
 \end{document}
