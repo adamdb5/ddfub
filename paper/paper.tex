@@ -64,7 +64,7 @@
 \vspace{1.0cm}
 \LARGE{Supervisor: Dr John Mace} \\
 \vspace{1.0cm}
-\LARGE{{Word count: 14,993}}
+\LARGE{{Word count: 14,998}}
 \end{center}
 
 \newpage
@@ -132,14 +132,14 @@ Nofer et al. define \gls{blockchain}s as \say{data sets which are composed of a 
 % AIMS AND OBJECTIVES
 %%%%%%%%%%%%%%%%%%
 \section{Aims and Objectives} \label{aim}
-The original aim for this project was to design and create a decentralised firewall that could communicate knowledge of cyberattacks aimed at universities in real-time, allowing other universities to protect themselves from the same attacks. This system would be distributed, and hence must conform to the previous description of a distributed system in section \ref{distributed}. Following an extensive amount of background reading, there appeared to be no existing implementation or design of such a system which inspired the alteration of the aim to instead focus on designing a protocol and implementing a \gls{stub} to demonstrate the protocol's effectiveness. This project will therefore not be implementing a firewall, but instead a system to coordinate firewalls. Further research determined that \gls{blockchain} was the best choice for the underlying structure for such a protocol, and so this final change shaped the current aim for this project: \textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}.\\\\
+The original aim for this project was to design and create a decentralised firewall that could communicate knowledge of cyberattacks aimed at universities in real-time, allowing other universities to protect themselves from the same attacks. This system would be distributed, and hence must conform to the previous description of a distributed system in section \ref{distributed}. Following an extensive amount of background reading, there appeared to be no existing implementation or design of such a system which inspired the alteration of the aim to instead focus on designing a protocol and implementing a \gls{stub} to demonstrate the protocol's effectiveness. This project will therefore not be implementing a firewall, but instead a system to coordinate firewalls, allowing cyberattacks to be prevented without use of additional systems or requiring human involvement. Further research determined that \gls{blockchain} was the best choice for the underlying structure for such a protocol, and so this final change shaped the current aim for this project: \textbf{Using Blockchain to Create a Decentralised Security Model for Distributed Systems}.\\\\
 
 The following objectives provide an outline for what this project hopes to achieve:
 
 \begin{enumerate}
     \item Evaluate the effectiveness of existing distributed security mechanisms.
     \item Investigate methods of establishing connections and synchronising computers within distributed systems.
-    \item Understand the structure of \gls{blockchain}s and adapt them for firewall transactions.
+    \item Understand the structure of \gls{blockchain}s and adapt them for firewall rules.
     \item Implement and test relevant resilience, fault tolerance and security mechanisms.
     \item Compare the use of decentralised security mechanisms.
 \end{enumerate}
@@ -216,7 +216,7 @@ The primary reference used for \gls{blockchain} was Nofer et al.'s \say{Blockcha
 \end{center}
 
 \section{Distributed Security}
-The primary reference used for distributed security was Rivets and Lampson's \say{SDSI - A Simple Distributed Security Infrastructure} \cite{sdsi}. This publication provides an in-depth explanation of how a public-key infrastructure can be used in conjunction with access control lists to create a distributed security infrastructure. The majority of the literature within this publication is focused on creating and issuing certificates, something that is not relevant for this project, however Rivets and Lampson did provide clear requirements over the data structures within such a system. Rivets and Lampson implement a message system similar to that of Tanenbaum and van Steen's in section \ref{dist}. The message system proposed by Rivets and Lampson contains only a type and dictionary of attributes.
+The primary reference used for distributed security was Rivest and Lampson's \say{SDSI - A Simple Distributed Security Infrastructure} \cite{sdsi}. This publication provides an in-depth explanation of how a public-key infrastructure can be used in conjunction with access control lists to create a distributed security infrastructure. The majority of the literature within this publication is focused on creating and issuing certificates, something that is not relevant for this project, however Rivest and Lampson did provide clear requirements over the data structures within such a system. Rivest and Lampson implement a message system similar to that of Tanenbaum and van Steen's in section \ref{dist}. The message system proposed by Rivest and Lampson contains only a type and dictionary of attributes.
 
 \begin{figure}[H]
 \centering
@@ -225,7 +225,7 @@ The primary reference used for distributed security was Rivets and Lampson's \sa
 \label{fig:sdsimessage}
 \end{figure}
 
-Additionally, Rivets and Lampson detail the concept of objects, which are defined by a type. This type is expressed in the form 
+Additionally, Rivest and Lampson detail the concept of objects, which are defined by a type. This type is expressed in the form 
 
 \begin{center} 
 \texttt{protocol-name.message-type}
@@ -244,7 +244,7 @@ Al-Shaer and Hazem provide a detailed explanation of how firewall policies shoul
     \item \textbf{Action}: The action the firewall should take (e.g. ACCEPT, DENY).
 \end{itemize}
 
-In regards to this project, there was little other relevant content in the literature. Following the change in this project's aim detailed in section \ref{aim}, this project was no longer concerned with the implementation of a firewall or the interpretation of firewall rules, which deemed the vast majority of Al-Shaer and Hazem's publication irrelevant.
+In regards to this project, there was little other relevant content in the literature. Following the change in this project's aim detailed in section \ref{aim}, this project was no longer concerned with the implementation of a firewall or the interpretation of firewall rules as this project was modified to manage communication of firewall rules, not the implementation of firewalls, which deemed the vast majority of Al-Shaer and Hazem's publication irrelevant.
 
 Additional background information with regards to how firewalls are integrated into infrastructure came from Dulaney and Eastton's \say{CompTIA Security+ Study Guide: Exam SY0-501} \cite{comptiaSec}. Dulaney and Eastton's study guide covers a large number of aspects associated with cyber security, including technological, physical and psychological mitigations. With regards to firewalls, this publication details how the placement of firewalls can be used to form a \acrfull{DMZ}, which is a common network layout used by universities, as it permits certain areas of the network to be accessible from outside the local network.
 
@@ -291,7 +291,7 @@ The background research has identified how this project can utilise all of the m
 This section will look at how the project was designed from the ground up to include the relevant features to meet the aim and objectives. The section covers the logical design of the system, protocols and structures used within the system.
 
 \section{System Architecture}
-The system will be compiled into one single executable binary, but will interface with a number of external libraries and the \acrshort{OS} via system calls. The stub will primarily communicate with the \acrshort{OS} in order to establish sockets and bind them to the desired ports, the framework will then communicate with the \acrfull{NIC} to obtain it's assigned \acrfull{IP} address. Whenever a new block is created or received, OpenSSL's libcrypto library \cite{libcrypto} will be used to generate or validate the block's hash. This interaction is visualised in the following component diagram.
+The implementation of the model proposed in this paper will be compiled into one single executable binary, but will interface with a number of external libraries and the \acrshort{OS} via system calls. The stub will primarily communicate with the \acrshort{OS} in order to establish sockets and bind them to the desired ports, the framework will then communicate with the \acrfull{NIC} to obtain it's assigned \acrfull{IP} address. Whenever a new block is created or received, OpenSSL's libcrypto library \cite{libcrypto} will be used to generate or validate the block's hash. This interaction is visualised in the following component diagram.
 
 \begin{figure}[H]
 \centering
@@ -540,7 +540,7 @@ int poll_message(void *buffer, size_t length);
 \end{lstlisting}
 
 \section{Multithreading}
-In order for the \gls{stub} to be capable of consecutively sending and receiving messages over both the network, and via \acrshort{IPC}, the framework had to be multithreaded. Unsurprisingly, \acrshort{POSIX} and Windows use different thread models, which means there is no common threading interface. Thankfully, the \acrshort{POSIX} thread model has been ported to Windows in the form of the \acrshort{POSIX} Threads for Windows project\cite{pthread}. This allows the source code to be written identically for all operating systems, the only difference being that Windows will be linked with the necessary Dynamic-Link Library (DLL).
+In order for the \gls{stub} to be capable of consecutively sending and receiving messages over both the network, and via \acrshort{IPC}, the framework had to be multithreaded. Unsurprisingly, \acrshort{POSIX} and Windows use different thread models, which means there is no common threading interface. Thankfully, the \acrshort{POSIX} thread model has been ported to Windows in the form of the \acrshort{POSIX} Threads for Windows project\cite{pthread}. This allows the source code to be written identically for all operating systems, the only difference being that the Windows binary will be linked with the necessary Dynamic-Link Library (DLL).
 
 \section{Blockchain}
 Once the previous \acrshort{API}s had been created, the \gls{blockchain} aspect of the project could be implemented. As the structure of these blocks have already been discussed in section \ref{firewallblock}, this section will focus on how the functionality of this was implemented, primarily the \gls{hashing} of blocks.
@@ -771,7 +771,7 @@ The local tests all passed for the tested operating systems and architectures. T
 \centering
 \includegraphics[width=200px,keepaspectratio]{socket_test}
 \caption{The output of the socket unit tests} 
-\label{fig:nettest}
+\label{fig:socktest}
 \end{figure}
 
 Unfortunately the number of tests that could be carried out locally was constricted by the networked nature of the system. Although these tests are limited, they did provide valuable information and guidance when implementing these functions, however their effectiveness began to decline as the system became more complex. As can be seen from the tables in \ref{loctest}, there were a large number of additional functions implemented but not tested, and this is where using both waterfall and \acrshort{TDD} began to lose effectiveness. Before starting development on a particular component, the tests were written up, however it became increasingly difficult to maintain both the tests and the functional code, which resulted in \acrshort{TDD} becoming a lower priority and functions were instead tested as they were implemented, which is why there is a lack of tests in the unit tests.
@@ -829,7 +829,7 @@ There are a number of changes and most importantly improvements that can be made
 
 \item \textbf{Message Efficiency} - Currently the protocol is hugely inefficient in regards to the number of messages transmitted across the network. The use of hops and the fact that each host relays any message it receives to all of its known hosts creates an exponential amount of messages on the network, which means that should the number of hosts reach a high enough level, the network essentially creates a Distributed Denial-of-Service (DDOS) attack, potentially causing devices to spend too much time processing messages instead of processing genuine traffic. The efficiency of messages could be vastly improved by integrating a more effective mechanism for providing redundancy.
 
-\item \textbf{Programming Language} - The implementation provided in this project is written in C, however there are a number of alternatives that could offer much more resilience and tolerance to error. A number of these were considered but dismissed due to their immaturity. Whilst this is still true, upon reflection I have learnt that benefits such as Go's efficiency and Rust's memory safety could provide a much more safety and resiliency. Furthermore, these languages are both compiled which means they would be no less efficient that the C implementation, and could be much easily developed for, with less quirks than C. The only current barrier is that these languages do not currently support all of the operating system interfaces that C currently does, but an implementation could easily use different \acrshort{IPC} methods or networking interfaces to ensure compatibility.
+\item \textbf{Programming Language} - The implementation provided in this project is written in C, however there are a number of alternatives that could offer much more resilience and tolerance to error. A number of these were considered but dismissed due to their immaturity. Whilst this is still true, upon reflection I have learnt that benefits such as Go's efficiency and Rust's memory safety could provide better safety and resiliency. Furthermore, these languages are both compiled which means they would be no less efficient that the C implementation, and could be much easily developed for, with less quirks than C. The only current barrier is that these languages do not currently support all of the operating system interfaces that C currently does, but an implementation could easily use different \acrshort{IPC} methods or networking interfaces to ensure compatibility.
 
 \end{itemize}
 
